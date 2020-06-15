@@ -9,3 +9,4 @@ nbsphinx
 jupyter
 bumps
 lmfit
+ipywidgets
