@@ -7,3 +7,5 @@ pandas
 h5py
 nbsphinx
 jupyter
+bumps
+lmfit
