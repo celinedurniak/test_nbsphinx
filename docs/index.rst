@@ -10,7 +10,6 @@ Welcome to Test nbsphinx's documentation!
    :maxdepth: 3
    :caption: Contents:
 
-
    README
 
    bumps_BrownianDiff_fit
@@ -29,8 +28,6 @@ Welcome to Test nbsphinx's documentation!
    lmfit_waterIN5_teixeira_fit
    scipy_JumpSitesLogNormDist_fit
    scipy_lorentzian_fit
-
-
 
 
 Indices and tables
