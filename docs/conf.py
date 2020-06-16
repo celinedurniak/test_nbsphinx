@@ -55,6 +55,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 
+highlight_language = 'python3'
+
 # -- Options for HTML output -------------------------------------------------
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
