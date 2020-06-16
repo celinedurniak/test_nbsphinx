@@ -55,7 +55,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 
-highlight_language = 'python3'
+highlight_language = 'none'
 
 # -- Options for HTML output -------------------------------------------------
 
