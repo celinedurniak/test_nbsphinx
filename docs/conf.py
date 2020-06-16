@@ -21,7 +21,6 @@ project = 'Test nbsphinx'
 copyright = '2020, me'
 author = 'me'
 
-
 # -- General configuration ---------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be
@@ -53,7 +52,6 @@ source_suffix = '.rst'
 
 # The master toctree document.
 master_doc = 'index'
-
 
 highlight_language = 'none'
 
