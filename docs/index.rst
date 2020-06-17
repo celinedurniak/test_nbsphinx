@@ -15,11 +15,6 @@ Welcome to Test nbsphinx's documentation!
    tools
    examples
 
-   ../examples/bumps_DeltaLorentz_fit
-
-   ..include  ../examples/bumps_ChudleyElliotDiff_fit
-
-
 Indices and tables
 ==================
 
