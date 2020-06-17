@@ -1,8 +1,8 @@
 Examples
 ==========
 
-   ../examples/bumps_BrownianDiff_fit
-   ../examples/bumps_ChudleyElliotDiff_fit
+..include  ../examples/bumps_BrownianDiff_fit
+..include  ../examples/bumps_ChudleyElliotDiff_fit
    ../examples/bumps_DeltaLorentz_fit
    ../examples/bumps_IsoRot_fit
    ../examples/bumps_JumpDiffIsoRot_fit
