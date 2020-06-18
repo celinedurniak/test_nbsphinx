@@ -14,6 +14,7 @@ Welcome to Test nbsphinx's documentation!
    modules
    tools
 
+   examples/README
    examples/bumps_BrownianDiff_fit
    examples/bumps_ChudleyElliotDiff_fit
    examples/bumps_DeltaLorentz_fit
