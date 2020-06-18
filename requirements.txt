@@ -1,0 +1,12 @@
+numpy
+scipy
+matplotlib
+panel
+git+git://github.com/QENSlibrary/QENSmodels.git
+pandas
+h5py
+nbsphinx
+jupyter
+bumps
+lmfit
+ipywidgets
