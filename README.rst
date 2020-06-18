@@ -74,36 +74,10 @@ To **uninstall** the library, type
 
    pip uninstall QENSmodels
 
-Documentation
-=============
-
-The documentation is available at https://qensmodels.readthedocs.io .
-
-.. The documentation is built using ``Sphinx``. The required packages can be installed using the following commands:
-
-.. .. code-block:: console
-
-..    pip install sphinx
-..    pip install sphinx-rtd-theme
-..    pip install sphinxcontrib-napoleon
-
-.. Other ways of installing ``Sphinx`` at be found at http://www.sphinx-doc.org/en/master/usage/installation.html
-
-.. How to build documentation?
-.. ---------------------------
-
-.. In a terminal, move to the *docs* folder and type
-
-.. .. code-block:: console
-
-..    make html
-
-.. This command will generate html files in the subfolder *_build/html*.
-
 Tests
-=====
+-----
 
-The script to run the tests is located in the ``tools`` folder. 
+The script to run the tests is located in the ``tools`` folder.
 These tests require the installation of ``doctest`` and ``unittest``.
 
 In a terminal, move to the ``tools`` directory and run
@@ -111,6 +85,12 @@ In a terminal, move to the ``tools`` directory and run
 .. code-block:: console
 
    ./run_tests.sh
+
+Documentation
+=============
+
+The documentation is available at https://qensmodels.readthedocs.io .
+
 
 License
 -------
