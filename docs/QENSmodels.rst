@@ -112,10 +112,10 @@ QENSmodels.water\_teixeira module
     :show-inheritance:
 
 
-Module contents
----------------
+.. Module contents
+.. ---------------
 
-.. automodule:: QENSmodels
-    :members:
-    :undoc-members:
-    :show-inheritance:
+.. .. automodule:: QENSmodels
+..     :members:
+..     :undoc-members:
+..     :show-inheritance:

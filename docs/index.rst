@@ -2,18 +2,19 @@ Welcome to Test nbsphinx's documentation!
 =========================================
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 3
    :caption: Contents
 
-   description
-   tools
+   ../README
+..   description
+   ../tools/README
+..   tools
 
 .. toctree::
    :caption: QENSmodels
    :maxdepth: 3
 
    QENSmodels
-..   modules
 
 .. toctree::
    :caption: Examples
