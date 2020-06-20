@@ -5,9 +5,10 @@ Welcome to Test nbsphinx's documentation!
    :maxdepth: 3
    :caption: Contents
 
-   ../README
+
 ..   description
-   ../tools/README
+   .. include:: ../README.rst
+   .. include:: ../tools/README.rst
 ..   tools
 
 .. toctree::
