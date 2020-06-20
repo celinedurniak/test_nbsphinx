@@ -3,21 +3,16 @@ Welcome to Test nbsphinx's documentation!
 
 .. toctree::
    :maxdepth: 4
-   :caption: Contents:
+   :caption: Contents
 
    description
+   tools
 
 .. toctree::
    :caption: Models
    :maxdepth: 3
 
    modules
-
-.. toctree::
-   :caption: Tools
-   :maxdepth: 3
-
-   tools
 
 .. toctree::
    :caption: Examples
