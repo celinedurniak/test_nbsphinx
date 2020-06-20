@@ -17,7 +17,7 @@ Welcome to Test nbsphinx's documentation!
 
 .. toctree::
    :caption: Examples
-   :maxdepth: 3
+   :maxdepth: 2
 
    examples/README
    examples/bumps_BrownianDiff_fit
