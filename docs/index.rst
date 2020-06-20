@@ -1,8 +1,3 @@
-.. Test nbsphinx documentation master file, created by
-   sphinx-quickstart on Mon Jun 15 08:55:20 2020.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
 Welcome to Test nbsphinx's documentation!
 =========================================
 
@@ -11,8 +6,22 @@ Welcome to Test nbsphinx's documentation!
    :caption: Contents:
 
    description
+
+.. toctree::
+   :caption: Models
+   :maxdepth: 3
+
    modules
+
+.. toctree::
+   :caption: Tools
+   :maxdepth: 3
+
    tools
+
+.. toctree::
+   :caption: Examples
+   :maxdepth: 3
 
    examples/README
    examples/bumps_BrownianDiff_fit
