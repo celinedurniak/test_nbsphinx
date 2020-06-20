@@ -6,10 +6,8 @@ Welcome to Test nbsphinx's documentation!
    :caption: Contents
 
 
-..   description
-   .. include:: ../README.rst
-   .. include:: ../tools/README.rst
-..   tools
+   description
+   tools
 
 .. toctree::
    :caption: QENSmodels
