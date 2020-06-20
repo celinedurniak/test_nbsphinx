@@ -1,8 +1,3 @@
-.. QENSmodels package
-..   ==================
-
-.. Submodules
-.. ----------
 
 QENSmodels.background\_polynomials module
 -----------------------------------------

@@ -9,10 +9,11 @@ Welcome to Test nbsphinx's documentation!
    tools
 
 .. toctree::
-   :caption: Models
+   :caption: QENSmodels
    :maxdepth: 3
 
-   modules
+   QENSmodels
+..   modules
 
 .. toctree::
    :caption: Examples
