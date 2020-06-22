@@ -1,6 +1,3 @@
-===========
-Description
-===========
 
 .. image:: https://readthedocs.org/projects/qensmodels/badge/?version=latest
    :target: https://qensmodels.readthedocs.io/?badge=latest

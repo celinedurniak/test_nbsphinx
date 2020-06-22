@@ -1,4 +1,4 @@
-This folder contains tools to extract information from the QENS models or to
+The `Tools` folder contains different tools to extract information from the QENS models or to
 help users converting units
 
 * ``Convert_units.ipynb``

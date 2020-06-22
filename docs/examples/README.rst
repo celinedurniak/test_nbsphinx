@@ -86,7 +86,7 @@ which will contain the required packages
    conda create --name mynewenv python numpy scipy matplotlib jupyter pandas
 
 Note that you can specify which version of ``Python``. For example,
-``conda create --name mynewenv python=3.8 numpy scipy matplotlib jupyter pandas`` to
+``conda create --name mynewenv python=3.8 ipympl numpy scipy matplotlib jupyter`` to
 install ``Python`` version 3.8.
 
 Then activate the environment and install the remaining packages
