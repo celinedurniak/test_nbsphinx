@@ -5,8 +5,13 @@ Welcome to Test nbsphinx's documentation!
    :maxdepth: 3
    :caption: Contents
 
-
    description
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Tools
+
+   handling_units
    tools
 
 .. toctree::
