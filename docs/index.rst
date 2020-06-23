@@ -9,16 +9,10 @@ Welcome to Test nbsphinx's documentation!
 
 .. toctree::
    :maxdepth: 3
-   :caption: Tools
+   :caption: Information about models and units
 
    handling_units
    tools
-
-.. toctree::
-   :caption: QENSmodels
-   :maxdepth: 3
-
-   QENSmodels
 
 .. toctree::
    :caption: Examples
@@ -40,6 +34,12 @@ Welcome to Test nbsphinx's documentation!
    examples/lmfit_waterIN5_teixeira_fit
    examples/scipy_JumpSitesLogNormDist_fit
    examples/scipy_lorentzian_fit
+
+.. toctree::
+   :caption: QENSmodels
+   :maxdepth: 3
+
+   QENSmodels
 
 Indices and tables
 ==================
