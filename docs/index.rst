@@ -9,7 +9,7 @@ Welcome to Test nbsphinx's documentation!
 
 .. toctree::
    :maxdepth: 3
-   :caption: Information about models and units
+   :caption: Information on models and units
 
    handling_units
    tools
