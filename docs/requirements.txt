@@ -5,6 +5,7 @@ panel
 git+git://github.com/QENSlibrary/QENSmodels.git
 pandas
 h5py
+sphinx-gallery
 nbsphinx
 jupyter
 bumps==0.7.12
