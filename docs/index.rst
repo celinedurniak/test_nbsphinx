@@ -35,7 +35,7 @@ Welcome to Test nbsphinx's documentation!
    examples/scipy_JumpSitesLogNormDist_fit
    examples/scipy_lorentzian_fit
    examples/using_mantid/README
-   examples/using_mantid/mantid_BrownianDiff_fit.py
+   examples/using_mantid/mantid_BrownianDiff_fit
 
 .. toctree::
    :caption: QENSmodels

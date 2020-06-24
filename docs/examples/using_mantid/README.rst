@@ -26,7 +26,7 @@ On Mac
 - Save the above file to Desktop (for example).
   In a terminal run these lines to install pip and use it to install the QENSmodels library:
 
-.. code-block:: console
+  .. code-block:: console
 
       cd ~/Desktop
 
@@ -46,9 +46,9 @@ In a command prompt,
 
 - type
 
-.. code-block:: console
+  .. code-block:: console
 
-     Scripts\pip install path_to_QENSmodels
+     scripts\pip install path_to_QENSmodels
 
   where path_to_QENSmodels is the location of the QENSmodels's folder on your computer
 
