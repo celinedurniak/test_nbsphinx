@@ -48,7 +48,7 @@ extensions = [
 ]
 
 sphinx_gallery_conf = {
-     'examples_dirs': ['examples', 'examples/using_mantid'],   # path to your example scripts
+     'examples_dirs': ['./examples', './examples/using_mantid'],   # path to your example scripts
      'gallery_dirs': ['auto_examples', 'auto_examples_using_mantid'],  # path to where to save gallery generated output
 }
 
