@@ -34,6 +34,7 @@ Welcome to Test nbsphinx's documentation!
    examples/lmfit_waterIN5_teixeira_fit
    examples/scipy_JumpSitesLogNormDist_fit
    examples/scipy_lorentzian_fit
+   examples/using_mantid/README
 
 .. toctree::
    :caption: QENSmodels
