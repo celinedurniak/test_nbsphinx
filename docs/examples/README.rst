@@ -8,7 +8,7 @@ Note that in order to open and run these examples, you need
 `jupyter <http://jupyter.org/>`_\ ,
 `scipy <https://www.scipy.org/>`_\ ,
 `matplotlib <https://matplotlib.org/>`_\ ,
-`panel <https://panel.pyviz.org/>`_  and `pandas <https://pandas.pydata.org/>`_ (for interactive
+`ipywidgets <https://ipywidgets.readthedocs.io/en/latest/>`_ (for interactive
 plots),
 `lmfit <https://lmfit.github.io/lmfit-py/>`_ (optional),
 `bumps <https://github.com/bumps/bumps>`_ (optional),
