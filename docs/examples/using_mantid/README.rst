@@ -1,3 +1,6 @@
+QENS models and Mantid
+######################
+
 Introduction
 ============
 
