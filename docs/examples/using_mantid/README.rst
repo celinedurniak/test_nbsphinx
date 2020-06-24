@@ -53,7 +53,7 @@ In a command prompt,
 
      scripts\pip install path_to_QENSmodels
 
-  where path_to_QENSmodels is the location of the QENSmodels's folder on your computer
+  where path_to_QENSmodels is the location of the QENSmodels' folder on your computer
 
 
 On Linux
