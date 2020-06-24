@@ -1,10 +1,7 @@
+Introduction
+============
 
-.. highlight:: rst
-
-.. important::
-
-This folder contains different files to use the QENS library and Mantid. Several options are
-possible depending on your operating system.
+Several options are possible to use QENS library and Mantid depending on your operating system.
 
 Since Mantidplot is being replaced by Mantid Workbench, the tips and methods details in this
 document have been tested using the latter only.
@@ -29,7 +26,7 @@ On Mac
 - Save the above file to Desktop (for example).
   In a terminal run these lines to install pip and use it to install the QENSmodels library:
 
-  .. code_block:: console
+.. code-block:: console
 
       cd ~/Desktop
 
@@ -45,11 +42,11 @@ On Windows
 
 In a command prompt,
 
-- cd into `MantidInstall\bin`
+- `cd` into `MantidInstall\bin`
 
 - type
 
-  .. code_block:: console
+.. code-block:: console
 
      Scripts\pip install path_to_QENSmodels
 
@@ -88,4 +85,3 @@ simply type
 
 The Python script `mantid_BrownianDiff_fit.py` can be used as an example to be loaded in Mantid
 Workbench for fitting data to functions from the QENSmodels library.
-
