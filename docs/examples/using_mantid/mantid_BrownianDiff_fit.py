@@ -116,8 +116,7 @@ for wi in range(selected_wi):
              "EndX_" + str(wi): str(maxE)})
 
 # Perform fitting
-mapi.Fit(Function=global_model, **domain_model,
-         CreateOutput=True, MaxIteractions=500, Output='fit')
+mapi.Fit(Function=global_model, **domain_model, CreateOutput=True, MaxIteractions=500, Output='fit')
 
 """
  As a result of the fit, three workspaces are created:
