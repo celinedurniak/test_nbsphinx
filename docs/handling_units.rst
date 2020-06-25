@@ -1,7 +1,3 @@
-.. only:: html
-
-   :math:`\\require{mediawiki-texvc}`
-
 Handling of units
 #################
 
@@ -77,9 +73,9 @@ or :math:`S(Q, \nu)` instead of :math:`S(Q, \hbar\omega)` and the frequency is g
 
 In this case, the standard unit conversion tables can be used to convert directly to the desired
 units, *e.g.*:
-*	List of conversion factors for neutron scattering
-*	Documentation about units in Mantid
-*	ILL online tool Neutron scattering conversion factors
+ *	List of conversion factors for neutron scattering
+ *	Documentation about units in Mantid
+ *	ILL online tool Neutron scattering conversion factors
 
 The same applies to the Gaussian model, with *sigma* replacing *hwhm*.
 
@@ -104,14 +100,14 @@ can be converted to more standard units for the self-diffusion coefficient by no
     1 \AA^2.meV = 1.519.10^{-8} m^2/s = 1.519.10^{-4} cm^2/s = 1.519 \AA^2/ps
 
 
-If the energy transfer is given in :math:`\mu eV` instead of meV, then *D* will be obtained in
-:math:`\AA^2.\mu eV`, and we would need to apply:
+If the energy transfer is given in :math:`\mu eV` instead of :math:`meV`, then :math:`D` will be
+obtained in :math:`\AA^2.\mu eV`, and we would need to apply:
 
 .. math::
     1 \AA^2.\mu eV = 1.519.10^{-11} m^2/s = 1.519.10^{-7} cm^2/s = 1.519.10^{-3}  \AA^2/ps
 
 
-If :math:`Q` is in :math:`nm^{-1}`, then we would have *D* in :math:`nm^2`.meV` or
+If :math:`Q` is in :math:`nm^{-1}`, then we would have :math:`D` in :math:`nm^2`.meV` or
 :math:`nm^2.\mu eV`, and:
 
 .. math::
@@ -169,12 +165,13 @@ easily transformed to time units:
 Rotational diffusion coefficient
 ================================
 
-At present, this parameter appears only in the isotropic rotational diffusion model, named as *DR*
-and it will have units of E if the input is :math:`S(Q, \hbar\omega)`, or :math:`T^{-1}` if the
-input is :math:`S(Q, \omega)`. In the first case, the result can be converted to the expected
-inverse time units easily:
+At present, this parameter appears only in the isotropic rotational diffusion model. It is named
+*DR* and it will have units of :math:`E` if the input is :math:`S(Q, \hbar\omega)`, or
+:math:`T^{-1}` if the input is :math:`S(Q, \omega)`. In the first case, the result can be converted
+to the expected inverse time units easily:
 
 .. math::
+
 	1 meV = 1.519.10^{12} s^{-1} = 1.519 ps^{-1}
 
 
@@ -182,10 +179,12 @@ Adimensional parameters
 =======================
 
 Although they do not require any conversion, they are listed here for completeness.
-*A0*, *A1*, *A2* in models formed by the sum of several functions (*e.g.*  *delta_lorentz*).
-*Nsites* defining the number of sites in a circle (which should not be an adjustable parameter) in
-*equivalent_sites_circle* and *jump_sites_log_norm_dist*. *Sigma* describing the width of the
-log-norm distribution in *jump_sites_log_norm_dist*.
+
+ * *A0*, *A1*, *A2* in models formed by the sum of several functions (*e.g.*  *delta_lorentz*).
+ * *Nsites* defining the number of sites in a circle,
+   **which should not be an adjustable parameter**, in *equivalent_sites_circle* and
+   *jump_sites_log_norm_dist*.
+ * *Sigma* describing the width of the log-norm distribution in *jump_sites_log_norm_dist*.
 
 
 Summary table
