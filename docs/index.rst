@@ -37,6 +37,14 @@ Welcome to Test nbsphinx's documentation!
    examples/using_mantid/README
 
 .. toctree::
+   :caption: Gallery
+   :maxdepth: 3
+
+   gallery_notebooks
+
+
+
+.. toctree::
    :caption: QENSmodels
    :maxdepth: 3
 
