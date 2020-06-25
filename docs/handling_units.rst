@@ -28,7 +28,7 @@ in absolute units, then this scaling factor will be given also in :math:`[E]^{-1
 
 
 The wavevector transfer :math:`Q` has units of :math:`[length]^{-1}` (:math:`[L]^{-1}`). Typically
-this is given in  "\212B"; :math:`{\AA}^{-1}`, but it is not uncommon to use :math:`nm^{-1}`.
+this is given in  &#8491; :math:`{\AA}^{-1}`, but it is not uncommon to use :math:`nm^{-1}`.
 
 :math:`\hbar\omega` (or :math:`\omega` or :math:`\nu` or :math:`\nu/c`)
 ***********************************************************************
