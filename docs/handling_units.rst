@@ -19,6 +19,7 @@ same units as the input data. Further information and examples are given below.
 :math:`S(Q,\hbar\omega)`
 ************************
 
+$\AA^{-1}$
 The dynamical structure factor should be given in units of :math:`[energy]^{-1}`
 (:math:`[E]^{-1}`), although in many cases :math:`S(Q,\hbar\omega)` is not obtained in absolute
 units and the fitted data will be simply given in arbitrary units. In this case, the global scaling
