@@ -36,19 +36,20 @@ Welcome to Test nbsphinx's documentation!
    examples/scipy_lorentzian_fit
    examples/using_mantid/README
 
-.. nbgallery::
-   :caption: This is a thumbnail gallery
-   :name: gallery
-   :glob:
-   :reversed:
 
-    examples/*fit
+.. toctree::
+   :caption: Gallery of Examples
+   :maxdepth: 1
+
+   gallery_notebooks
+
 
 .. toctree::
    :caption: QENSmodels
    :maxdepth: 3
 
    QENSmodels
+
 
 Indices and tables
 ==================
