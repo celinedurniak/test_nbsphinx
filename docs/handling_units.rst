@@ -31,7 +31,7 @@ in absolute units, then this scaling factor will be given also in :math:`[E]^{-1
 *********
 
 The wavevector transfer :math:`Q` has units of :math:`[length]^{-1}` (:math:`[L]^{-1}`). Typically
-this is given in {\AA}:math:`\\AA^{-1}`, but it is not uncommon to use :math:`nm^{-1}`.
+this is given in :math:`\AA^{-1}`, but it is not uncommon to use :math:`nm^{-1}`.
 
 :math:`\hbar\omega` (or :math:`\omega` or :math:`\nu` or :math:`\nu/c`)
 ***********************************************************************
@@ -43,6 +43,8 @@ when comparing with simulation data) to use just the angular frequency :math:`\o
 in :math:`rad.ps^{-1}` or :math:`rad^{-1}`) or the frequency :math:`\nu` (often in :math:`THz`, but
 also in :math:`GHz` or :math:`Hz`). In this case the input units are of dimension
 :math:`[time]^{-1}` (:math:`[T]^{-1}`).
+
+
 .. Finally, in optical spectroscopy it is usual to use the optical wavevector :math:`\nu/c` in
 :math:`cm^{-1}`, *i.e.* :math:`[L]^{-1}`. Therefore it is not uncommon that neutron vibrational
 spectrometers provide data in :math:`cm^{-1}`. However, as this is not of common use in QENS
