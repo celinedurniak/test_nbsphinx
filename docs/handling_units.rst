@@ -1,14 +1,14 @@
 Handling of units
 #################
 
-**Add summary table**
+Introduction
+************
 
-
-At present the QENS models library contains a set of models aimed to fit
-:math:`S(Q, \hbar\omega)` quasielastic neutron scattering data [#f1]_ .
-As there it does not yet exist a standard format for :math:`S(Q,\hbar\omega)` data, it remains a
-user task to write the appropriate loader to read the data and the library is unit agnostic
-and it does not make any assumption about the units of the input data.
+At present the QENS models library contains a set of models aimed to fit :math:`S(Q, \hbar\omega)`
+quasielastic neutron scattering data [#f1]_ . As there does not yet exist a standard format for
+:math:`S(Q,\hbar\omega)` data, it remains a user task to write the appropriate loader to read the
+data. The library is unit agnostic and does not make any assumption about the units of the input
+data.
 As a consequence, if no additional information is given, any output parameter will be given in the
 same units as the input data. Further information and examples are given below.
 
@@ -18,15 +18,17 @@ same units as the input data. Further information and examples are given below.
 The dynamical structure factor should be given in units of :math:`[energy]^{-1}`
 (:math:`[E]^{-1}`), although in many cases :math:`S(Q,\hbar\omega)` is not obtained in absolute
 units and the fitted data will be simply given in arbitrary units. In this case, the global scaling
-factor using in the fitting model will also be just an arbitrary number and its units can be ignored.
+factor used in the fitting model will also be just an arbitrary number and its units can be
+ignored.
 Otherwise, if the input data were carefully normalized and the dynamical structure factor is given
 in absolute units, then this scaling factor will be given also in :math:`[E]^{-1}` units.
 
 :math:`Q`
 *********
 
-The wavevector transfer has units of :math:`[length]^{-1}` (:math:`[L]^{-1}`). Typically this
-is given in :math:`\AA^{-1}`, but it is not uncommon to use :math:`nm^{-1}`.
+
+The wavevector transfer :math:`Q` has units of :math:`[length]^{-1}` (:math:`[L]^{-1}`). Typically
+this is given in  "\212B"; :math:`{\AA}^{-1}`, but it is not uncommon to use :math:`nm^{-1}`.
 
 :math:`\hbar\omega` (or :math:`\omega` or :math:`\nu` or :math:`\nu/c`)
 ***********************************************************************
@@ -175,6 +177,24 @@ Although they do not require any conversion, they are listed here for completene
 *Nsites* defining the number of sites in a circle (which should not be an adjustable parameter) in
 *equivalent_sites_circle* and *jump_sites_log_norm_dist*. *Sigma* describing the width of the
 log-norm distribution in *jump_sites_log_norm_dist*.
+
+
+Summary table
+*************
+
++------------+------------+-----------+
+| Model      | Header 2   | Header 3  |
++============+============+===========+
+| body row 1 | column 2   | column 3  |
++------------+------------+-----------+
+| body row 2 | Cells may span columns.|
++------------+------------+-----------+
+| body row 3 | Cells may  | - Cells   |
++------------+ span rows. | - contain |
+| body row 4 |            | - blocks. |
++------------+------------+-----------+
+
+
 
 
 .. rubric:: Footnotes
