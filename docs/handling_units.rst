@@ -49,9 +49,9 @@ also in :math:`GHz` or :math:`Hz`). In this case the input units are of dimensio
 
 
 .. Finally, in optical spectroscopy it is usual to use the optical wavevector :math:`\nu/c` in
-:math:`cm^{-1}`, *i.e.* :math:`[L]^{-1}`. Therefore it is not uncommon that neutron vibrational
-spectrometers provide data in :math:`cm^{-1}`. However, as this is not of common use in QENS
-spectroscopy, we will not consider that case.
+.. :math:`cm^{-1}`, *i.e.* :math:`[L]^{-1}`. Therefore it is not uncommon that neutron vibrational
+.. spectrometers provide data in :math:`cm^{-1}`. However, as this is not of common use in QENS
+.. spectroscopy, we will not consider that case.
 
 Output units
 ************
@@ -103,14 +103,14 @@ can be converted to more standard units for the self-diffusion coefficient by no
 :math:`\omega=1.519.10^{12}\ rad/s`, giving [#f3]_ :
 
 .. math::
-    1 |Ang|^2.meV = 1.519.10^{-8} m^2/s = 1.519.10^{-4} cm^2/s = 1.519 |Ang|^2/ps
+    1 |Ang^2|.meV = 1.519.10^{-8} m^2/s = 1.519.10^{-4} cm^2/s = 1.519 |Ang^2|/ps
 
 
 If the energy transfer is given in :math:`\mu eV` instead of :math:`meV`, then :math:`D` will be
 obtained in |Ang^2| :math:`.\mu eV`, and we would need to apply:
 
 .. math::
-    1 |Ang^2|.\mu eV = 1.519.10^{-11} m^2/s = 1.519.10^{-7} cm^2/s = 1.519.10^{-3} |Ang^2|/ps
+    1 {|Ang^2|}.\mu eV = 1.519.10^{-11} m^2/s = 1.519.10^{-7} cm^2/s = 1.519.10^{-3} |Ang^2|/ps
 
 
 If :math:`Q` is in :math:`nm^{-1}`, then we would have :math:`D` in :math:`nm^2`.meV` or
@@ -121,7 +121,7 @@ If :math:`Q` is in :math:`nm^{-1}`, then we would have :math:`D` in :math:`nm^2`
     1 nm^2.\mu eV = 1.519.10^{-9} m^2/s = 1.519.10^{-5} cm^2/s = 1.519.10^{-1} |Ang^2|/ps
 
 If the input data correspond to :math:`S(Q, \omega)` with :math:`\omega` in :math:`rad/ps`, then
-:math:`D` will be obtained directly in :math:`\AA^2/ps` (if :math:`Q` was in :math:`\AA^{-1}`) or in
+:math:`D` will be obtained directly in |Ang^2| :math:`/ps` (if :math:`Q` was in |Ang^-1|) or in
 :math:`nm^2/ps` (if :math:`Q` was in :math:`nm^{-1}`).
 
 Finally, if the input is :math:`S(Q, \nu)` with :math:`\nu` in THz and :math:`Q` in
