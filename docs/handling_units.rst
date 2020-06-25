@@ -3,6 +3,9 @@ Handling of units
 
 
 .. |Ang| unicode:: U+212B
+.. |Ang^-1| replace:: |Ang|\ :sup:`-1`
+.. |Ang^2| replace:: |Ang|\ :sup:`2`
+.. |Ang^-2| replace:: |Ang|\ :sup:`-2`
 
 Introduction
 ************
@@ -18,7 +21,6 @@ same units as the input data. Further information and examples are given below.
 :math:`S(Q,\hbar\omega)`
 ************************
 
-|Ang|
 
 The dynamical structure factor should be given in units of :math:`[energy]^{-1}`
 (:math:`[E]^{-1}`), although in many cases :math:`S(Q,\hbar\omega)` is not obtained in absolute
@@ -32,7 +34,7 @@ in absolute units, then this scaling factor will be given also in :math:`[E]^{-1
 *********
 
 The wavevector transfer :math:`Q` has units of :math:`[length]^{-1}` (:math:`[L]^{-1}`). Typically
-this is given in :math:`\AA^{-1}`, but it is not uncommon to use :math:`nm^{-1}`.
+this is given in |Ang^-1|, but it is not uncommon to use :math:`nm^{-1}`.
 
 :math:`\hbar\omega` (or :math:`\omega` or :math:`\nu` or :math:`\nu/c`)
 ***********************************************************************
@@ -63,7 +65,7 @@ Lorentzian or Gaussian models
 =============================
 
 Let’s start with the most common case: :math:`S(Q, \hbar\omega)` is in arbitrary units, :math:`Q`
-is given in :math:`\AA^{-1}`, and :math:`\hbar\omega` is in :math:`\AA^{-1}` and we are fitting a
+is given in |Ang^-1|, and :math:`\hbar\omega` is in |Ang^-1| and we are fitting a
 single Lorentzian. The three output parameters that we will get are:
 
 * the amplitude of the Lorentzian, *scale*, given in arbitrary units,
@@ -94,40 +96,40 @@ self-diffusion coefficient, :math:`D`, which is related to the half-width at hal
 :math:`S(Q, \hbar\omega)` or :math:`T^{-1}L^2` if the input data was :math:`S(Q, \omega)` or
 :math:`S(Q, \nu)`.
 
-So if we fit :math:`S(Q, \hbar\omega)` data with :math:`Q` in :math:`\AA^{-1}` and
-:math:`\hbar\omega` in :math:`meV`, :math:`D` will be given in :math:`\AA^2.meV`. The output value
+So if we fit :math:`S(Q, \hbar\omega)` data with :math:`Q` in |Ang^-1| and
+:math:`\hbar\omega` in :math:`meV`, :math:`D` will be given in |Ang^-1| :math:`.meV`. The output value
 can be converted to more standard units for the self-diffusion coefficient by noting that
-:math:`1\ \AA = 10^{-10} \ m` and :math:`\hbar\omega = 1\ meV` corresponds to
+:math:`1` |Ang| :math:`= 10^{-10}\ m` and :math:`\hbar\omega = 1\ meV` corresponds to
 :math:`\omega=1.519.10^{12}\ rad/s`, giving [#f3]_ :
 
 .. math::
-    1 \AA^2.meV = 1.519.10^{-8} m^2/s = 1.519.10^{-4} cm^2/s = 1.519 \AA^2/ps
+    1 |Ang|^2.meV = 1.519.10^{-8} m^2/s = 1.519.10^{-4} cm^2/s = 1.519 |Ang|^2/ps
 
 
 If the energy transfer is given in :math:`\mu eV` instead of :math:`meV`, then :math:`D` will be
-obtained in :math:`\AA^2.\mu eV`, and we would need to apply:
+obtained in |Ang^2| :math:`.\mu eV`, and we would need to apply:
 
 .. math::
-    1 \AA^2.\mu eV = 1.519.10^{-11} m^2/s = 1.519.10^{-7} cm^2/s = 1.519.10^{-3}  \AA^2/ps
+    1 |Ang^2|.\mu eV = 1.519.10^{-11} m^2/s = 1.519.10^{-7} cm^2/s = 1.519.10^{-3} |Ang^2|/ps
 
 
 If :math:`Q` is in :math:`nm^{-1}`, then we would have :math:`D` in :math:`nm^2`.meV` or
 :math:`nm^2.\mu eV`, and:
 
 .. math::
-    1 nm^2.meV = 1.519.10^{-6} m^2/s = 1.519.10^{-2} cm^2/s = 151.9 \AA ^2/ps
-    1 nm^2.\mu eV = 1.519.10^{-9} m^2/s = 1.519.10^{-5} cm^2/s = 1.519.10^{-1} \AA^2/ps
+    1 nm^2.meV = 1.519.10^{-6} m^2/s = 1.519.10^{-2} cm^2/s = 151.9  |Ang^2|/ps
+    1 nm^2.\mu eV = 1.519.10^{-9} m^2/s = 1.519.10^{-5} cm^2/s = 1.519.10^{-1} |Ang^2|/ps
 
-If the input data correspond to :math:`S(Q, \omega)` with :math:`\omega` in rad/ps, then :math:`D`
-will be obtained directly in :math:`\AA^2/ps` (if :math:`Q` was in :math:`\AA^{-1}`) or in
+If the input data correspond to :math:`S(Q, \omega)` with :math:`\omega` in :math:`rad/ps`, then
+:math:`D` will be obtained directly in :math:`\AA^2/ps` (if :math:`Q` was in :math:`\AA^{-1}`) or in
 :math:`nm^2/ps` (if :math:`Q` was in :math:`nm^{-1}`).
 
 Finally, if the input is :math:`S(Q, \nu)` with :math:`\nu` in THz and :math:`Q` in
-:math:`\AA^{-1}`, then :math:`D` will be in :math:`\AA^2.THz`, and:
+|Ang^-1|, then :math:`D` will be in |Ang^2| :math:`.THz`, and:
 
 .. math::
 
-    1 \AA^2.THz = 6.283.10^{-12} m^2/s = 6.283.10^{-8} cm^2/s = 6.283.10^{-4}  \AA^2/ps
+    1 |Ang^2|.THz = 6.283.10^{-12} m^2/s = 6.283.10^{-8} cm^2/s = 6.283.10^{-4} |Ang^2|/ps
 
 Naturally, the same unit conversions can be applied to the parameter :math:`D` in the
 Chudley-Elliot, jump translational diffusion, or the Gaussian localized diffusion models, or in any
@@ -140,13 +142,13 @@ They appear in many models, *e.g.* :math:`L` in the Chudley-Elliot model for tra
 diffusion, or radius in the models of jumps among equivalent sites in a circle (simple or including
 a log-norm distribution) and isotropic rotational diffusion. They are in units of [:math:`L`],
 *i.e.* the inverse of the units of :math:`Q`, so if the input contains :math:`Q` in
-:math:`\AA^{-1}`, then the output will be the length or radius in :math:`\AA`, while if :math:`Q`
+|Ang^-1|, then the output will be the length or radius in |Ang|, while if :math:`Q`
 was given in :math:`nm^{-1}`, they will be returned in :math:`nm`.
 
 The same applies to the parameter :math:`\langle u_x^2\rangle`, quantifying the size of the region
 in which the particle is confined in the Gaussian model for localized diffusion [#f4]_ . In this
 case, :math:`\langle u_x^2\rangle`is in units of :math:`L^2`, so typically the parameter returned
-by the model will be in :math:`\AA^2` (if :math:`Q` was in :math:`\AA^{-1}`) or in :math:`nm^2` (if
+by the model will be in |Ang^2| (if :math:`Q` was in |Ang^-1|) or in :math:`nm^2` (if
 :math:`Q` was in :math:`nm^{-1}`).
 
 Time parameters
