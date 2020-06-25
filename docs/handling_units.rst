@@ -5,7 +5,7 @@ Introduction
 ************
 
 At present the QENS models library contains a set of models aimed to fit :math:`S(Q, \hbar\omega)`
-quasielastic neutron scattering data [#f1]_ . As there does not yet exist a standard format for
+quasielastic neutron scattering (QENS) data [#f1]_ . As there does not yet exist a standard format for
 :math:`S(Q,\hbar\omega)` data, it remains a user task to write the appropriate loader to read the
 data. The library is unit agnostic and does not make any assumption about the units of the input
 data.
@@ -26,20 +26,21 @@ in absolute units, then this scaling factor will be given also in :math:`[E]^{-1
 :math:`Q`
 *********
 
-
+:math:`\\AA`
 The wavevector transfer :math:`Q` has units of :math:`[length]^{-1}` (:math:`[L]^{-1}`). Typically
-this is given in  &#8491; :math:`{\AA}^{-1}`, but it is not uncommon to use :math:`nm^{-1}`.
+this is given in {\AA}:math:`^{-1}`, but it is not uncommon to use :math:`nm^{-1}`.
 
 :math:`\hbar\omega` (or :math:`\omega` or :math:`\nu` or :math:`\nu/c`)
 ***********************************************************************
 
-The energy exchange has units of energy and is commonly expressed in meV. However, many other units
-are also used in the literature. For example, for backscattering experiments it is quite usual to
-use :math:`\mu eV` instead of :math:`meV`. It is also relatively common (especially when comparing
-with simulation data) to use just the angular frequency :math:`\omega` (often given in
-:math:`rad.ps^{-1}` or :math:`rad^{-1}`) or the frequency :math:`\nu` (often in THz, but also
-in GHz or Hz). In this case the input units are of dimension :math:`[time]^{-1}` (:math:`[T]^{-1}`).
-Finally, in optical spectroscopy it is usual to use the optical wavevector :math:`\nu/c` in
+The energy exchange has units of energy and is commonly expressed in :math:`meV`. However, many
+other units are also used in the literature. For example, for backscattering experiments it is
+quite usual to use :math:`\mu eV` instead of :math:`meV`. It is also relatively common (especially
+when comparing with simulation data) to use just the angular frequency :math:`\omega` (often given
+in :math:`rad.ps^{-1}` or :math:`rad^{-1}`) or the frequency :math:`\nu` (often in :math:`THz`, but
+also in :math:`GHz` or :math:`Hz`). In this case the input units are of dimension
+:math:`[time]^{-1}` (:math:`[T]^{-1}`).
+.. Finally, in optical spectroscopy it is usual to use the optical wavevector :math:`\nu/c` in
 :math:`cm^{-1}`, *i.e.* :math:`[L]^{-1}`. Therefore it is not uncommon that neutron vibrational
 spectrometers provide data in :math:`cm^{-1}`. However, as this is not of common use in QENS
 spectroscopy, we will not consider that case.
@@ -55,18 +56,18 @@ physical unit [#f2]_ . A few examples to show how this can be done are given bel
 Lorentzian or Gaussian models
 =============================
 
-Let’s start with the most common case: :math:`S(Q, \hbar\omega)` is in arbitrary units, *Q* is given
-in :math:`\AA^{-1}`, and :math:`\hbar\omega` is in :math:`\AA^{-1}` and we are fitting a single
-Lorentzian. The three output parameters that we will get are:
+Let’s start with the most common case: :math:`S(Q, \hbar\omega)` is in arbitrary units, :math:`Q`
+is given in :math:`\AA^{-1}`, and :math:`\hbar\omega` is in :math:`\AA^{-1}` and we are fitting a
+single Lorentzian. The three output parameters that we will get are:
 
 * the amplitude of the Lorentzian, *scale*, given in arbitrary units,
-* its position, *center*, given in meV,
-* and its half-width at half-maximum, *hwhm*, also given in meV.
+* its position, *center*, given in :math:`meV`,
+* and its half-width at half-maximum, *hwhm*, also given in :math:`meV`.
 
 It follows naturally that if the energy transfer is given in :math:`\mu eV`, then center and hwhm
 will be returned also in :math:`\mu eV`. Similarly if the input data contain :math:`S(Q, \omega)`
-or :math:`S(Q, \nu)` instead of :math:`S(Q, \hbar\omega)` and the frequency is given in rad/ps or
-THz, respectively.
+or :math:`S(Q, \nu)` instead of :math:`S(Q, \hbar\omega)` and the frequency is given in
+:math:`rad/ps` or :math:`THz`, respectively.
 
 In this case, the standard unit conversion tables can be used to convert directly to the desired
 units, *e.g.*:
@@ -80,16 +81,18 @@ Self-diffusion coefficient
 ==========================
 
 Let's start with the simplest model, *Brownian Translational Diffusion*. This model has also three
-parameters. *Scale* and *center* will be treated as above. The third parameter is the self-diffusion
-coefficient, *D*, which is related to the half-width at half-maximum :math:`\Gamma` of the Lorentzian
-function by the relation :math:`\Gamma = DQ^2`. Thus :math:`D = \Gamma/Q^2` and its units will be
-:math:`E.L^2` if the input data was :math:`S(Q, \hbar\omega)` or :math:`T^{-1}L^2` if the input data
-was :math:`S(Q, \omega)` or :math:`S(Q, \nu)`.
+parameters. :math:`Scale` and :math:`center` will be treated as above. The third parameter is the
+self-diffusion coefficient, :math:`D`, which is related to the half-width at half-maximum
+:math:`\Gamma` of the Lorentzian function by the relation :math:`\Gamma = DQ^2`. Thus
+:math:`D = \Gamma/Q^2` and its units will be :math:`E.L^2` if the input data was
+:math:`S(Q, \hbar\omega)` or :math:`T^{-1}L^2` if the input data was :math:`S(Q, \omega)` or
+:math:`S(Q, \nu)`.
 
-So if we fit :math:`S(Q, \hbar\omega)` data with *Q* in :math:`\AA^{-1}` and :math:`\hbar\omega` in
-meV, *D* will be given in :math:`\AA^2.meV`. The output value can be converted to more standard
-units for the self-diffusion coefficient by noting that 1 :math:`\AA = 10^{-10}` m and
-:math:`\hbar\omega` = 1 meV corresponds to :math:`\omega=1.519.10^{12}` rad/s, giving [#f3]_ :
+So if we fit :math:`S(Q, \hbar\omega)` data with :math:`Q` in :math:`\AA^{-1}` and
+:math:`\hbar\omega` in :math:`meV`, :math:`D` will be given in :math:`\AA^2.meV`. The output value
+can be converted to more standard units for the self-diffusion coefficient by noting that
+:math:`1\ \AA = 10^{-10} \ m` and :math:`\hbar\omega = 1\ meV` corresponds to
+:math:`\omega=1.519.10^{12}\ rad/s`, giving [#f3]_ :
 
 .. math::
     1 \AA^2.meV = 1.519.10^{-8} m^2/s = 1.519.10^{-4} cm^2/s = 1.519 \AA^2/ps
@@ -102,55 +105,55 @@ If the energy transfer is given in :math:`\mu eV` instead of meV, then *D* will 
     1 \AA^2.\mu eV = 1.519.10^{-11} m^2/s = 1.519.10^{-7} cm^2/s = 1.519.10^{-3}  \AA^2/ps
 
 
-If *Q* is in :math:`nm^{-1}`, then we would have *D* in :math:`nm^2`.meV` or :math:`nm^2.\mu eV`,
-and:
+If :math:`Q` is in :math:`nm^{-1}`, then we would have *D* in :math:`nm^2`.meV` or
+:math:`nm^2.\mu eV`, and:
 
 .. math::
     1 nm^2.meV = 1.519.10^{-6} m^2/s = 1.519.10^{-2} cm^2/s = 151.9 \AA ^2/ps
     1 nm^2.\mu eV = 1.519.10^{-9} m^2/s = 1.519.10^{-5} cm^2/s = 1.519.10^{-1} \AA^2/ps
 
-If the input data correspond to :math:`S(Q, \omega)` with :math:`\omega` in rad/ps, then *D* will
-be obtained directly in :math:`\AA^2/ps` (if *Q* was in :math:`\AA^{-1}`) or in :math:`nm^2/ps` (if
-*Q* was in :math:`nm^{-1}`).
+If the input data correspond to :math:`S(Q, \omega)` with :math:`\omega` in rad/ps, then :math:`D`
+will be obtained directly in :math:`\AA^2/ps` (if :math:`Q` was in :math:`\AA^{-1}`) or in
+:math:`nm^2/ps` (if :math:`Q` was in :math:`nm^{-1}`).
 
-Finally, if the input is :math:`S(Q, \nu)` with :math:`\nu` in THz and *Q* in :math:`\AA^{-1}`, then
-*D* will be in :math:`\AA^2.THz`, and:
+Finally, if the input is :math:`S(Q, \nu)` with :math:`\nu` in THz and :math:`Q` in
+:math:`\AA^{-1}`, then :math:`D` will be in :math:`\AA^2.THz`, and:
 
 .. math::
 
     1 \AA^2.THz = 6.283.10^{-12} m^2/s = 6.283.10^{-8} cm^2/s = 6.283.10^{-4}  \AA^2/ps
 
-Naturally, the same unit conversions can be applied to the parameter *D* in the Chudley-Elliot, jump
-translational diffusion, or the Gaussian localized diffusion models, or in any other derived model
-where *D* represents a translational diffusion coefficient.
+Naturally, the same unit conversions can be applied to the parameter :math:`D` in the
+Chudley-Elliot, jump translational diffusion, or the Gaussian localized diffusion models, or in any
+other derived model where :math:`D` represents a translational diffusion coefficient.
 
 Distance parameters (*e.g.* jump length or radius)
 ================================================
 
-They appear in many models, *e.g.* *L* in the Chudley-Elliot model for translational diffusion, or
-radius in the models of jumps among equivalent sites in a circle (simple or including a log-norm
-distribution) and isotropic rotational diffusion. They are in units of [L], *i.e.* the inverse of
-the units of *Q*, so if the input contains *Q* in :math:`\AA^{-1}`, then the output will be the
-length or radius in :math:`\AA`, while if *Q* was given in :math:`nm^{-1}`, they will be returned
-in nm.
+They appear in many models, *e.g.* :math:`L` in the Chudley-Elliot model for translational
+diffusion, or radius in the models of jumps among equivalent sites in a circle (simple or including
+a log-norm distribution) and isotropic rotational diffusion. They are in units of [:math:`L`],
+*i.e.* the inverse of the units of :math:`Q`, so if the input contains :math:`Q` in
+:math:`\AA^{-1}`, then the output will be the length or radius in :math:`\AA`, while if :math:`Q`
+was given in :math:`nm^{-1}`, they will be returned in :math:`nm`.
 
 The same applies to the parameter :math:`\langle u_x^2\rangle`, quantifying the size of the region
 in which the particle is confined in the Gaussian model for localized diffusion [#f4]_ . In this
 case, :math:`\langle u_x^2\rangle`is in units of :math:`L^2`, so typically the parameter returned
-by the model will be in :math:`\AA^2` (if *Q* was in :math:`\AA^{-1}`) or in :math:`nm^2` (if *Q*
-was in :math:`nm^{-1}`).
+by the model will be in :math:`\AA^2` (if :math:`Q` was in :math:`\AA^{-1}`) or in :math:`nm^2` (if
+:math:`Q` was in :math:`nm^{-1}`).
 
 Time parameters
 ===============
 
-At present, the only time parameter appearing in the library models is the residence time in a
+At present, the only time parameter appearing in the library of models is the residence time in a
 given site, called *resTime* in the jump translational diffusion and jump between equivalent sites
 in a circle (both simple or using a log-norm distribution or residence times) models. Its unit is
-naturally in terms of time (T), but if the input data correspond to :math:`S(Q, \hbar\omega)`, the
-resulting residence time will be given in :math:`E^{-1}` units.
+naturally in terms of time (:math:`T`), but if the input data correspond to
+:math:`S(Q, \hbar\omega)`, the resulting residence time will be given in :math:`E^{-1}` units.
 Therefore, in the most common case where we have experimental data with the energy transfer given
-in meV, the fit will give us a residence time :math:`\tau` in :math:`meV^{-1}` which can be easily
-transformed to time units:
+in :math:`meV`, the fit will give us a residence time :math:`\tau` in :math:`meV^{-1}` which can be
+easily transformed to time units:
 
 .. math::
 
@@ -160,7 +163,7 @@ transformed to time units:
 Rotational diffusion coefficient
 ================================
 
-At present, this parameter appears only in the isotropic rotational diffusion model, named as DR
+At present, this parameter appears only in the isotropic rotational diffusion model, named as *DR*
 and it will have units of E if the input is :math:`S(Q, \hbar\omega)`, or :math:`T^{-1}` if the
 input is :math:`S(Q, \omega)`. In the first case, the result can be converted to the expected
 inverse time units easily:
