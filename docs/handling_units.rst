@@ -191,8 +191,23 @@ Although they do not require any conversion, they are listed here for completene
 Summary table
 *************
 
+
+
 +------------+------------+-----------+
-| Model      | Header 2   | Header 3  |
+| Physical quantity | Common unit | Other possibilities  |
++============+============+===========+
+| Dynamical structure factor | column 2   | column 3  |
++------------+------------+-----------+
+| body row 2 | Cells may span columns.|
++------------+------------+-----------+
+| body row 3 | Cells may  | - Cells   |
++------------+ span rows. | - contain |
+| body row 4 |            | - blocks. |
++------------+------------+-----------+
+
+
++------------+------------+-----------+
+| Models | Common unit | Other possibilities  |
 +============+============+===========+
 | body row 1 | column 2   | column 3  |
 +------------+------------+-----------+
