@@ -2,4 +2,4 @@ Tools
 ======
 
 .. include:: ../tools/README.rst
-.. include:: ../tools/Convert_units
+.. notebook:: ../tools/Convert_units
