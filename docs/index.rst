@@ -14,7 +14,7 @@ Welcome to Test nbsphinx's documentation!
    handling_units
    tools
 
- .. toctree::
+.. toctree::
    :caption: Examples
    :maxdepth: 1
 
