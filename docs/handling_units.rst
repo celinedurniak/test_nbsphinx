@@ -191,8 +191,6 @@ Although they do not require any conversion, they are listed here for completene
 Summary table
 *************
 
-
-
 +------------+------------+-----------+
 | Physical quantity | Common unit | Other possibilities  |
 +============+============+===========+
