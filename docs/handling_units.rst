@@ -72,10 +72,10 @@ single Lorentzian. The three output parameters that we will get are:
 * its position, *center*, given in :math:`meV`,
 * and its half-width at half-maximum, *hwhm*, also given in :math:`meV`.
 
-It follows naturally that if the energy transfer is given in :math:`\mu eV`, then center and hwhm
-will be returned also in :math:`\mu eV`. Similarly if the input data contain :math:`S(Q, \omega)`
-or :math:`S(Q, \nu)` instead of :math:`S(Q, \hbar\omega)` and the frequency is given in
-:math:`rad/ps` or :math:`THz`, respectively.
+It follows naturally that if the energy transfer is given in :math:`\mu eV`, then *center* and
+*hwhm* will be returned also in :math:`\mu eV`. Similarly if the input data contain
+:math:`S(Q, \omega)` or :math:`S(Q, \nu)` instead of :math:`S(Q, \hbar\omega)`, the frequency is
+given in :math:`rad/ps` or :math:`THz`, respectively.
 
 In this case, the standard unit conversion tables can be used to convert directly to the desired
 units, *e.g.*:
@@ -103,7 +103,7 @@ can be converted to more standard units for the self-diffusion coefficient by no
 :math:`\omega=1.519.10^{12}\ rad/s`, giving [#f3]_ :
 
 .. math::
-    1 |Ang^2|.meV = 1.519.10^{-8} m^2/s = 1.519.10^{-4} cm^2/s = 1.519 |Ang^2|/ps
+    1 \Ang^2  |Ang^2|.meV = 1.519.10^{-8} m^2/s = 1.519.10^{-4} cm^2/s = 1.519 |Ang^2|/ps
 
 
 If the energy transfer is given in :math:`\mu eV` instead of :math:`meV`, then :math:`D` will be
