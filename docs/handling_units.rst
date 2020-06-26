@@ -101,23 +101,21 @@ can be converted to more standard units for the self-diffusion coefficient by no
 :math:`1` |Ang| :math:`= 10^{-10}\ m` and :math:`\hbar\omega = 1\ meV` corresponds to
 :math:`\omega=1.519.10^{12}\ rad/s`, giving [#f3]_ :
 
-.. math::
-    1 \text{\r{A}} \AA^2  |Ang^2|.meV = 1.519.10^{-8} m^2/s = 1.519.10^{-4} cm^2/s = 1.519 |Ang^2|/ps
+:math:`1` |Ang^2| :math:`.meV = 1.519.10^{-8} m^2/s = 1.519.10^{-4} cm^2/s = 1.519` |Ang^2| :math:`/ps`
 
 
 If the energy transfer is given in :math:`\mu eV` instead of :math:`meV`, then :math:`D` will be
 obtained in |Ang^2| :math:`.\mu eV`, and we would need to apply:
 
-.. math::
-    1 {|Ang^2|}.\mu eV = 1.519.10^{-11} m^2/s = 1.519.10^{-7} cm^2/s = 1.519.10^{-3} |Ang^2|/ps
+:math:`1` |Ang^2| :math:`.\mu eV = 1.519.10^{-11} m^2/s = 1.519.10^{-7} cm^2/s = 1.519.10^{-3}` |Ang^2| :math:`/ps`
 
 
 If :math:`Q` is in :math:`nm^{-1}`, then we would have :math:`D` in :math:`nm^2`.meV` or
 :math:`nm^2.\mu eV`, and:
 
-.. math::
-    1 nm^2.meV = 1.519.10^{-6} m^2/s = 1.519.10^{-2} cm^2/s = 151.9  |Ang^2|/ps
-    1 nm^2.\mu eV = 1.519.10^{-9} m^2/s = 1.519.10^{-5} cm^2/s = 1.519.10^{-1} |Ang^2|/ps
+:math:`1 nm^2.meV = 1.519.10^{-6} m^2/s = 1.519.10^{-2} cm^2/s = 151.9` |Ang^2| :math:`/ps`
+:math:`1 nm^2.\mu eV = 1.519.10^{-9} m^2/s = 1.519.10^{-5} cm^2/s = 1.519.10^{-1}` |Ang^2| :math:`/ps`
+
 
 If the input data correspond to :math:`S(Q, \omega)` with :math:`\omega` in :math:`rad/ps`, then
 :math:`D` will be obtained directly in |Ang^2| :math:`/ps` (if :math:`Q` was in |Ang^-1|) or in
@@ -126,9 +124,7 @@ If the input data correspond to :math:`S(Q, \omega)` with :math:`\omega` in :mat
 Finally, if the input is :math:`S(Q, \nu)` with :math:`\nu` in THz and :math:`Q` in
 |Ang^-1|, then :math:`D` will be in |Ang^2| :math:`.THz`, and:
 
-.. math::
-
-    1 |Ang^2|.THz = 6.283.10^{-12} m^2/s = 6.283.10^{-8} cm^2/s = 6.283.10^{-4} |Ang^2|/ps
+:math:`1` |Ang^2| :math:`.THz = 6.283.10^{-12} m^2/s = 6.283.10^{-8} cm^2/s = 6.283.10^{-4}` |Ang^2| :math:`/ps`
 
 Naturally, the same unit conversions can be applied to the parameter :math:`D` in the
 Chudley-Elliot, jump translational diffusion, or the Gaussian localized diffusion models, or in any
@@ -208,7 +204,7 @@ Summary table
 +------------+------------+-----------+
 
 
-
+.. notebook ../tools/Convert_units.ipynb
 
 .. rubric:: Footnotes
 

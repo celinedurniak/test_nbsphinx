@@ -101,9 +101,9 @@ LATEX_PREAMBLE = r"""
 \newcommand{\lt}{<}
 \newcommand{\gt}{>}
 \renewcommand{\AA}{\text{\r{A}}} % Allow \AA in math mode
-\usepackage[utf8]{inputenc}      % Allow unicode symbols in text
-\DeclareUnicodeCharacter {00B7} {\ensuremath{\cdot}}   % cdot
-\DeclareUnicodeCharacter {00B0} {\ensuremath{^\circ}}  % degrees
-\DeclareUnicodeCharacter {212B} {\AA}                  % Angstrom
+\usepackage[utf8]{inputenc}  % Allow unicode symbols in text
+\DeclareUnicodeCharacter{00B7}{\ensuremath{\cdot}}   % cdot
+\DeclareUnicodeCharacter{00B0}{\ensuremath{^\circ}}  % degrees
+\DeclareUnicodeCharacter{212B}{\AA}                  % Angstrom
 """
 latex_elements = {'preamble': LATEX_PREAMBLE}
