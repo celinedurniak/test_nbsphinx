@@ -1,7 +1,6 @@
 Handling of units
 #################
 
-
 .. |Ang| unicode:: U+212B
 .. |Ang^-1| replace:: |Ang|\ :sup:`-1`
 .. |Ang^2| replace:: |Ang|\ :sup:`2`
@@ -79,9 +78,9 @@ given in :math:`rad/ps` or :math:`THz`, respectively.
 
 In this case, the standard unit conversion tables can be used to convert directly to the desired
 units, *e.g.*:
- *	List of conversion factors for neutron scattering
- *	Documentation about units in Mantid
- *	ILL online tool Neutron scattering conversion factors
+ *	`List of conversion factors for neutron scattering <https://www.ncnr.nist.gov/instruments/dcs/dcs_usersguide/Conversion_Factors.pdf>`_
+ *	`Documentation about units in Mantid <https://docs.mantidproject.org/nightly/concepts/UnitFactory.html>`_
+ *	`ILL online tool Neutron scattering conversion factors <https://www.ill.eu/fileadmin/user_upload/ILL/3_Users/Support_labs_infrastructure/Software-tools/DIF_tools/neutrons.html>`_
 
 The same applies to the Gaussian model, with *sigma* replacing *hwhm*.
 
@@ -103,7 +102,7 @@ can be converted to more standard units for the self-diffusion coefficient by no
 :math:`\omega=1.519.10^{12}\ rad/s`, giving [#f3]_ :
 
 .. math::
-    1 \Ang^2  |Ang^2|.meV = 1.519.10^{-8} m^2/s = 1.519.10^{-4} cm^2/s = 1.519 |Ang^2|/ps
+    1 \text{\r{A}} \AA^2  |Ang^2|.meV = 1.519.10^{-8} m^2/s = 1.519.10^{-4} cm^2/s = 1.519 |Ang^2|/ps
 
 
 If the energy transfer is given in :math:`\mu eV` instead of :math:`meV`, then :math:`D` will be
