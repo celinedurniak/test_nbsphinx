@@ -219,7 +219,7 @@ Summary table
 +------------+------------+-----------+
 
 
-.. notebook ../tools/Convert_units.ipynb
+.. notebook:: ../tools/Convert_units.ipynb
 
 .. rubric:: Footnotes
 
