@@ -44,7 +44,7 @@ extensions = [
    # 'sphinx.ext.napoleon',
     'nbsphinx',
     'sphinx.ext.mathjax',
-    'sphinx_gallery.load_style',
+  #  'sphinx_gallery.load_style',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
