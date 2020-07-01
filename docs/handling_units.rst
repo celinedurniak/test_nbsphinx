@@ -216,9 +216,6 @@ Summary table
 | body row 4 |            | - blocks. |
 +------------+------------+-----------+
 
-
-.. notebook:: ../tools/Convert_units.ipynb
-
 .. rubric:: Footnotes
 
 .. [#f1] In the future the library could be extended to other types of models, *e.g.* inelastic or

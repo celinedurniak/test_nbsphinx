@@ -41,7 +41,7 @@ extensions = [
     'sphinx.ext.coverage',
     'sphinx.ext.viewcode',
     'sphinx.ext.githubpages',
-    'sphinx.ext.napoleon',
+   # 'sphinx.ext.napoleon',
     'nbsphinx',
     'sphinx.ext.mathjax',
     'sphinx_gallery.load_style',
