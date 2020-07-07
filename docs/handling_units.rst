@@ -15,7 +15,9 @@ quasielastic neutron scattering (QENS) data [#f1]_ . As there does not yet exist
 data. The library is unit agnostic and does not make any assumption about the units of the input
 data.
 As a consequence, if no additional information is given, any output parameter will be given in the
-same units as the input data. Further information and examples are given below.
+same units as the input data. Further information and examples are given below. The *QENS library*
+also contains a few tools to help with converting units (see
+`Convert_units.ipynb <https://github.com/QENSlibrary/QENSmodels/blob/master/tools/Convert_units.ipynb>`_ )
 
 :math:`S(Q,\hbar\omega)`
 ************************
@@ -187,9 +189,6 @@ Although they do not require any conversion, they are listed here for completene
    *jump_sites_log_norm_dist*.
  * *Sigma* describing the width of the log-norm distribution in *jump_sites_log_norm_dist*.
 
-
-Summary table
-*************
 
 +------------+------------+-----------+
 | Physical quantity | Common unit | Other possibilities  |

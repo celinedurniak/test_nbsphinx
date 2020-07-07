@@ -35,7 +35,7 @@ Python modules to test the models (for contributors):
 * `doctest <https://docs.python.org/3.7/library/doctest.html>`_
 
 Additional modules are required to run the examples. Details can be
-found in the `README file <https://github.com/QENSlibrary/QENSmodels/blob/master/examples/README.rst>`_ of the *examples* folder.
+found in the `README file <https://github.com/QENSlibrary/QENSmodels/blob/master/docs/examples/README.rst>`_ of the *examples* folder.
 
 How to install?
 ---------------
@@ -112,7 +112,8 @@ The scripts of the models can be found in the
 Jupyter notebooks showing how to use some of the QENS models are located in the *examples*
 folder. The name of the notebook indicates which fitting engine and QENS model 
 are used. Additional tools might have to be installed in order to use a 
-particular notebook. Please refer to the README file in the `examples` folder for details.
+particular notebook. Please refer to the `README file <https://github.com/QENSlibrary/QENSmodels/blob/master/docs/examples/README.rst>`_ in the `examples` folder for details.
+
 
 If you do not want to download neither install any component, one example can be interactively tested online.
 
