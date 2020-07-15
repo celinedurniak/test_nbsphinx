@@ -10,4 +10,7 @@ jupyter
 bumps==0.7.12
 lmfit
 ipywidgets
-requirejs
+ipykernel
+ipyleaflet
+jupyter_client
+sphinx>=1.4.6
