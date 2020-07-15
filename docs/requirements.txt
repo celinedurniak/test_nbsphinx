@@ -10,3 +10,4 @@ jupyter
 bumps==0.7.12
 lmfit
 ipywidgets
+requirejs
