@@ -29,16 +29,10 @@ install:
   - source activate testenv
   - pip install pytest sphinx nbsphinx sphinx_rtd_theme jupyter_client ipykernel ipywidgets bumps==0.7.12 matplotlib lmfit h5py
   # install QENSmodels
-  - python setup.py install
 
 script:
   - python ./tools/Notebook_converter.py
   - python -m flake8;
-  - sphinx-build -nT -b html docs docs/_build/html;
-  # Run unittests
-  - python -m unittest discover tests
-  # Run doctests
-  - pytest --doctest-modules ./QENSmodels
 
 
 notifications:
