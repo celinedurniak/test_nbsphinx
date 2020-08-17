@@ -1,6 +1,3 @@
-===========
-Description
-===========
 
 .. image:: https://readthedocs.org/projects/qensmodels/badge/?version=latest
    :target: https://qensmodels.readthedocs.io/?badge=latest
@@ -38,7 +35,7 @@ Python modules to test the models (for contributors):
 * `doctest <https://docs.python.org/3.7/library/doctest.html>`_
 
 Additional modules are required to run the examples. Details can be
-found in the `README file <https://github.com/QENSlibrary/QENSmodels/blob/master/examples/README.rst>`_ of the *examples* folder.
+found in the `README file <https://github.com/QENSlibrary/QENSmodels/blob/master/docs/examples/README.rst>`_ of the *examples* folder.
 
 How to install?
 ---------------
@@ -74,36 +71,10 @@ To **uninstall** the library, type
 
    pip uninstall QENSmodels
 
-Documentation
-=============
-
-The documentation is available at https://qensmodels.readthedocs.io .
-
-.. The documentation is built using ``Sphinx``. The required packages can be installed using the following commands:
-
-.. .. code-block:: console
-
-..    pip install sphinx
-..    pip install sphinx-rtd-theme
-..    pip install sphinxcontrib-napoleon
-
-.. Other ways of installing ``Sphinx`` at be found at http://www.sphinx-doc.org/en/master/usage/installation.html
-
-.. How to build documentation?
-.. ---------------------------
-
-.. In a terminal, move to the *docs* folder and type
-
-.. .. code-block:: console
-
-..    make html
-
-.. This command will generate html files in the subfolder *_build/html*.
-
 Tests
-=====
+-----
 
-The script to run the tests is located in the ``tools`` folder. 
+The script to run the tests is located in the ``tools`` folder.
 These tests require the installation of ``doctest`` and ``unittest``.
 
 In a terminal, move to the ``tools`` directory and run
@@ -111,6 +82,12 @@ In a terminal, move to the ``tools`` directory and run
 .. code-block:: console
 
    ./run_tests.sh
+
+Documentation
+=============
+
+The documentation is available at https://qensmodels.readthedocs.io .
+
 
 License
 -------
@@ -135,7 +112,8 @@ The scripts of the models can be found in the
 Jupyter notebooks showing how to use some of the QENS models are located in the *examples*
 folder. The name of the notebook indicates which fitting engine and QENS model 
 are used. Additional tools might have to be installed in order to use a 
-particular notebook. Please refer to the README file in the `examples` folder for details.
+particular notebook. Please refer to the `README file <https://github.com/QENSlibrary/QENSmodels/blob/master/docs/examples/README.rst>`_ in the `examples` folder for details.
+
 
 If you do not want to download neither install any component, one example can be interactively tested online.
 

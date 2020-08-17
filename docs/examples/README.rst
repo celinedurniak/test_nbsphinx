@@ -1,12 +1,14 @@
+Introduction
+^^^^^^^^^^^^
 
-This folder contains different jupyter notebooks showing how to use models of
+This section contains different jupyter notebooks showing how to use models of
 the QENS library. The sub-folder `using_mantid` details how to proceed if you want to use Mantid.
 
 Note that in order to open and run these examples, you need
 `jupyter <http://jupyter.org/>`_\ ,
 `scipy <https://www.scipy.org/>`_\ ,
 `matplotlib <https://matplotlib.org/>`_\ ,
-`panel <https://panel.pyviz.org/>`_  and `pandas <https://pandas.pydata.org/>`_ (for interactive
+`ipywidgets <https://ipywidgets.readthedocs.io/en/latest/>`_ (for interactive
 plots),
 `lmfit <https://lmfit.github.io/lmfit-py/>`_ (optional),
 `bumps <https://github.com/bumps/bumps>`_ (optional),
@@ -26,8 +28,6 @@ The following table summarizes some of the main features of the Jupyter notebook
 
 +-------------------------------------------+-------------------------+--------------------+-----------------+------------+------------+
 | Name "_fit.ipynb"                         | External input datafile | "Interactive plot" | Composed models | Background | Resolution |
-+-------------------------------------------+-------------------------+--------------------+-----------------+------------+------------+
-| Example_QENSmodels_bumps_BrownianDiff     | X                       |                    |                 |            |  X         |
 +-------------------------------------------+-------------------------+--------------------+-----------------+------------+------------+
 | bumps_BrownianDiff                        | X                       |                    |                 |            |  X         |
 +-------------------------------------------+-------------------------+--------------------+-----------------+------------+------------+
@@ -86,7 +86,7 @@ which will contain the required packages
    conda create --name mynewenv python numpy scipy matplotlib jupyter pandas
 
 Note that you can specify which version of ``Python``. For example,
-``conda create --name mynewenv python=3.8 numpy scipy matplotlib jupyter pandas`` to
+``conda create --name mynewenv python=3.8 ipympl numpy scipy matplotlib jupyter`` to
 install ``Python`` version 3.8.
 
 Then activate the environment and install the remaining packages

@@ -1,12 +1,16 @@
+# test of adding comment in requirements.txt
+
 numpy
 scipy
 matplotlib
-panel
 git+git://github.com/QENSlibrary/QENSmodels.git
-pandas
 h5py
 nbsphinx
 jupyter
-bumps
+bumps==0.7.12
 lmfit
 ipywidgets
+ipykernel
+ipyleaflet
+jupyter_client
+sphinx>=1.4.6

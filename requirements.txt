@@ -1,0 +1,9 @@
+numpy
+scipy
+matplotlib
+git+git://github.com/QENSlibrary/QENSmodels.git
+h5py
+jupyter
+bumps
+lmfit
+ipywidgets
