@@ -1,7 +1,7 @@
 numpy
 scipy
 matplotlib
-git+git://github.com/QENSlibrary/QENSmodels.git
+git+git://github.com/celinedurniak/test_nbsphinx.git
 h5py
 jupyter
 bumps

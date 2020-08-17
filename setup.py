@@ -5,15 +5,13 @@ try:
 except ImportError:
     from distutils.core import setup
 
-author_list = ['Céline Durniak', 'Miguel Gonzalez', 'Anders Markvardsen']
-authors = ', '.join(author_list[:-1]) + ', and ' + author_list[-1]
+author = 'Céline Durniak'
 
-short = 'Library of models for fitting QENS data'
+short = 'Repository to test different settings'
 
-setup(name='QENSmodels',
+setup(name='test_nbsphinx',
       version='0.1.0',
       description=short,
-      url='https://github.com/QENSlibrary/QENSmodels',
       author=authors,
       author_email='  ',
       license=open('LICENSE.txt').read(),
