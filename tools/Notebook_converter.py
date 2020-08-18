@@ -5,15 +5,6 @@ from nbconvert.exporters import PythonExporter
 from traitlets.config import Config
 
 
-def found_string_in_cell(cell_content, string_to_find):
-    """
-    :param cell_content: input cell of the notebook to be modified
-    :param string_to_find: string to be searched in the input cell's content
-    :return: True if string_to_find found in cell_content, False otherwise
-    """
-    return string_to_find in cell_content
-
-
 def modify_notebook(input_notebook):
     """ Function to modify path to datafiles, remove use of ipywidgets and replace value
     from ipywdigets by default for converted files """
@@ -102,7 +93,8 @@ config_for_converting.Exporter.preprocessors = ["nbconvert.preprocessors.TagRemo
 
 # --------------------------------------------------
 # loop over notebooks
-path_to_notebooks = '../docs/examples/'
+path = os.path.abspath(os.path.dirname(__file__))
+path_to_notebooks = os.path.join(path, '../docs/examples/')
 
 # list notebooks to convert to Python scripts
 list_notebooks = [f for f in os.listdir(path_to_notebooks) if os.path.splitext(f)[-1] == '.ipynb']
