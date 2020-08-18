@@ -31,7 +31,7 @@ install:
   # install QENSmodels
 
 script:
-  # - python ./tools/Notebook_converter.py
+  - python ./tools/Notebook_converter.py
   - python -m flake8;
 
 

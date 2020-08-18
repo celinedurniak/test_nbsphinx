@@ -100,7 +100,7 @@ path_to_notebooks = os.path.join(path, '../docs/examples/')
 list_notebooks = [f for f in os.listdir(path_to_notebooks) if os.path.splitext(f)[-1] == '.ipynb']
 
 # folder to store converted files
-output_directory = '../docs/examples/python_scripts'
+output_directory = os.path.join(path_to_notebooks, './python_scripts')
 
 for item in list_notebooks:
     print(path_to_notebooks + item)
