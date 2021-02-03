@@ -5,7 +5,7 @@ try:
 except ImportError:
     from distutils.core import setup
 
-author = 'Céline Durniak'
+author = 'Céline Durniak...'
 
 short = 'Repository to test different settings'
 
