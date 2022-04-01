@@ -15,4 +15,5 @@ setup(name='test_nbsphinx',
       packages=find_packages(),
       install_requires=['scipy', 'numpy', ],
       setup_requires=['flake8'],
+      tests_require=['pytest'],
       zip_safe=False,)
