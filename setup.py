@@ -1,9 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-try:
-    from setuptools import setup
-except ImportError:
-    from distutils.core import setup
+from setuptools import setup, find_packages
 
 author = 'Céline Durniak...'
 
@@ -15,6 +12,7 @@ setup(name='test_nbsphinx',
       author=author,
       author_email='  ',
       license=open('LICENSE').read(),
-      packages=['QENSmodels'],
-      install_requires=['scipy', 'numpy', 'flake8', ],
+      packages=find_packages(),
+      install_requires=['scipy', 'numpy', ],
+      setup_requires=['flake8'],
       zip_safe=False,)
