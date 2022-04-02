@@ -36,6 +36,7 @@ jobs:
           pytest --doctest-modules ./QENSmodels
       - name: build documentation
         run: |
+          sudo apt install pandoc
           python -m pip install --upgrade pip
           pip install sphinx nbsphinx sphinx_rtd_theme
           pip install  -r docs/requirements.txt
