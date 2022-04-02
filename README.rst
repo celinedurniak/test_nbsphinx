@@ -2,7 +2,7 @@ Introduction
 ============
 
 
-Test repository (settings, CI...)
+Test repository (settings, CI, documentatiom...)
 
 Installation
 ============
@@ -44,9 +44,6 @@ The steps to follow are:
 
      python -m pip install full_path_to_QENSmodels_folder
 
-
-See `the documentation on pip install <https://pip.pypa.io/en/stable/reference/pip_install/#editable-installs>`_ for 
-additional information. Run ``pip show QENSmodels`` to display details about the installed package.
 
 To **test the installation**\ , type the following command in a terminal
 
