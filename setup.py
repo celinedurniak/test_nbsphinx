@@ -13,7 +13,7 @@ setup(name='test_nbsphinx',
       author_email='  ',
       license=open('LICENSE').read(),
       packages=find_packages(),
-      install_requires=['scipy', 'numpy', ],
+      install_requires=['scipy', 'numpy>=1.21', ],
       setup_requires=['flake8'],
       tests_require=['pytest'],
       zip_safe=False,)
