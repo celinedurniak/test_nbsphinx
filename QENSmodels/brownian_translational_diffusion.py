@@ -1,6 +1,5 @@
 from __future__ import print_function
 import numpy as np
-# import scipy.constants as csts
 
 
 try:
@@ -157,7 +156,7 @@ def sqwBrownianTranslationalDiffusion(w, q, scale=1., center=0., D=1.):
            I(q, t) = \int G(r, t) dr = \text{scale} \exp (-Dq^2 t)
 
     * This model works reasonably well at low *q*. Other models, such as
-    "Chudley-Elliot", have been developed to describe the microscopic
+    "Chudley-Elliott", have been developed to describe the microscopic
     mechanisms that deviate from the Fickian behavior (`hwhm` proportional
     to `q` squared)
 

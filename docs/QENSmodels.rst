@@ -1,3 +1,8 @@
+QENSmodels package
+==================
+
+Submodules
+----------
 
 QENSmodels.background\_polynomials module
 -----------------------------------------
@@ -15,10 +20,10 @@ QENSmodels.brownian\_translational\_diffusion module
     :undoc-members:
     :show-inheritance:
 
-QENSmodels.chudley\_elliot\_diffusion module
+QENSmodels.chudley\_elliott\_diffusion module
 --------------------------------------------
 
-.. automodule:: QENSmodels.chudley_elliot_diffusion
+.. automodule:: QENSmodels.chudley_elliott_diffusion
     :members:
     :undoc-members:
     :show-inheritance:
@@ -112,10 +117,10 @@ QENSmodels.water\_teixeira module
     :show-inheritance:
 
 
-.. Module contents
-.. ---------------
+Module contents
+---------------
 
-.. .. automodule:: QENSmodels
-..     :members:
-..     :undoc-members:
-..     :show-inheritance:
+.. automodule:: QENSmodels
+    :members:
+    :undoc-members:
+    :show-inheritance:

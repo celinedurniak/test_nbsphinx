@@ -1,4 +1,4 @@
-The `Tools` folder contains different tools to extract information from the QENS models or to
+This folder contains tools to extract information from the QENS models or to
 help users converting units
 
 * ``Convert_units.ipynb``
@@ -25,7 +25,7 @@ help users converting units
   This script runs unittests and doctests through the models in ``QENSmodels``.
 
 Note that in order to open the Jupyter notebooks, you'll need `jupyter`, `numpy`,
-`matplotlib`, and `panel` + `pandas` (for interactive plots).
+`matplotlib`, and `ipywidgets` (for interactive plots).
 
 To run the Jupyter notebooks, you can, for example, create an anaconda
 environment:
@@ -46,13 +46,12 @@ environment:
 
   .. code-block:: console
 
-     conda create --name mynewenv python numpy matplotlib jupyter
+     conda create --name mynewenv  -c conda-forge ipywidgets python numpy matplotlib jupyter
      conda activate mynewenv
-     conda install -c pyviz panel
 
 * to access the notebooks,
-  - activate your conda environment. For example, if the environment was created using the above commands, simply
-  type `conda activate mynewenv` in a terminal.
-  -  move to the folder where the notebook you want to open is located,
-  -  type ``jupyter notebook``
+  - activate your conda environment. For example, if the environment was created using the above
+    commands, simply type `conda activate mynewenv` in a terminal.
+  - move to the folder where the notebook you want to open is located,
+  - type ``jupyter notebook``
   - click on the notebook you want to open.

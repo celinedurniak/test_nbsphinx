@@ -1,5 +1,10 @@
-Welcome to Test nbsphinx's documentation!
-=========================================
+.. QENSmodels documentation master file, created by
+   sphinx-quickstart on Sat May  5 10:18:33 2018.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+Welcome to QENSmodels's documentation!
+======================================
 
 .. toctree::
    :maxdepth: 3
@@ -20,7 +25,7 @@ Welcome to Test nbsphinx's documentation!
 
    examples/README
    examples/bumps_BrownianDiff_fit
-   examples/bumps_ChudleyElliotDiff_fit
+   examples/bumps_ChudleyElliottDiff_fit
    examples/bumps_DeltaLorentz_fit
    examples/bumps_IsoRot_fit
    examples/bumps_JumpDiffIsoRot_fit
@@ -35,15 +40,6 @@ Welcome to Test nbsphinx's documentation!
    examples/scipy_JumpSitesLogNormDist_fit
    examples/scipy_lorentzian_fit
    examples/using_mantid/README
-
-
-.. .. toctree::
-..   :caption: Gallery of Examples
-..   :maxdepth: 4
-..   :glob:
-
-..   gallery_notebooks
-
 
 .. toctree::
    :caption: QENSmodels

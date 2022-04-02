@@ -253,8 +253,12 @@ def sqwJumpSitesLogNormDist(w, q, scale=1.0, center=0.0, Nsites=3,
         for j in range(numberLorentz):
             for k in range(numberSamplingDistrib):
                 # quasielastic terms
-                sqw[i, :] += qisf[i, j, k] * QENSmodels.lorentzian(w, scale, center,
-                                                                   hwhm[i, j + 1, k])
+                sqw[i, :] += qisf[i, j, k] * QENSmodels.lorentzian(
+                    w,
+                    scale,
+                    center,
+                    hwhm[i, j + 1, k]
+                )
 
     # For Bumps use (needed for final plotting)
     # Using a 'Curve' in bumps for each Q --> needs vector array

@@ -16,7 +16,8 @@ class TestGaussianModel3D(unittest.TestCase):
 
     def test_size_hwhm_gaussian_model_3d(self):
         """ Test size of output of hwhmGaussianModel3D
-         The output should contains 3 elements """
+        The output should contains 3 elements
+        """
         self.assertEqual(
             len(QENSmodels.hwhmGaussianModel3D(1.)), 3)
 
@@ -131,10 +132,12 @@ class TestGaussianModel3D(unittest.TestCase):
 
     def test_reference_data(self):
         """ Test output values in comparison with reference data
-                  (file in 'reference data' folder) """
+        (file in 'reference data' folder)
+        """
 
         # load reference data
-        ref_data = numpy.loadtxt(pjn(data_dir, "gaussian_model_3d_ref_data.dat"))
+        ref_data = numpy.loadtxt(
+            pjn(data_dir, "gaussian_model_3d_ref_data.dat"))
 
         # generate data from current model
         # for info: the parameters' values used for the reference data are

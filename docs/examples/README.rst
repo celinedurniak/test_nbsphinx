@@ -1,8 +1,9 @@
 Introduction
 ^^^^^^^^^^^^
 
-This section contains different jupyter notebooks showing how to use models of
-the QENS library. The sub-folder `using_mantid` details how to proceed if you want to use Mantid.
+This section contains different Jupyter notebooks showing how to use models of
+the QENS library. The sub-folder `using_mantid` details how to proceed if you want to use Mantid
+(`link <https://github.com/QENSlibrary/QENSmodels/blob/master/docs/examples/using_mantid/README.rst>`_ ).
 
 Note that in order to open and run these examples, you need
 `jupyter <http://jupyter.org/>`_\ ,
@@ -14,7 +15,8 @@ plots),
 `bumps <https://github.com/bumps/bumps>`_ (optional),
 `h5py <https://www.h5py.org/>`_ (for some of the examples).
 
-To access the notebooks, type ``jupyter notebook`` in a terminal and click on the notebook you want to open.
+To access the notebooks, type ``jupyter notebook`` in a terminal and click on the notebook you want
+to open.
 
 
 The data required to run some of the notebooks and scripts are located in the
@@ -31,7 +33,7 @@ The following table summarizes some of the main features of the Jupyter notebook
 +-------------------------------------------+-------------------------+--------------------+-----------------+------------+------------+
 | bumps_BrownianDiff                        | X                       |                    |                 |            |  X         |
 +-------------------------------------------+-------------------------+--------------------+-----------------+------------+------------+
-| bumps_ChudleyElliotDiff                   |                         |                    |                 |            |            |
+| bumps_ChudleyElliottDiff                   |                         |                    |                 |            |            |
 +-------------------------------------------+-------------------------+--------------------+-----------------+------------+------------+
 | bumps_DeltaLorentz                        | X                       |                    |                 |            | X          |
 +-------------------------------------------+-------------------------+--------------------+-----------------+------------+------------+
@@ -39,9 +41,9 @@ The following table summarizes some of the main features of the Jupyter notebook
 +-------------------------------------------+-------------------------+--------------------+-----------------+------------+------------+
 | bumps_JumpDiffIsoRot                      | X                       |                    |                 |            | X          |
 +-------------------------------------------+-------------------------+--------------------+-----------------+------------+------------+
-| bumps_JumpDiff                            | X                       |                    |                 |            |            |
+| bumps_JumpDiff                            | X                       |                    |                 |            | X          |
 +-------------------------------------------+-------------------------+--------------------+-----------------+------------+------------+
-| bumps_waterIN5_delta_two_lorentz          | X                       |                    |                 |            |            |
+| bumps_waterIN5_delta_two_lorentz          | X                       |                    |                 |            | X          |
 +-------------------------------------------+-------------------------+--------------------+-----------------+------------+------------+
 | bumps_waterIN5_lorentzian_plus_isorotdiff | X                       |                    | X               |            | X          |
 +-------------------------------------------+-------------------------+--------------------+-----------------+------------+------------+
@@ -83,23 +85,21 @@ which will contain the required packages
 
 .. code-block:: console
 
-   conda create --name mynewenv python numpy scipy matplotlib jupyter pandas
-
-Note that you can specify which version of ``Python``. For example,
-``conda create --name mynewenv python=3.8 ipympl numpy scipy matplotlib jupyter`` to
-install ``Python`` version 3.8.
+   conda create --name mynewenv python ipywidgets h5py numpy scipy matplotlib jupyter
 
 Then activate the environment and install the remaining packages
 
 .. code-block:: console
 
    conda activate mynewenv
-   conda install -c pyviz panel
-   conda install -c conda-forge h5py
 
 Finally, install the library
-``python -m pip install path_to_QENSmodels_folder
-``
+
+.. code-block:: console
+
+    python -m pip install path_to_QENSmodels_folder
+
+
 where `path_to_QENSmodels_folder` is the location of the QENSmodels' folder on your computer (for
 example `/Users/my_username/Desktop/QENSmodels`).
 

@@ -51,9 +51,9 @@ In a command prompt,
 
   .. code-block:: console
 
-     scripts\pip install path_to_QENSmodels
+     Scripts\pip install path_to_QENSmodels
 
-  where path_to_QENSmodels is the location of the QENSmodels' folder on your computer
+  where path_to_QENSmodels is the location of the QENSmodels folder on your computer
 
 
 On Linux
@@ -64,6 +64,8 @@ In a terminal, type
 .. code-block:: console
 
     python3 -m pip install path_to_QENSmodels
+
+ where path_to_QENSmodels is the location of the QENSmodels's folder on your computer
 
 
 Testing the installation
@@ -86,7 +88,6 @@ simply type
    `Mac <https://forum.mantidproject.org/t/lmfit-installation/658>`__ and for
    `Windows <https://forum.mantidproject.org/t/pandas-in-mantid-workbench/574>`__
 
-The Python script
-`mantid_BrownianDiff_fit.py <https://github.com/celinedurniak/test_nbsphinx/blob/main_readme/docs/examples/using_mantid/mantid_BrownianDiff_fit.py>`__
-can be used as an example to be loaded in Mantid Workbench for fitting data to functions from the
-QENSmodels library.
+The Python script `mantid_BrownianDiff_fit.py` can be used as an example to be loaded in Mantid
+Workbench for fitting data to functions from the QENSmodels library.
+
