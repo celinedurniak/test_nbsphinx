@@ -2,9 +2,4 @@ numpy>=1.22 ; python_version > '3.7'
 numpy==1.21 ; python_version == '3.7'
 scipy>=1.8.0 ; python_version > '3.7'
 scipy==1.7.3 ; python_version == '3.7'
-matplotlib 
-h5py
-jupyterlab
-bumps
-lmfit
-ipywidgets
+git+http://github.com/celinedurniak/test_nbsphinx.git
