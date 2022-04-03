@@ -1,4 +1,5 @@
-numpy
+numpy==1.22; python_version > '3.7'
+numpy==1.21; python_version == '3.7'
 scipy
 matplotlib
 git+https://github.com/celinedurniak/test_nbsphinx.git
