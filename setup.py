@@ -6,13 +6,16 @@ author = 'Céline Durniak...'
 
 short = 'Repository to test different settings'
 
+packages = ['QENSmodels']
+
 setup(name='test_nbsphinx',
       version='0.1.0',
       description=short,
       author=author,
       author_email='  ',
       license=open('LICENSE.txt').read(),
-      packages=find_packages(),
+      python_requires=">=3.7,<3.11",
+      packages=packages,
       install_requires=['scipy', 'numpy==1.21', ],
       setup_requires=['flake8'],
       tests_require=['pytest'],
