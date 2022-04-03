@@ -16,7 +16,7 @@ setup(name='test_nbsphinx',
       license=open('LICENSE.txt').read(),
       python_requires=">=3.7,<3.11",
       packages=packages,
-      install_requires=['scipy', 'numpy==1.21', ],
+      install_requires=['scipy', 'numpy', ],
       setup_requires=['flake8'],
       tests_require=['pytest'],
       zip_safe=False,)
