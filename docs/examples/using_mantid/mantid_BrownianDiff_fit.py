@@ -100,7 +100,7 @@ global_model = "composite=MultiDomainFunction,NumDeriv=true;"
 for wi in range(selected_wi):
     # insert Q-value
     single_model = single_model_template.replace("_Q_", str(Q[wi]))
-    global_model += single_model+';'
+    global_model += single_model + ';'
 
 # Add ties
 global_model += 'ties=(f0.D=f1.D=f2.D=f3.D);constraints=(f0.D>0)'
