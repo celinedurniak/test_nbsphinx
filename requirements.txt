@@ -1,3 +1,8 @@
-numpy
-scipy
-git+http://github.com/celinedurniak/test_nbsphinx.git
+git+https://github.com/QENSlibrary/QENSmodels.git@master
+matplotlib
+ipympl
+h5py
+jupyterlab
+bumps >= 0.7.6
+lmfit
+ipywidgets
