@@ -1,6 +1,8 @@
+pytest
+flake8
+git+https://github.com/QENSlibrary/QENSmodels.git@master
 matplotlib
 ipympl
-git+https://github.com/QENSlibrary/QENSmodels.git
 h5py
 nbsphinx
 sphinx-rtd-theme
