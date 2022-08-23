@@ -66,7 +66,7 @@ def hwhm_brownian_translational_diffusion(
 
     eisf = np.zeros(q.size)
     qisf = np.ones(q.size)
-    if D > 0:
+    if diffusion_coeff > 0:
         hwhm = diffusion_coeff * q ** 2
     else:
         raise ValueError('The diffusion coefficient should be positive')
