@@ -127,7 +127,7 @@ def sqw_chudley_elliott_diffusion(
 
     Examples
     --------
-    >>> sqw = sqw_chudley_elliott_diffusion(([1, 2, 3], 1, 1, 0, 1, 1)
+    >>> sqw = sqw_chudley_elliott_diffusion([1, 2, 3], 1, 1, 0, 1, 1)
     >>> round(sqw[0], 3)
     0.159
     >>> round(sqw[1], 3)
