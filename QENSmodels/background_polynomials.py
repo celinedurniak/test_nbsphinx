@@ -1,5 +1,6 @@
 import numpy as np
 from numpy.polynomial import Polynomial
+from typing import Union
 
 
 def background_polynomials(
