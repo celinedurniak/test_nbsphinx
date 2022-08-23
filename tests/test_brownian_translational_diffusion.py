@@ -21,12 +21,12 @@ class TestBrownianTranslationDiffusion(unittest.TestCase):
         Brownian Translation Diffusion model
         it should be 3: hwhm, eisf and qisf
         """
-        output = QENSmodels.hwhmBrownianTranslationalDiffusion(1.)
+        output = QENSmodels.hwhm_brownian_translational_diffusion(1.)
         self.assertEqual(len(output), 3)
 
     def test_type_output_hwhm_brownian_translation_diffusion(self):
         """ test type of output: numpy array for the 3 outputs """
-        hwhm, eisf, qisf = QENSmodels.hwhmBrownianTranslationalDiffusion(1.)
+        hwhm, eisf, qisf = QENSmodels.hwhm_brownian_translational_diffusion(1.)
         self.assertIsInstance(hwhm, numpy.ndarray)
         self.assertIsInstance(eisf, numpy.ndarray)
         self.assertIsInstance(qisf, numpy.ndarray)
@@ -37,7 +37,7 @@ class TestBrownianTranslationDiffusion(unittest.TestCase):
     def test_size_output_fct_q_hwhm_brownian_translation_diffusion(self):
         """ these numpy arrays have a size depending on the input q-values """
         hwhm1, eisf1, qisf1 = \
-            QENSmodels.hwhmBrownianTranslationalDiffusion([1., 2.], 0.33)
+            QENSmodels.hwhm_brownian_translational_diffusion([1., 2.], 0.33)
         self.assertEqual(len(hwhm1), 2)
         self.assertEqual(len(eisf1), 2)
         self.assertEqual(len(qisf1), 2)
@@ -45,7 +45,7 @@ class TestBrownianTranslationDiffusion(unittest.TestCase):
     def test_content_output_fct_q_hwhm_brownian_translation_diffusion(self):
         """ test values of outputs """
         hwhm, eisf, qisf = \
-            QENSmodels.hwhmBrownianTranslationalDiffusion([1., 2.], 0.33)
+            QENSmodels.hwhm_brownian_translational_diffusion([1., 2.], 0.33)
 
         numpy.testing.assert_array_almost_equal(hwhm, [0.33, 1.32], decimal=2)
 
@@ -56,14 +56,15 @@ class TestBrownianTranslationDiffusion(unittest.TestCase):
     def test_type_sqw_brownian_translation_diffusion(self):
         """ test type of output of sqw function """
         self.assertIsInstance(
-            QENSmodels.sqwBrownianTranslationalDiffusion(1, 1, 1, 0, 1),
+            QENSmodels.sqw_brownian_translational_diffusion(1, 1, 1, 0, 1),
             numpy.ndarray)
 
     def test_size_sqw_brownian_translation_diffusion(self):
         """ test size of output of sqwBrownianTranslationalDiffusion """
-        output = QENSmodels.sqwBrownianTranslationalDiffusion([1, 2, 3],
-                                                              [0.3, 0.4],
-                                                              1, 0, 1)
+        output = QENSmodels.sqw_brownian_translational_diffusion(
+            [1, 2, 3],
+            [0.3, 0.4],
+            1, 0, 1)
         self.assertIsInstance(output, numpy.ndarray)
         self.assertEqual(output.size, 6)
         self.assertEqual(output.shape, (2, 3))
@@ -72,7 +73,7 @@ class TestBrownianTranslationDiffusion(unittest.TestCase):
         """ test that an error is raised if no values of q are given as input
         """
         self.assertRaises(TypeError,
-                          QENSmodels.sqwBrownianTranslationalDiffusion,
+                          QENSmodels.sqw_brownian_translational_diffusion,
                           1)
 
     def test_raised_error_negative_diffusion_coeff(self):
@@ -80,7 +81,7 @@ class TestBrownianTranslationDiffusion(unittest.TestCase):
         negative
         """
         self.assertRaises(ValueError,
-                          QENSmodels.hwhmBrownianTranslationalDiffusion,
+                          QENSmodels.hwhm_brownian_translational_diffusion,
                           1,
                           -1)
 
@@ -100,12 +101,11 @@ class TestBrownianTranslationDiffusion(unittest.TestCase):
         q = 0.7
         actual_data = numpy.column_stack(
             [w,
-             QENSmodels.sqwBrownianTranslationalDiffusion(w, q, 1., 0., 1.)])
+             QENSmodels.sqw_brownian_translational_diffusion(w, q, 1., 0., 1.)])
 
         # compare the 2 arrays
         numpy.testing.assert_array_almost_equal(ref_data,
-                                                actual_data,
-                                                decimal=13)
+                                                actual_data)
 
 
 if __name__ == '__main__':

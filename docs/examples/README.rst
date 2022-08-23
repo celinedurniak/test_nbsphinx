@@ -2,12 +2,11 @@ Introduction
 ============
 
 This section contains different Jupyter notebooks showing how to use models of
-the QENS library. The sub-folder `using_mantid` details how to proceed if you want to use Mantid
-(`link <https://github.com/QENSlibrary/QENSmodels/blob/master/docs/examples/using_mantid/README.rst>`_).
+the QENS library. The sub-folder ``using_mantid`` details how to proceed if you want to use Mantid
+(`link <https://github.com/QENSlibrary/QENSmodels/blob/master/docs/examples/using_mantid/README.rst>`__).
 
 Note that in order to open and run these examples, you need
 `jupyter <http://jupyter.org/>`_\ ,
-`scipy <https://www.scipy.org/>`_\ ,
 `matplotlib <https://matplotlib.org/>`_\ ,
 `ipywidgets <https://ipywidgets.readthedocs.io/en/latest/>`_ (for interactive
 plots),
@@ -28,7 +27,7 @@ The following table summarizes some of the main features of the Jupyter notebook
 +-------------------------------------------+-------------------------+--------------------+-----------------+------------+------------+
 | Name "_fit.ipynb"                         | External input datafile | "Interactive plot" | Composed models | Background | Resolution |
 +-------------------------------------------+-------------------------+--------------------+-----------------+------------+------------+
-| bumps_BrownianDiff                        | X                       |                    |                 |            |  X         |
+| bumps_BrownianDiff                        | X                       |                    |                 |            | X          |
 +-------------------------------------------+-------------------------+--------------------+-----------------+------------+------------+
 | bumps_ChudleyElliottDiff                  |                         |                    |                 |            |            |
 +-------------------------------------------+-------------------------+--------------------+-----------------+------------+------------+
@@ -66,7 +65,7 @@ Using the jupyter notebooks in a virtual environment
 ====================================================
 
 - If not already installed on your computer, download and install Python (version>=3.8), for example,
-  from https://www.python.org/downloads/. In the following instructions, replace `python` by the path to
+  from https://www.python.org/downloads/. In the following instructions, replace ``python`` by the path to
   the version of python you want to use.
 
 - Download or clone the QENSmodels repository at https://github.com/QENSlibrary/QENSmodels
@@ -93,9 +92,6 @@ Using the jupyter notebooks in a virtual environment
 
   The command above assumes that you are in the `docs` folder. If it is not the case, replace
   ``requirements.txt`` by the correct path.
-
-  The packages for fitting, *i.e.* ``lmfit``\ , ``bumps``\ , will be installed when
-  running the jupyter notebooks, where they are required.
 
 - In order to use the examples, simply type ``jupyter lab`` in a terminal.
 

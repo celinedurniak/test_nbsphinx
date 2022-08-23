@@ -33,5 +33,5 @@ setup(name='QENSmodels',
       python_requires=">=3.7,<3.11",
       packages=packages,
       install_requires=['scipy', 'numpy', ],
-      setup_requires=['flake8'],
+      setup_requires=['flake8', 'mypy'],
       zip_safe=False,)

@@ -1,4 +1,5 @@
 import numpy as np
+from typing import Union
 
 try:
     import QENSmodels
@@ -6,9 +7,17 @@ except ImportError:
     print('Module QENSmodels not found')
 
 
-def sqwWaterTeixeira(w, q, scale=1, center=0, D=0.23, resTime=1.25, radius=1,
-                     DR=1):
-    r""" Model corresponding to the convolution of `Jump Translational
+def sqw_water_teixeira(
+        w: Union[float, list, np.ndarray],
+        q: Union[float, list, np.ndarray],
+        scale: float = 1,
+        center: float = 0,
+        diffusion_coeff: float = 0.23,
+        residence_time: float = 1.25,
+        radius: float = 1,
+        rot_diffusion_coeff: float = 1) -> Union[float, list, np.ndarray]:
+    r"""
+    Model corresponding to the convolution of `Jump Translational
     diffusion` (model T) and `Isotropic rotational diffusion` (model R)
 
     Model = convolution(T, R), where
@@ -36,21 +45,22 @@ def sqwWaterTeixeira(w, q, scale=1, center=0, D=0.23, resTime=1.25, radius=1,
     center: float
         center of peak. Default to 0.
 
-    D: float
+    diffusion_coeff: float
         Diffusion coefficient (in Angstrom^2/ps). Default to 1.
 
-    resTime: float
+    residence_time: float
         Residence time (in ps). Default to 1.
 
     radius: float
         radius of rotation (in Angstrom). Default to 1.
 
-    DR: float
+    rot_diffusion_coeff: float
         rotational diffusion coefficient (in 1/ps). Default to 1.
 
 
     Return
     ------
+
     :class:`~numpy:numpy.ndarray`
         output array
 
@@ -58,23 +68,24 @@ def sqwWaterTeixeira(w, q, scale=1, center=0, D=0.23, resTime=1.25, radius=1,
     Examples
     --------
 
-    >>> result = sqwWaterTeixeira(1, 1, 1, 1, 1, 1, 1, 1)
+    >>> result = sqw_water_teixeira(1, 1, 1, 1, 1, 1, 1, 1)
     >>> round(result[0], 3)
     0.486
 
-     Notes
+
+    Notes
     -----
 
-    * The default values for the fitting parameters come from the values
-      for water at 298K and 1 atm, water has D=0.23 Angstrom^2/ps and
-      ResTime=1.25 ps.
+    The default values for the fitting parameters come from the values
+    for water at 298K and 1 atm, water has diffusion_coeff=0.23 Angstrom^2/ps
+    and residence_time=1.25 ps.
 
     References
     ----------
 
     J. Teixeira, M.-C. Bellissent-Funel, S.H. Chen, and A.J, Dianoux,
     *Phys. Rev. A* **31**, 1913-1917 (1985)
-    `link <https://journals.aps.org/pra/abstract/10.1103/PhysRevA.31.1913>`_
+    `link <https://journals.aps.org/pra/abstract/10.1103/PhysRevA.31.1913>`__
 
     """
     # Input validation
@@ -87,12 +98,12 @@ def sqwWaterTeixeira(w, q, scale=1, center=0, D=0.23, resTime=1.25, radius=1,
 
     # Get widths, EISFs and QISFs of each model
     hwhm1, eisf1, qisf1 = QENSmodels.jump_translational_diffusion.\
-        hwhmJumpTranslationalDiffusion(q, D, resTime)
+        hwhm_jump_translational_diffusion(q, diffusion_coeff, residence_time)
     hwhm2, eisf2, qisf2 = QENSmodels.isotropic_rotational_diffusion.\
-        hwhmIsotropicRotationalDiffusion(q, radius, DR)
+        hwhm_isotropic_rotational_diffusion(q, radius, rot_diffusion_coeff)
 
     # Number of Lorentzians used to represent the infinite sum in R
-    numberLorentz = hwhm2.shape[1]
+    number_lorentz = hwhm2.shape[1]
 
     # Sum of Lorentzians giving the full model
     for i in range(q.size):
@@ -102,7 +113,7 @@ def sqwWaterTeixeira(w, q, scale=1, center=0, D=0.23, resTime=1.25, radius=1,
             center,
             hwhm1[i]
         )
-        for j in range(1, numberLorentz):
+        for j in range(1, number_lorentz):
             sqw[i, :] += qisf2[i, j] * QENSmodels.lorentzian(
                 w,
                 scale,

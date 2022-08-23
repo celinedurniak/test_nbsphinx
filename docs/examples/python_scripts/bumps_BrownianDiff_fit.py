@@ -87,15 +87,12 @@ print('Initial chisq', problem.chisq_str())
 
 problem.plot()
 
-
 result = fit(problem,
              method='lm',
              steps=100,
              verbose=True)
 
-
 problem.plot()
-
 
 # Print chi**2 and parameters' values after fit
 print("final chisq", problem.chisq_str())
@@ -105,7 +102,4 @@ for k, v, dv in zip(problem.labels(), result.x, result.dx):
     else:
         print(k, ":", format_uncertainty_pm(v, dv))
 
-
-
 plt.show()
-

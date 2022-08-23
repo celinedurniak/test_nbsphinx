@@ -1,5 +1,6 @@
-from __future__ import print_function
 import numpy as np
+from typing import Union, Tuple
+
 
 try:
     import QENSmodels
@@ -7,9 +8,13 @@ except ImportError:
     print('Module QENSmodels not found')
 
 
-def hwhmEquivalentSitesCircle(q, Nsites=3, radius=1.0, resTime=1.0):
+def hwhm_equivalent_sites_circle(
+        q: Union[float, list, np.ndarray],
+        number_sites: int = 3,
+        radius: float = 1.0,
+        residence_time: float = 1.0) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
     """
-    Returns some characteristics of `EquivalentSitesCircle` as functions
+    Returns some characteristics of `Equivalent Sites Circle` as functions
     of the momentum transfer `q`:
     the half-width half-maximum (`hwhm`), the elastic incoherent structure
     factor (`eisf`), and the quasi-elastic incoherent structure factor (`qisf`)
@@ -19,13 +24,13 @@ def hwhmEquivalentSitesCircle(q, Nsites=3, radius=1.0, resTime=1.0):
     q: float, list or :class:`~numpy:numpy.ndarray`
         momentum transfer (non-fitting, in 1/Angstrom)
 
-    Nsites: integer
+    number_sites: integer
         number of sites in circle (non-fitting). Default to 3.
 
     radius: float
         radius of the circle (in Angstrom). Default to 1.
 
-    resTime: float
+    residence_time: float
         residence time (in ps). Default to 1.
 
     Returns
@@ -42,7 +47,7 @@ def hwhmEquivalentSitesCircle(q, Nsites=3, radius=1.0, resTime=1.0):
 
     Examples
     --------
-    >>> hwhm, eisf, qisf = hwhmEquivalentSitesCircle([1., 2.], 6, 0.5, 1.5)
+    >>> hwhm, eisf, qisf = hwhm_equivalent_sites_circle([1., 2.], 6, 0.5, 1.5)
     >>> round(hwhm[0, 1], 3)
     0.333
     >>> round(hwhm[0, 3], 3)
@@ -64,35 +69,35 @@ def hwhmEquivalentSitesCircle(q, Nsites=3, radius=1.0, resTime=1.0):
         raise ValueError("radius, the radius of the circle, "
                          "should be positive")
 
-    if resTime < 0:
+    if residence_time < 0:
         raise ValueError("resTime, the residence time, should be positive")
 
-    if Nsites < 2:
-        raise ValueError("the minimum number of sites N is 2")
+    if number_sites < 2:
+        raise ValueError("the minimum number of sites is 2")
 
     # number of sites has to be an integer
-    Nsites = int(Nsites)
+    number_sites = int(number_sites)
 
     # index of sites in circle
-    sites = np.arange(Nsites)
+    sites = np.arange(number_sites)
 
-    hwhm = 2.0 / resTime * np.sin(sites * np.pi / Nsites) ** 2
+    hwhm = 2.0 / residence_time * np.sin(sites * np.pi / number_sites) ** 2
     hwhm = np.tile(hwhm, (q.size, 1))
 
     # jump distances between sites
-    jump_distance = 2.0 * radius * np.sin(sites * np.pi / Nsites)
+    jump_distance = 2.0 * radius * np.sin(sites * np.pi / number_sites)
 
     # QR matrix [q.size, N] and corresponding spherical Bessel functions
     QR = np.outer(q, jump_distance)
-    sphBessel = np.ones(QR.shape)
+    spherical_bessel = np.ones(QR.shape)
     idx = np.nonzero(QR)
-    sphBessel[idx] = np.sin(QR[idx]) / QR[idx]
+    spherical_bessel[idx] = np.sin(QR[idx]) / QR[idx]
 
     isf = np.zeros(QR.shape)
-    for i in range(Nsites):
-        for j in range(Nsites):
-            isf[:, i] += sphBessel[:, j] * np.cos(2. * i * j * np.pi / Nsites)
-        isf[:, i] /= Nsites
+    for i in range(number_sites):
+        for j in range(number_sites):
+            isf[:, i] += spherical_bessel[:, j] * np.cos(2. * i * j * np.pi / number_sites)
+        isf[:, i] /= number_sites
 
     eisf = isf[:, 0]
     qisf = isf[:, 1:]
@@ -100,9 +105,14 @@ def hwhmEquivalentSitesCircle(q, Nsites=3, radius=1.0, resTime=1.0):
     return hwhm, eisf, qisf
 
 
-def sqwEquivalentSitesCircle(w, q,
-                             scale=1.0, center=0.0, Nsites=3,
-                             radius=1.0, resTime=1.0):
+def sqw_equivalent_sites_circle(
+        w: Union[float, list, np.ndarray],
+        q: Union[float, list, np.ndarray],
+        scale: float = 1.0,
+        center: float = 0.0,
+        number_sites: int = 3,
+        radius: float = 1.0,
+        residence_time: float = 1.0) -> Union[float, list, np.ndarray]:
     r"""
     Model
     `Jumps between Nsites equivalent sites on a circle with
@@ -128,13 +138,13 @@ def sqwEquivalentSitesCircle(w, q,
     center: float
         center of peak. Default to 0.
 
-    Nsites: integer
+    number_sites: integer
         number of sites in circle (non-fitting). Default to 3.
 
     radius: float
         radius of rotation (in Angstrom). Default to 1.
 
-    resTime: float
+    residence_time: float
         residence time in a site before jumping to another site (in ps).
         Default to 1.
 
@@ -145,11 +155,11 @@ def sqwEquivalentSitesCircle(w, q,
 
     Examples
     --------
-    >>> sqw = sqwEquivalentSitesCircle(1, 1, 1, 0, 4, 1, 1)
+    >>> sqw = sqw_equivalent_sites_circle(1, 1, 1, 0, 4, 1, 1)
     >>> round(sqw[0], 3)
     0.045
 
-    >>> sqw = sqwEquivalentSitesCircle([1, 2, 3], [0.3, 0.4], 1, 0, 5, 1, 1)
+    >>> sqw = sqw_equivalent_sites_circle([1, 2, 3], [0.3, 0.4], 1, 0, 5, 1, 1)
     >>> round(sqw[0, 0], 3)
     0.004
     >>> round(sqw[0, 1], 3)
@@ -167,7 +177,7 @@ def sqwEquivalentSitesCircle(w, q,
     Notes
     -----
 
-    * The `sqwEquivalentSitesCircle` is expressed as
+    * The `sqw_equivalent_sites_circle` is expressed as
 
       .. math::
 
@@ -184,7 +194,7 @@ def sqwEquivalentSitesCircle(w, q,
 
          r_j = 2R \sin(j\pi/N)
 
-         \Gamma_i = \frac{2}{\text{resTime}}\sin^2(i\pi/N)
+         \Gamma_i = \frac{2}{\text{residence_time}}\sin^2(i\pi/N)
 
     * The number of sites `N` is converted to an integer by the function.
       It should **not** be used as a fitting parameter.
@@ -193,11 +203,11 @@ def sqwEquivalentSitesCircle(w, q,
     References
     ----------
 
-    * R. Hempelmann,
-    Quasielastic Neutron Scattering and Solid State Diffusion (Oxford, 2000).
+    * R. Hempelmann, Quasielastic Neutron Scattering and Solid State Diffusion
+      (Oxford, 2000).
 
     * J. D. Barnes, *Journal of Chemical Physics* **58**, 5193-5201 (1973).
-`link <https://aip.scitation.org/doi/abs/10.1063/1.1679130?journalCode=jcp>`_
+      `link <https://aip.scitation.org/doi/abs/10.1063/1.1679130?journalCode=jcp>`__
 
     """
     # Input validation
@@ -210,16 +220,20 @@ def sqwEquivalentSitesCircle(w, q,
     sqw = np.zeros((q.size, w.size))
 
     # Get widths, EISFs and QISFs of model
-    hwhm, eisf, qisf = hwhmEquivalentSitesCircle(q, Nsites, radius, resTime)
+    hwhm, eisf, qisf = hwhm_equivalent_sites_circle(
+        q,
+        number_sites,
+        radius,
+        residence_time)
     # Number of Lorentzians (= N-1)
-    numberLorentz = hwhm.shape[1] - 1
+    number_lorentz = hwhm.shape[1] - 1
     # Sum of Lorentzians
     # (Note that hwhm has dimensions [q.size, N], as hwhm[:,0]
     # contains a width=0, corresponding to the elastic line
     # (eisf), while qisf has dimensions [q.size, N-1])
     for i in range(q.size):
         sqw[i, :] = eisf[i] * QENSmodels.delta(w, scale, center)
-        for j in range(numberLorentz):
+        for j in range(number_lorentz):
             sqw[i, :] += qisf[i, j] * QENSmodels.lorentzian(w,
                                                             scale,
                                                             center,

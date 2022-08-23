@@ -1,5 +1,5 @@
-from __future__ import print_function
 import numpy as np
+from typing import Union, Tuple
 
 try:
     import QENSmodels
@@ -7,8 +7,11 @@ except ImportError:
     print('Module QENSmodels not found')
 
 
-def hwhmChudleyElliottDiffusion(q, D=0.23, L=1.0):
-    """ Returns some characteristics of `ChudleyElliottDiffusion` as functions
+def hwhm_chudley_elliott_diffusion(
+        q: Union[float, list, np.ndarray],
+        diffusion_coeff: float = 0.23,
+        jump_length: float = 1.0) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """ Returns some characteristics of `Chudley Elliott Diffusion` as functions
     of the momentum transfer `q`:
     the half-width half-maximum (`hwhm`), the elastic incoherent structure
     factor (`eisf`), and the quasi-elastic incoherent structure factor (`qisf`)
@@ -19,10 +22,10 @@ def hwhmChudleyElliottDiffusion(q, D=0.23, L=1.0):
     q: float, list or :class:`~numpy:numpy.ndarray`
         momentum transfer (non-fitting, in 1/Angstrom)
 
-    D: float
+    diffusion_coeff: float
         diffusion coefficient (in Angstrom^2/ps). Default to 0.23.
 
-    L: float
+    jump_length: float
         jump length (in Angstrom). Default to 1.0.
 
 
@@ -41,7 +44,7 @@ def hwhmChudleyElliottDiffusion(q, D=0.23, L=1.0):
 
     Examples
     --------
-    >>> hwhm, eisf, qisf = hwhmChudleyElliottDiffusion([1., 2.], 0.5, 1.5)
+    >>> hwhm, eisf, qisf = hwhm_chudley_elliott_diffusion([1., 2.], 0.5, 1.5)
     >>> round(hwhm[0], 3), round(hwhm[1], 3)
     (0.447, 1.271)
     >>> eisf
@@ -51,16 +54,16 @@ def hwhmChudleyElliottDiffusion(q, D=0.23, L=1.0):
 
     """
     # input validation
-    if D <= 0:
+    if diffusion_coeff <= 0:
         raise ValueError('The diffusion coefficient should be positive')
-    if L <= 0:
-        raise ValueError('L, the jump length, should be positive')
+    if jump_length <= 0:
+        raise ValueError('The jump length should be positive')
 
     q = np.asarray(q, dtype=np.float32)
 
     eisf = np.zeros(q.size)
     qisf = np.ones(q.size)
-    hwhm = 6. * D * (1. - np.sinc(q * L / np.pi)) / L ** 2
+    hwhm = 6. * diffusion_coeff * (1. - np.sinc(q * jump_length / np.pi)) / jump_length ** 2
 
     # Force hwhm to be numpy array, even if single value
     hwhm = np.asarray(hwhm, dtype=np.float32)
@@ -69,9 +72,20 @@ def hwhmChudleyElliottDiffusion(q, D=0.23, L=1.0):
     return hwhm, eisf, qisf
 
 
-def sqwChudleyElliottDiffusion(w, q, scale=1, center=0, D=0.23, L=1.0):
+def sqw_chudley_elliott_diffusion(
+        w: Union[float, list, np.ndarray],
+        q: Union[float, list, np.ndarray],
+        scale: float = 1,
+        center: float = 0,
+        diffusion_coeff: float = 0.23,
+        jump_length: float = 1.0) -> Union[float, list, np.ndarray]:
     r""" Lorentzian model with half width half maximum equal to
-    :math:`\frac{6D}{L^2}(1 - \frac{sin(QL/pi)}{QL/pi})`
+
+     .. math::
+
+      \frac{6\text{diffusion_coeff}}{\text{jump_length}^2}
+      (1 - \frac{sin(Q\text{jump_length}/pi)}{Q\text{jump_length}/pi})
+
 
     It is a model originally developed for jump diffusion in
     liquids. But it can also be applied to diffusion in
@@ -80,7 +94,8 @@ def sqwChudleyElliottDiffusion(w, q, scale=1, center=0, D=0.23, L=1.0):
     Atoms or molecules are `caged` by other atoms and jump into
     a neighbouring cage from time to time.
 
-    The jump length `L` is identical for all sites.
+    The jump length is identical for all sites.
+
 
     Parameters
     ----------
@@ -97,10 +112,10 @@ def sqwChudleyElliottDiffusion(w, q, scale=1, center=0, D=0.23, L=1.0):
     center: float
         center of peak. Default to 0.
 
-    D: float
+    diffusion_coeff: float
         diffusion coefficient (in Angstrom^2/ps). Default to 0.23.
 
-    L: float
+    jump_length: float
         jump distance (in Angstrom). Default to 1.0.
 
     Return
@@ -112,7 +127,7 @@ def sqwChudleyElliottDiffusion(w, q, scale=1, center=0, D=0.23, L=1.0):
 
     Examples
     --------
-    >>> sqw = sqwChudleyElliottDiffusion([1, 2, 3], 1, 1, 0, 1, 1)
+    >>> sqw = sqw_chudley_elliott_diffusion(([1, 2, 3], 1, 1, 0, 1, 1)
     >>> round(sqw[0], 3)
     0.159
     >>> round(sqw[1], 3)
@@ -120,7 +135,7 @@ def sqwChudleyElliottDiffusion(w, q, scale=1, center=0, D=0.23, L=1.0):
     >>> round(sqw[2], 3)
     0.031
 
-    >>> sqw = sqwChudleyElliottDiffusion(1, 1, 1, 0, 1, 1)
+    >>> sqw = sqw_chudley_elliott_diffusion(1, 1, 1, 0, 1, 1)
     >>> round(sqw[0], 3)
     0.159
 
@@ -128,7 +143,7 @@ def sqwChudleyElliottDiffusion(w, q, scale=1, center=0, D=0.23, L=1.0):
     Notes
     -----
 
-    * The `sqwChudleyElliottDiffusion` is expressed as
+    * The `sqw_chudley_elliott_diffusion` is expressed as
 
       .. math::
 
@@ -165,7 +180,7 @@ def sqwChudleyElliottDiffusion(w, q, scale=1, center=0, D=0.23, L=1.0):
     sqw = np.zeros((q.size, w.size))
 
     # Get widths, EISFs and QISFs of model
-    hwhm, eisf, qisf = hwhmChudleyElliottDiffusion(q, D, L)
+    hwhm, eisf, qisf = hwhm_chudley_elliott_diffusion(q, diffusion_coeff, jump_length)
 
     # Model
     for i in range(q.size):

@@ -1,5 +1,5 @@
-from __future__ import print_function
 import numpy as np
+from typing import Union
 
 try:
     import QENSmodels
@@ -7,7 +7,11 @@ except ImportError:
     print('Module QENSmodels not found')
 
 
-def gaussian(x, scale=1., center=0., sigma=1.):
+def gaussian(
+        x: Union[float, list, np.ndarray],
+        scale: Union[float, list, np.ndarray] = 1.,
+        center: Union[float, list, np.ndarray] = 0.,
+        sigma: Union[float, list, np.ndarray] = 1.) -> Union[float, list, np.ndarray]:
     r""" Gaussian model
 
     Parameters
@@ -32,16 +36,16 @@ def gaussian(x, scale=1., center=0., sigma=1.):
     Examples
     --------
     >>> round(gaussian(1, 1, 1, 1), 3)
-    0.399
+    2.507
 
     >>> round(gaussian(3, 2, 2, 5), 3)
-    0.156
+    24.57
 
     >>> result = gaussian([1, 3], 1, 1, 1)
     >>> round(result[0], 3)
-    0.399
+    0.881
     >>> round(result[1], 3)
-    0.054
+    0.119
 
 
     Notes
@@ -76,15 +80,39 @@ def gaussian(x, scale=1., center=0., sigma=1.):
       | ``sigma``    | Sigma                                  |
       +--------------+----------------------------------------+
 
+    * Numerical issues:
+      The definition of the Lorentzian function used here is such that
+      the integral between :math:`-\infty` and :math:`-\infty` is 1.
+      However, when the hwhm is comparable or smaller than the x step,
+      the sampling of the function will result in a numerical integral > 1.
+      E.g., in the extreme case where hwhm tends to zero, the numerical
+      sampling at x points will result in a delta-like function, but with
+      a value at maximum approaching :math:`-\infty` instead of the
+      value 1/:math:`\Delta x` used in the definition of the delta function.
+      Therefore, the value of the integral of the function is checked
+      and used to renormalize the returned function whenever the integral
+      is larger than 1.
 
     """
     x = np.asarray(x)
+    scale = np.asarray(scale)
+    center = np.asarray(center)
+    sigma = np.asarray(sigma)
 
     if sigma == 0:
-        model = QENSmodels.delta(x, scale, center)
+        model = QENSmodels.delta(x, 1.0, center)
     else:
-        model = scale / (sigma * np.sqrt(2. * np.pi)) \
+        model = (sigma * np.sqrt(2. * np.pi)) \
             * np.exp(- (x - center) ** 2 / (2. * sigma ** 2))
+
+    # Area normalization
+    if x.size > 1:
+        area = np.trapz(model, x)
+        if area > 1:
+            model /= area
+
+    # Scale by amplitude
+    model *= scale
 
     return model
 

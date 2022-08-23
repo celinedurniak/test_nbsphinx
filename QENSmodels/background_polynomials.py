@@ -1,9 +1,10 @@
-from __future__ import print_function
 import numpy as np
 from numpy.polynomial import Polynomial
 
 
-def background_polynomials(x, list_coefficients=0.0):
+def background_polynomials(
+        x: Union[float, list, np.ndarray],
+        list_coefficients: list = None) -> Polynomial:
     r"""
     Polynomials of variable `w` and with coefficients contained in
     'list_coefficients'
@@ -43,7 +44,9 @@ def background_polynomials(x, list_coefficients=0.0):
     x = np.asarray(x)
 
     # check that list_coeff is a list and all elements are numbers
-    if isinstance(list_coefficients, list) and \
+    if list_coefficients is None:
+        return Polynomial([0.])(x)
+    elif isinstance(list_coefficients, list) and \
             all(isinstance(w, (int, float)) for w in list_coefficients):
 
         return Polynomial(list_coefficients)(x)

@@ -1,6 +1,7 @@
-from __future__ import print_function
 import numpy as np
-from scipy.special import spherical_jn
+from scipy.special import spherical_jn  # type: ignore
+from typing import Union, Tuple
+
 
 try:
     import QENSmodels
@@ -8,7 +9,10 @@ except ImportError:
     print('Module QENSmodels not found')
 
 
-def hwhmIsotropicRotationalDiffusion(q, radius=1.0, DR=1.0):
+def hwhm_isotropic_rotational_diffusion(
+        q: Union[float, list, np.ndarray],
+        radius: float = 1.0,
+        rot_diffusion_coeff: float = 1.0) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
     """
     Returns some characteristics of `IsotropicRotationalDiffusion` as functions
     of the momentum transfer `q`:
@@ -23,7 +27,7 @@ def hwhmIsotropicRotationalDiffusion(q, radius=1.0, DR=1.0):
     radius: float
         radius of rotation (in Angstrom). Default to 1.
 
-    DR: float
+    rot_diffusion_coeff: float
         rotational diffusion coefficient (in 1/ps). Default to 1.
 
     Returns
@@ -40,7 +44,7 @@ def hwhmIsotropicRotationalDiffusion(q, radius=1.0, DR=1.0):
 
     Examples
     --------
-    >>> hwhm, eisf, qisf = hwhmIsotropicRotationalDiffusion(1., 1., 1.)
+    >>> hwhm, eisf, qisf = hwhm_isotropic_rotational_diffusion(1., 1., 1.)
     >>> hwhm[0, 0]
     0.0
     >>> hwhm[0, 1]
@@ -72,26 +76,26 @@ def hwhmIsotropicRotationalDiffusion(q, radius=1.0, DR=1.0):
     # input validation
     if radius <= 0:
         raise ValueError('radius should be strictly positive')
-    if DR <= 0:
-        raise ValueError('DR, the rotational diffusion coefficient, '
+    if rot_diffusion_coeff <= 0:
+        raise ValueError('the rotational diffusion coefficient, '
                          'should be strictly positive')
 
     q = np.asarray(q, dtype=np.float32)
 
-    numberLorentz = 6
-    qisf = np.zeros((q.size, numberLorentz))
-    hwhm = np.zeros((q.size, numberLorentz))
-    jl = np.zeros((q.size, numberLorentz))
+    number_lorentz = 6
+    qisf = np.zeros((q.size, number_lorentz))
+    hwhm = np.zeros((q.size, number_lorentz))
+    jl = np.zeros((q.size, number_lorentz))
 
     arg = q * radius
 
     idx = np.argwhere(arg == 0)
-    for i in range(numberLorentz):
+    for i in range(number_lorentz):
 
         # to solve warnings for arg=0
         jl[:, i] = spherical_jn(i, arg)
 
-        hwhm[:, i] = np.repeat(i * (i + 1) * DR, q.size)
+        hwhm[:, i] = np.repeat(i * (i + 1) * rot_diffusion_coeff, q.size)
 
         if idx.size > 0:
             if i == 0:
@@ -99,13 +103,18 @@ def hwhmIsotropicRotationalDiffusion(q, radius=1.0, DR=1.0):
             else:
                 jl[idx, i] = 0.0
     eisf = jl[:, 0] ** 2
-    for i in range(1, numberLorentz):
+    for i in range(1, number_lorentz):
         qisf[:, i] = (2 * i + 1) * jl[:, i] ** 2
     return hwhm, eisf, qisf
 
 
-def sqwIsotropicRotationalDiffusion(w, q, scale=1.0, center=0.0, radius=1.0,
-                                    DR=1.0):
+def sqw_isotropic_rotational_diffusion(
+        w: Union[float, list, np.ndarray],
+        q: Union[float, list, np.ndarray],
+        scale: float = 1.0,
+        center: float = 0.0,
+        radius: float = 1.0,
+        rot_diffusion_coeff: float = 1.0) -> Union[float, list, np.ndarray]:
     r"""
     Model `Isotropic rotational diffusion` = A_0 delta + Sum of Lorentzians ...
 
@@ -134,7 +143,7 @@ def sqwIsotropicRotationalDiffusion(w, q, scale=1.0, center=0.0, radius=1.0,
     radius: float
         radius of rotation (in Angstrom). Default to 1.
 
-    DR: float
+    rot_diffusion_coeff: float
         rotational diffusion coefficient (in 1/ps). Default to 1.
 
     Return
@@ -144,7 +153,7 @@ def sqwIsotropicRotationalDiffusion(w, q, scale=1.0, center=0.0, radius=1.0,
 
     Examples
     --------
-    >>> sqw = sqwIsotropicRotationalDiffusion([1,2,3], 1, 1, 0, 1, 1)
+    >>> sqw = sqw_isotropic_rotational_diffusion([1,2,3], 1, 1, 0, 1, 1)
     >>> round(sqw[0], 3)
     0.036
     >>> round(sqw[1], 3)
@@ -153,7 +162,7 @@ def sqwIsotropicRotationalDiffusion(w, q, scale=1.0, center=0.0, radius=1.0,
     0.014
 
 
-    >>> sqw = sqwIsotropicRotationalDiffusion([-0.1, 0., 0.1], [0.3, 0.4], 1, 0, 1, 0.5)  # noqa: E501
+    >>> sqw = sqw_isotropic_rotational_diffusion([-0.1, 0., 0.1], [0.3, 0.4], 1, 0, 1, 0.5)  # noqa: E501
     >>> round(sqw[0, 0], 3)
     0.009
     >>> round(sqw[0, 1], 3)
@@ -172,14 +181,14 @@ def sqwIsotropicRotationalDiffusion(w, q, scale=1.0, center=0.0, radius=1.0,
     -----
     * There are 6 terms in the sum (see the mathematical expression below)
 
-    * The `sqwIsotropicRotationalDiffusion` is expressed as
+    * The `sqw_isotropic_rotational_diffusion` is expressed as
 
      .. math::
 
         S(q, \omega) &= j_0^2(q\ \text{radius})\delta(\omega, \text{scale},
         \text{center})\\
         &+ \sum_{i=1} ^6 (2i + 1) j_i^2(q\ \text{radius})
-        \text{Lorentzian}(\omega, \text{scale}, \text{center}, i(i+1)\text{DR})
+        \text{Lorentzian}(\omega, \text{scale}, \text{center}, i(i+1)\text{rot_diffusion_coeff})
 
      where :math:`j_i, i=1..6` are spherical Bessel functions of order i.
 
@@ -187,7 +196,7 @@ def sqwIsotropicRotationalDiffusion(w, q, scale=1.0, center=0.0, radius=1.0,
     ----------
 
     P. A. Egelstaff, *J. Chem. Phys.* **53**, 2590-2598 (1970)
-  `link <https://aip.scitation.org/doi/abs/10.1063/1.1674374?journalCode=jcp>`_
+    `link <https://aip.scitation.org/doi/abs/10.1063/1.1674374?journalCode=jcp>`__
 
     """
 
@@ -200,17 +209,21 @@ def sqwIsotropicRotationalDiffusion(w, q, scale=1.0, center=0.0, radius=1.0,
     sqw = np.zeros((q.size, w.size))
 
     # Get widths, EISFs and QISFs of model
-    hwhm, eisf, qisf = hwhmIsotropicRotationalDiffusion(q, radius, DR)
+    hwhm, eisf, qisf = hwhm_isotropic_rotational_diffusion(q, radius, rot_diffusion_coeff)
 
     # Number of Lorentzians used to represent the infinite sum in R
-    numberLorentz = hwhm.shape[1]
+    number_lorentz = hwhm.shape[1]
 
     # Sum of Lorentzians
     for i in range(q.size):
         sqw[i, :] = eisf[i] * QENSmodels.delta(w, scale, center)
-        for j in range(1, numberLorentz):
-            sqw[i, :] += qisf[i, j] * QENSmodels.lorentzian(w, scale, center,
-                                                            hwhm[i, j])
+        for j in range(1, number_lorentz):
+            sqw[i, :] += qisf[i, j] * QENSmodels.lorentzian(
+                w,
+                scale,
+                center,
+                hwhm[i, j]
+            )
 
     # For Bumps use (needed for final plotting)
     # Using a 'Curve' in bumps for each Q --> needs vector array
