@@ -1,26 +1,26 @@
 import numpy as np
 from typing import Union
 
-
 try:
     import QENSmodels
 except ImportError:
     print('Module QENSmodels not found')
 
 
-def sqw_delta_lorentz(
-        w: Union[float, list, np.ndarray],
-        q: Union[float, list, np.ndarray],
-        scale: float = 1.0,
-        center: float = 0.0,
-        fraction_immobile: Union[float, list, np.ndarray] = 0.0,
-        hwhm: Union[float, list, np.ndarray] = 1.0) -> Union[float, list, np.ndarray]:
+def sqwDeltaLorentz(
+    w: Union[float, list, np.ndarray],
+    q: Union[float, list, np.ndarray],
+    scale: float = 1.0,
+    center: float = 0.0,
+    A0: Union[float, list, np.ndarray] = 0.0,
+    hwhm: Union[float, list, np.ndarray] = 1.0
+) -> Union[float, list, np.ndarray]:
     r"""
     Model corresponding to a delta representing a fraction p of
     fixed atoms and a Lorentzian corresponding to a Brownian
     Translational diffusion model for the remaining (1 - p) atoms.
 
-    Model = fraction_immobile*delta + (1-fraction_immobile)*Lorentz(Gamma)
+    Model = A0*delta + (1-A0)*Lorentz(Gamma)
 
     Parameters
     ----------
@@ -36,7 +36,7 @@ def sqw_delta_lorentz(
     center: float
         peak center. Default to 0.
 
-    fraction_immobile: float, list or :class:`~numpy:numpy.ndarray` of the same size as q
+    A0: float, list or :class:`~numpy:numpy.ndarray` of the same size as q
         proportion of immobile atoms, must be between 0 and 1. Default to 0.
 
     hwhm: float, list or :class:`~numpy:numpy.ndarray` of the same size as q
@@ -50,7 +50,7 @@ def sqw_delta_lorentz(
 
     Examples
     --------
-    >>> sqw = sqw_delta_lorentz([1, 2, 3], 0.1)
+    >>> sqw = sqwDeltaLorentz([1, 2, 3], 0.1)
     >>> round(sqw[0], 1)
     0.2
     >>> round(sqw[1], 3)
@@ -58,15 +58,14 @@ def sqw_delta_lorentz(
     >>> round(sqw[2], 3)
     0.032
 
-
     Notes
     -----
-    The `sqw_delta_lorentz` is expressed as
+    The `sqwDeltaLorentz` is expressed as
 
     .. math::
 
-        S(q, \omega) &= \text{fraction_immobile} \delta(\omega, \text{scale}, \text{center}) \\
-        &+ (1 - \text{fraction_immobile}) \text{Lorentzian}(\omega, \text{scale}, \text{center},
+        S(q, \omega) &= A_0 \delta(\omega, \text{scale}, \text{center}) \\
+        &+ (1 - A_0) \text{Lorentzian}(\omega, \text{scale}, \text{center},
                                     \text{hwhm})
 
     """
@@ -74,25 +73,36 @@ def sqw_delta_lorentz(
 
     # Input validation
     q = np.asarray(q, dtype=np.float32)
-
-    fraction_immobile = np.asarray(fraction_immobile, dtype=np.float32)
-    hwhm = np.asarray(hwhm, dtype=np.float32)
+    A0 = np.asarray(A0)
+    hwhm = np.asarray(hwhm)
 
     # Create output array
     sqw = np.zeros((q.size, w.size))
 
     # Model
     if q.size > 1:
+        # if only a single float is given for A0, adapt to size of q
+        if A0.size == 1:
+            A0 = A0 * np.ones(q.size)
+        # else check that enough values of A0 are given to match the size of q
+        else:
+            assert A0.shape == q.shape, "If A0.size>1, it should match the size of q"
 
-        # Validator for A0. We must have 0<= fraction_immobile <= 1
-        if any(item > 1 or item < 0 for item in fraction_immobile):
-            raise ValueError('fraction_immobile, the proportion of immobile atoms, '
+        # same procedure for hwhm
+        if hwhm.size == 1:
+            hwhm = hwhm * np.ones(q.size)
+        else:
+            assert hwhm.shape == q.shape, "If hwhm.size>1, it should match the size of q"
+
+        # Validator for A0. We must have 0<= A0 <= 1
+        if any(item > 1 or item < 0 for item in A0):
+            raise ValueError('The proportion of immobile atoms, A0, '
                              'should be comprised between 0 and 1, included.')
 
         try:
             for i in range(q.size):
-                sqw[i, :] = fraction_immobile[i] * QENSmodels.delta(w, scale, center)
-                sqw[i, :] += (1 - fraction_immobile[i]) * QENSmodels.lorentzian(
+                sqw[i, :] = A0[i] * QENSmodels.delta(w, scale, center)
+                sqw[i, :] += (1 - A0[i]) * QENSmodels.lorentzian(
                     w,
                     scale,
                     center,
@@ -105,12 +115,12 @@ def sqw_delta_lorentz(
             msg = "At least one array has an incorrect size"
             raise IndexError(detail.__str__() + "\n" + msg)
     else:
-        if fraction_immobile > 1 or fraction_immobile < 0:
-            raise ValueError('fraction_immobile, the proportion of immobile atoms, '
+        if A0 > 1 or A0 < 0:
+            raise ValueError('The proportion of immobile atoms, A0, '
                              'should be comprised between 0 and 1, included.')
 
-        sqw[0, :] = fraction_immobile * QENSmodels.delta(w, scale, center)
-        sqw[0, :] += (1 - fraction_immobile) * QENSmodels.lorentzian(w, scale, center, hwhm)
+        sqw[0, :] = A0 * QENSmodels.delta(w, scale, center)
+        sqw[0, :] += (1 - A0) * QENSmodels.lorentzian(w, scale, center, hwhm)
 
     # For Bumps use (needed for final plotting)
     # Using a 'Curve' in bumps for each Q --> needs vector array
@@ -118,8 +128,3 @@ def sqw_delta_lorentz(
         sqw = np.reshape(sqw, w.size)
 
     return sqw
-
-
-if __name__ == "__main__":
-    import doctest
-    doctest.testmod()

@@ -29,7 +29,7 @@ Q = np.linspace(0.1, 0.4, selected_wi)
 # created fake reference data adding noise to one of the QENS models
 added_noise = np.random.normal(0, 1, nb_points)
 
-brownian_diff_noisy = QENSmodels.sqw_brownian_translational_diffusion(
+brownian_diff_noisy = QENSmodels.sqwBrownianTranslationalDiffusion(
     hw,
     Q,
     scale=10,
@@ -44,7 +44,7 @@ QENS_data = mapi.CreateWorkspace(DataX=hw,
 
 
 # wrap to create mantid fitting function
-class my_sqw_brownian_diffusion(mapi.IFunction1D):
+class my_sqwBrownian_Diffusion(mapi.IFunction1D):
     """ """
 
     def init(self):
@@ -64,7 +64,7 @@ class my_sqw_brownian_diffusion(mapi.IFunction1D):
 
         q = self.getAttributeValue("Q")
 
-        return QENSmodels.sqw_brownian_translational_diffusion(
+        return QENSmodels.sqwBrownianTranslationalDiffusion(
             xvals,
             q,
             scale=scale,
@@ -74,7 +74,7 @@ class my_sqw_brownian_diffusion(mapi.IFunction1D):
 
 
 # add it to Mantid fitting functions
-mapi.FunctionFactory.subscribe(my_sqw_brownian_diffusion)
+mapi.FunctionFactory.subscribe(my_sqwBrownian_Diffusion)
 
 """ Fitting
     The following analysis can also be done in Mantid Workbench Fit wizard

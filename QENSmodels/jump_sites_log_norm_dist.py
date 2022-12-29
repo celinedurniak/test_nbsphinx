@@ -7,12 +7,13 @@ except ImportError:
     print('Module QENSmodels not found')
 
 
-def hwhm_jump_sites_log_norm_dist(
+def hwhmJumpSitesLogNormDist(
         q: Union[float, list, np.ndarray],
-        number_sites: float = 3,
+        Nsites: float = 3,
         radius: float = 1.0,
-        residence_time: float = 1.0,
-        sigma: float = 1.0) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+        resTime: float = 1.0,
+        sigma: float = 1.0
+) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
     """ Returns some characteristics of `JumpSitesLogNormDist` as functions
     of the momentum transfer `q`:
     the half-width half-maximum (`hwhm`), the elastic incoherent structure
@@ -24,13 +25,13 @@ def hwhm_jump_sites_log_norm_dist(
     q: float, list or :class:`~numpy:numpy.ndarray`
         momentum transfer (non-fitting, in 1/Angstrom)
 
-    number_sites: integer
+    Nsites: integer
         number of sites in circle (non-fitting). Default to 3.
 
     radius: float
         radius of the circle (in Angstrom). Default to 1.
 
-    residence_time: float
+    resTime: float
         residence time (in ps). Default to 1.
 
     sigma: float
@@ -52,7 +53,7 @@ def hwhm_jump_sites_log_norm_dist(
 
     Examples
     --------
-    >>> hwhm, eisf, qisf = hwhm_jump_sites_log_norm_dist([1., 2.], 4, 0.5, 1.5, 1.0)
+    >>> hwhm, eisf, qisf = hwhmJumpSitesLogNormDist([1., 2.], 4, 0.5, 1.5, 1.0)
     >>> round(hwhm[1, 3, 20], 3), round(hwhm[1, 1, 5], 3)
     (5.7, 0.228)
     >>> round(eisf[0], 3)
@@ -70,10 +71,10 @@ def hwhm_jump_sites_log_norm_dist(
     if radius <= 0:
         raise ValueError("radius, the radius of the circle, "
                          "should be positive")
-    if residence_time < 0:
-        raise ValueError("the residence time should be positive")
-
-    if number_sites < 2:
+    if resTime < 0:
+        raise ValueError("resTime, the residence time, "
+                         "should be positive")
+    if Nsites < 2:
         raise ValueError("the minimum number of sites N is 2")
 
     if sigma <= 0:
@@ -82,10 +83,10 @@ def hwhm_jump_sites_log_norm_dist(
     q = np.asarray(q, dtype=np.float32)
 
     # number of sites has to be an integer
-    number_sites = int(number_sites)
+    Nsites = int(Nsites)
 
     hwhm_equiv, eisf, qisf_equiv = \
-        QENSmodels.hwhm_equivalent_sites_circle(q, number_sites, radius, residence_time)
+        QENSmodels.hwhmEquivalentSitesCircle(q, Nsites, radius, resTime)
 
     # number of lorentzians used in distribution is 2 * nmax + 1
     n_max = 10
@@ -106,31 +107,32 @@ def hwhm_jump_sites_log_norm_dist(
     gi /= np.sum(gi)  # normalize so sum gi = 1
 
     # distribution of hwhm for each jumping distance
-    hwhm = np.zeros((q.size, number_sites, 2 * n_max + 1))
+    hwhm = np.zeros((q.size, Nsites, 2 * n_max + 1))
     for qiter in range(q.size):
-        for isite in range(number_sites):
+        for isite in range(Nsites):
             # corresponding hwhm for each gi and jumping distance
             hwhm[qiter, isite, :] = hwhm_equiv[qiter, isite] * ratio
 
     # quasielastic terms
-    qisf = np.zeros((q.size, number_sites - 1, 2 * n_max + 1))
+    qisf = np.zeros((q.size, Nsites - 1, 2 * n_max + 1))
     for qiter in range(q.size):
         for ilor in range(2 * n_max + 1):
-            for isite in range(0, number_sites - 1):
+            for isite in range(0, Nsites - 1):
                 qisf[qiter, isite, ilor] = qisf_equiv[qiter, isite] * gi[ilor]
 
     return hwhm, eisf, qisf
 
 
-def sqw_jump_sites_log_norm_dist(
+def sqwJumpSitesLogNormDist(
         w: Union[float, list, np.ndarray],
         q: Union[float, list, np.ndarray],
         scale: float = 1.,
         center: float = 0.,
-        number_sites: int = 3,
+        Nsites: int = 3,
         radius: float = 1.,
-        residence_time: float = 1.,
-        sigma: float = 1.) -> Union[float, list, np.ndarray]:
+        resTime: float = 1.,
+        sigma: float = 1.
+) -> Union[float, list, np.ndarray]:
     r""" Model of jumps between Nsites equivalent sites in a circle with
     a log-norm distribution of relaxation times
 
@@ -162,13 +164,13 @@ def sqw_jump_sites_log_norm_dist(
     center: float
         center of peak. Default to 0.
 
-    number_sites: integer
+    Nsites: integer
         number of sites in circle (non-fitting). Default to 3.
 
     radius: float
         radius of rotation (in Angstrom). Default to 1.
 
-    residence_time: float
+    resTime: float
         residence time in a site before jumping to another site (in 1/ps).
         Default to 1.
 
@@ -184,7 +186,7 @@ def sqw_jump_sites_log_norm_dist(
     Examples
     --------
 
-    >>> sqw = sqw_jump_sites_log_norm_dist([1, 2, 3], [0.3, 0.4], 1, 0, 5, 1, 1, 1)
+    >>> sqw = sqwJumpSitesLogNormDist([1, 2, 3], [0.3, 0.4], 1, 0, 5, 1, 1, 1)
     >>> round(sqw[0, 0], 4)
     0.0035
     >>> round(sqw[0, 1], 4)
@@ -198,7 +200,7 @@ def sqw_jump_sites_log_norm_dist(
     >>> round(sqw[1, 2], 4)
     0.0014
 
-    >>> sqw = sqw_jump_sites_log_norm_dist(1, 1, 1, 0, 4, 1, 1, 1)
+    >>> sqw = sqwJumpSitesLogNormDist(1, 1, 1, 0, 4, 1, 1, 1)
     >>> round(sqw[0], 4)
     0.0344
 
@@ -206,7 +208,7 @@ def sqw_jump_sites_log_norm_dist(
     Notes
     -----
 
-    * The `sqw_jump_sites_log_norm` is expressed as
+    * The `sqwJumpSitesLogNorm` is expressed as
 
       .. math::
 
@@ -250,20 +252,20 @@ def sqw_jump_sites_log_norm_dist(
 
     # Get widths, EISFs and QISFs of model
     hwhm, eisf, qisf = \
-        hwhm_jump_sites_log_norm_dist(q, number_sites, radius, residence_time, sigma)
-    # Number of Lorentzians (= number_sites-1)
-    number_lorentz = hwhm.shape[1] - 1
+        hwhmJumpSitesLogNormDist(q, Nsites, radius, resTime, sigma)
+    # Number of Lorentzians (= Nsites-1)
+    numberLorentz = hwhm.shape[1] - 1
     # Number of samples for Gaussian distribution
-    number_sampling_distrib = hwhm.shape[2]
+    numberSamplingDistrib = hwhm.shape[2]
     # Sum of Lorentzians
-    # (Note that hwhm has dimensions [q.size, number_sites], as hwhm[:, 0]
+    # (Note that hwhm has dimensions [q.size, Nsites], as hwhm[:, 0]
     # contains a width=0, corresponding to the elastic line
-    # (eisf), while qisf has dimensions [q.size, number_sites-1])
+    # (eisf), while qisf has dimensions [q.size, Nsites-1])
     for i in range(q.size):
         # elastic term
         sqw[i, :] = eisf[i] * QENSmodels.delta(w, scale, center)
-        for j in range(number_lorentz):
-            for k in range(number_sampling_distrib):
+        for j in range(numberLorentz):
+            for k in range(numberSamplingDistrib):
                 # quasielastic terms
                 sqw[i, :] += qisf[i, j, k] * QENSmodels.lorentzian(
                     w,
@@ -278,8 +280,3 @@ def sqw_jump_sites_log_norm_dist(
         sqw = np.reshape(sqw, w.size)
 
     return sqw
-
-
-if __name__ == "__main__":
-    import doctest
-    doctest.testmod()

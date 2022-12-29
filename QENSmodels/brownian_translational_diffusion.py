@@ -1,18 +1,20 @@
 import numpy as np
 from typing import Union, Tuple
 
+
 try:
     import QENSmodels
 except ImportError:
     print('Module QENSmodels not found')
 
 
-def hwhm_brownian_translational_diffusion(
-        q: Union[float, list, np.ndarray],
-        diffusion_coeff: float = 1.) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
+def hwhmBrownianTranslationalDiffusion(
+    q: Union[float, list, np.ndarray],
+    D: float = 1.
+) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
     """ Lorentzian model with half width half maximum equal to :math:`Dq^2`
 
-    Returns some characteristics of `brownian_translational_diffusion` as
+    Returns some characteristics of `BrownianTranslationalDiffusion` as
     functions of the momentum transfer `q`:
     the half-width half-maximum (`hwhm`), the elastic incoherent structure
     factor (`eisf`), and the quasi-elastic incoherent structure factor (`qisf`)
@@ -22,7 +24,7 @@ def hwhm_brownian_translational_diffusion(
     q: :class:`~numpy:numpy.ndarray`
         momentum transfer (non-fitting, in 1/Angstrom).
 
-    diffusion_coeff: float
+    D: float
         diffusion coefficient (in Angstrom**2/ps). Default to 1.
 
     Returns
@@ -38,7 +40,7 @@ def hwhm_brownian_translational_diffusion(
 
     Examples
     --------
-    >>> hwhm, eisf, qisf = hwhm_brownian_translational_diffusion(1.)
+    >>> hwhm, eisf, qisf = hwhmBrownianTranslationalDiffusion(1.)
     >>> hwhm[0]
     1.0
     >>> eisf[0]
@@ -46,7 +48,7 @@ def hwhm_brownian_translational_diffusion(
     >>> qisf[0]
     1.0
 
-    >>> hwhm, eisf, qisf = hwhm_brownian_translational_diffusion([1., 2.], 1.)
+    >>> hwhm, eisf, qisf = hwhmBrownianTranslationalDiffusion([1., 2.], 1.)
     >>> hwhm[0]
     1.0
     >>> hwhm[1]
@@ -66,10 +68,11 @@ def hwhm_brownian_translational_diffusion(
 
     eisf = np.zeros(q.size)
     qisf = np.ones(q.size)
-    if diffusion_coeff > 0:
-        hwhm = diffusion_coeff * q ** 2
+
+    if D > 0:
+        hwhm = D * q ** 2
     else:
-        raise ValueError('The diffusion coefficient should be positive')
+        raise ValueError('D, the diffusion coefficient, should be positive')
 
     # TODO discuss with users to find most suitable option for units
     # Convert units: (A^2 / ps) * A^-2 = ps^-1 --> meV
@@ -82,12 +85,13 @@ def hwhm_brownian_translational_diffusion(
     return hwhm, eisf, qisf
 
 
-def sqw_brownian_translational_diffusion(
+def sqwBrownianTranslationalDiffusion(
         w: Union[float, list, np.ndarray],
         q: Union[float, list, np.ndarray],
         scale: float = 1.,
         center: float = 0.,
-        diffusion_coeff: float = 1.) -> Union[float, list, np.ndarray]:
+        D: float = 1.
+) -> Union[float, list, np.ndarray]:
     r""" Lorentzian model with half width half maximum  equal to :math:`Dq^2`
 
     It corresponds to a continuous long-range isotropic translational
@@ -107,7 +111,7 @@ def sqw_brownian_translational_diffusion(
     center: float
         peak center. Default to 0.
 
-    diffusion_coeff: float
+    D: float
         diffusion coefficient (in Angstrom**2/ps). Default to 1.
 
     Return
@@ -117,11 +121,11 @@ def sqw_brownian_translational_diffusion(
 
     Examples
     --------
-    >>> sqw = sqw_brownian_translational_diffusion(1, 1, 1, 0, 1)
+    >>> sqw = sqwBrownianTranslationalDiffusion(1, 1, 1, 0, 1)
     >>> round(sqw[0], 3)
     0.159
 
-    >>> sqw = sqw_brownian_translational_diffusion([1, 2, 3], [0.3, 0.4], 1, 0, 1)
+    >>> sqw = sqwBrownianTranslationalDiffusion([1, 2, 3], [0.3, 0.4], 1, 0, 1)
     >>> round(sqw[0, 0], 3)
     0.028
     >>> round(sqw[0, 1], 3)
@@ -137,7 +141,7 @@ def sqw_brownian_translational_diffusion(
 
     Notes
     -----
-    * The `sqw_brownian_translational_diffusion` is expressed as
+    * The `sqwBrownianTranslationalDiffusion` is expressed as
 
     .. math::
 
@@ -146,7 +150,7 @@ def sqw_brownian_translational_diffusion(
 
 
     * The incoherent dynamic structure factor
-      `sqw_brownian_translational_diffusion` corresponds to
+      `sqwBrownianTranslationalDiffusion` corresponds to
 
       - in real space, the probability of finding a particle at a distance `r`
         from its initial position is a Gaussian function of space `r`
@@ -162,9 +166,9 @@ def sqw_brownian_translational_diffusion(
            I(q, t) = \int G(r, t) dr = \text{scale} \exp (-Dq^2 t)
 
     * This model works reasonably well at low *q*. Other models, such as
-    "Chudley-Elliott", have been developed to describe the microscopic
-    mechanisms that deviate from the Fickian behavior (`hwhm` proportional
-    to `q` squared)
+      "Chudley-Elliott", have been developed to describe the microscopic
+      mechanisms that deviate from the Fickian behavior (`hwhm` proportional
+      to `q` squared)
 
     References
     ----------
@@ -186,7 +190,7 @@ def sqw_brownian_translational_diffusion(
     sqw = np.zeros((q.size, w.size))
 
     # Get widths, EISFs and QISFs of model
-    hwhm, eisf, qisf = hwhm_brownian_translational_diffusion(q, diffusion_coeff)
+    hwhm, eisf, qisf = hwhmBrownianTranslationalDiffusion(q, D)
 
     # Model
     for i in range(q.size):
@@ -198,8 +202,3 @@ def sqw_brownian_translational_diffusion(
         sqw = np.reshape(sqw, w.size)
 
     return sqw
-
-
-if __name__ == "__main__":
-    import doctest
-    doctest.testmod()

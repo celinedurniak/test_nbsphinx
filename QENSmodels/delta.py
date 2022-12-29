@@ -1,11 +1,12 @@
-from __future__ import print_function
 import numpy as np
 from typing import Union
+
 
 def delta(
         x: Union[float, list, np.ndarray],
         scale: Union[float, list, np.ndarray] = 1,
-        center: Union[float, list, np.ndarray] = 0) -> Union[float, list, np.ndarray]:
+        center: Union[float, list, np.ndarray] = 0
+) -> Union[float, list, np.ndarray]:
     r""" Dirac Delta function
 
     It is equal to zero except for the value of `x` closest to `center`.
@@ -82,8 +83,3 @@ def delta(
 
     finally:
         return model
-
-
-if __name__ == "__main__":
-    import doctest
-    doctest.testmod()

@@ -4,15 +4,14 @@ QENS models and Mantid
 Introduction
 ============
 
-The instructions below describe the procedure to be able to use the QENS models
-in Mantid Workbench.
+The instructions below describe the procedure to use the QENS models in Mantid Workbench.
+They were tested with Mantid Workbench version 6.3.0.
 
 Installation
 ============
 
 The first step in all cases is to install Mantid Workbench following the instructions on the
-`official page <https://download.mantidproject.org/>`__. Then follow the instructions below
-depending on your operating system.
+`official page <https://download.mantidproject.org/>`__.
 
 
 Then you can run the following lines in the scripting window of Mantid workbench
@@ -60,8 +59,8 @@ Example
 The Python script `mantid_BrownianDiff_fit.py` can be used as an example to be loaded in Mantid
 Workbench for fitting data to functions from the QENSmodels library.
 
-Uninstall QENSmodels
-====================
+Uninstall QENSmodels from Mantid Workbench
+==========================================
 
 If you want to remove the library from your Python installation in Mantid, simply type the following lines in the
 scripting window of Mantid workbench
