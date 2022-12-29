@@ -16,7 +16,10 @@ class TestWaterTeixeira(unittest.TestCase):
 
     def test_type_output(self):
         """ Test type of output """
-        self.assertIsInstance(QENSmodels.sqw_water_teixeira(1, 1), numpy.ndarray)
+        self.assertIsInstance(
+            QENSmodels.sqw_water_teixeira(1, 1),
+            numpy.ndarray
+        )
 
     def test_size_output(self):
         """ Test size of output depending on type of input"""
@@ -27,7 +30,10 @@ class TestWaterTeixeira(unittest.TestCase):
         self.assertEqual(output.shape, (1,))
 
         # w, q are vectors
-        output1 = QENSmodels.sqw_water_teixeira([1, 2], [0.1, 0.2, 0.3])
+        output1 = QENSmodels.sqw_water_teixeira(
+            [1, 2],
+            [0.1, 0.2, 0.3]
+        )
         self.assertEqual(output1.size, 6)
         self.assertEqual(output1.shape, (3, 2))
 
