@@ -40,6 +40,6 @@ jobs:
         run: |
           sudo apt install pandoc
           pip install sphinx nbsphinx sphinx_rtd_theme
-          pip install  -r docs/requirements.txt
+          pip install  ".[examples]"
           sphinx-build -nT -b html docs docs/_build/html
           
