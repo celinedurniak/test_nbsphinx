@@ -1,7 +1,7 @@
 
-.. image:: https://readthedocs.org/projects/qensmodels/badge/?version=latest
-   :target: https://qensmodels.readthedocs.io/?badge=latest
-   :alt: Documentation Status
+.. image:: https://readthedocs.org/projects/test-nbsphinx/badge/?version=latest
+    :target: https://test-nbsphinx.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
 
 .. image:: https://img.shields.io/badge/License-BSD_3--Clause-blue.svg
    :target: https://opensource.org/licenses/BSD-3-Clause
