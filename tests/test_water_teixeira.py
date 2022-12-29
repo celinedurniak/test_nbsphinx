@@ -17,7 +17,7 @@ class TestWaterTeixeira(unittest.TestCase):
     def test_type_output(self):
         """ Test type of output """
         self.assertIsInstance(
-            QENSmodels.sqw_water_teixeira(1, 1),
+            QENSmodels.sqwWaterTeixeira(1, 1),
             numpy.ndarray
         )
 
@@ -25,12 +25,12 @@ class TestWaterTeixeira(unittest.TestCase):
         """ Test size of output depending on type of input"""
         # w, q are floats
 
-        output = QENSmodels.sqw_water_teixeira(1, 1)
+        output = QENSmodels.sqwWaterTeixeira(1, 1)
         self.assertEqual(output.size, 1)
         self.assertEqual(output.shape, (1,))
 
         # w, q are vectors
-        output1 = QENSmodels.sqw_water_teixeira(
+        output1 = QENSmodels.sqwWaterTeixeira(
             [1, 2],
             [0.1, 0.2, 0.3]
         )
@@ -42,7 +42,7 @@ class TestWaterTeixeira(unittest.TestCase):
         Test that an error is raised if no values of q are given as input
         """
         self.assertRaises(TypeError,
-                          QENSmodels.sqw_water_teixeira,
+                          QENSmodels.sqwWaterTeixeira,
                           1)
 
     def test_reference_data(self):
@@ -61,7 +61,7 @@ class TestWaterTeixeira(unittest.TestCase):
         w = numpy.arange(-2, 2.01, 0.01)
         q = 0.7
         actual_data = numpy.column_stack(
-            [w, QENSmodels.sqw_water_teixeira(
+            [w, QENSmodels.sqwWaterTeixeira(
                 w,
                 q,
                 scale=1,

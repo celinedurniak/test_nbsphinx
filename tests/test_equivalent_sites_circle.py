@@ -19,14 +19,14 @@ class TestEquivalentSitesCircle(unittest.TestCase):
         The output should contains 3 elements
         """
         self.assertEqual(
-            len(QENSmodels.hwhm_equivalent_sites_circle(1.)), 3)
+            len(QENSmodels.hwhmEquivalentSitesCircle(1.)), 3)
 
         self.assertEqual(
-            len(QENSmodels.hwhm_equivalent_sites_circle([1., 2.])), 3)
+            len(QENSmodels.hwhmEquivalentSitesCircle([1., 2.])), 3)
 
     def test_type_size_hwhm_equivalent_sites_circle_q_nb(self):
         """ Tests type and size of outputs if input q is a float """
-        hwhm, eisf, qisf = QENSmodels.hwhm_equivalent_sites_circle(1.)
+        hwhm, eisf, qisf = QENSmodels.hwhmEquivalentSitesCircle(1.)
         self.assertIsInstance(hwhm, numpy.ndarray)
         self.assertIsInstance(eisf, numpy.ndarray)
         self.assertIsInstance(qisf, numpy.ndarray)
@@ -43,7 +43,7 @@ class TestEquivalentSitesCircle(unittest.TestCase):
         """ Tests type and size of outputs if input q is an array """
         # new parameters: q as an array of several values
         q_input = [1., 2.]
-        hwhm1, eisf1, qisf1 = QENSmodels.hwhm_equivalent_sites_circle(
+        hwhm1, eisf1, qisf1 = QENSmodels.hwhmEquivalentSitesCircle(
             q_input, number_sites=6, radius=1.0, residence_time=1.0)
         self.assertIsInstance(hwhm1, numpy.ndarray)
         self.assertIsInstance(eisf1, numpy.ndarray)
@@ -87,16 +87,16 @@ class TestEquivalentSitesCircle(unittest.TestCase):
         """ test that an error is raised if no values of q are given as input
         """
         self.assertRaises(TypeError,
-                          QENSmodels.sqw_equivalent_sites_circle,
+                          QENSmodels.sqwEquivalentSitesCircle,
                           1)
 
     def test_type_sqw_equivalent_sites_circle(self):
         """ Test type of output """
         # w, q are floats
-        self.assertIsInstance(QENSmodels.sqw_equivalent_sites_circle(1, 1),
+        self.assertIsInstance(QENSmodels.sqwEquivalentSitesCircle(1, 1),
                               numpy.ndarray)
         # w, q are vectors
-        output = QENSmodels.sqw_equivalent_sites_circle(
+        output = QENSmodels.sqwEquivalentSitesCircle(
             [1, 2, 3],
             [0.3, 0.4])
         self.assertIsInstance(output, numpy.ndarray)
@@ -117,7 +117,7 @@ class TestEquivalentSitesCircle(unittest.TestCase):
         w = numpy.arange(-2, 2.01, 0.01)
         q = 0.7
         actual_data = numpy.column_stack(
-            [w, QENSmodels.sqw_equivalent_sites_circle(w,
+            [w, QENSmodels.sqwEquivalentSitesCircle(w,
                                                        q,
                                                        scale=.01,
                                                        center=0.5,

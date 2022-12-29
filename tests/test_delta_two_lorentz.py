@@ -12,18 +12,18 @@ data_dir = pjn(os.path.dirname(this_module_path), 'reference_data')
 
 
 class TestDeltaTwoLorentz(unittest.TestCase):
-    """ Tests QENSmodels.sqw_delta_two_lorentz function"""
+    """ Tests QENSmodels.sqwDeltaTwoLorentz function"""
 
     def test_type_output(self):
         """ Test type of output """
-        self.assertIsInstance(QENSmodels.sqw_delta_two_lorentz(1, 1),
+        self.assertIsInstance(QENSmodels.sqwDeltaTwoLorentz(1, 1),
                               numpy.ndarray)
 
     def test_size_output(self):
         """ Test size of output """
         w_input = [1, 2, 3]
         q_input = [0.05, 0.3]
-        sqw = QENSmodels.sqw_delta_two_lorentz(
+        sqw = QENSmodels.sqwDeltaTwoLorentz(
             w_input,
             q_input,
             0.5,
@@ -44,8 +44,8 @@ class TestDeltaTwoLorentz(unittest.TestCase):
         """
         w = [0]
         q = [0.1, 0.2, 0.3]
-        self.assertRaises(IndexError, QENSmodels.sqw_delta_two_lorentz, w, q)
-        self.assertRaises(IndexError, QENSmodels.sqw_delta_two_lorentz,
+        self.assertRaises(IndexError, QENSmodels.ssqwDeltaTwoLorentz, w, q)
+        self.assertRaises(IndexError, QENSmodels.sqwDeltaTwoLorentz,
                           w, q, 1, 0, [1, 1], [1, 1], [1, 1], [1, 1])
 
     def test_raised_error_no_q_input(self):
@@ -53,7 +53,7 @@ class TestDeltaTwoLorentz(unittest.TestCase):
         Test that an error is raised if no values of q are given as input
         """
         self.assertRaises(TypeError,
-                          QENSmodels.sqw_delta_two_lorentz, 1)
+                          QENSmodels.sqwDeltaTwoLorentz, 1)
 
     def test_reference_data(self):
         """
@@ -71,7 +71,7 @@ class TestDeltaTwoLorentz(unittest.TestCase):
         w = numpy.arange(-2, 2.01, 0.01)
         q = 0.7
         output = numpy.column_stack(
-            [w, QENSmodels.sqw_delta_two_lorentz(w, q,
+            [w, QENSmodels.sqwDeltaTwoLorentz(w, q,
                                                  scale=1.,
                                                  center=0,
                                                  fraction_immobile=0.01,

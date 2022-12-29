@@ -23,14 +23,14 @@ class TestJumpTranslationalDiffusion(unittest.TestCase):
         The output should contain 3 elements
         """
         self.assertEqual(
-            len(QENSmodels.hwhm_jump_translational_diffusion(1.)), 3)
+            len(QENSmodels.hwhmJumpTranslationalDiffusion(1.)), 3)
 
         self.assertEqual(
-            len(QENSmodels.hwhm_jump_translational_diffusion([1., 2.])), 3)
+            len(QENSmodels.hwhmJumpTranslationalDiffusion([1., 2.])), 3)
 
     def test_type_size_hwhm_jump_translational_diffusion_q_nb(self):
         """ Tests type and size of outputs if input q is a number """
-        hwhm, eisf, qisf = QENSmodels.hwhm_jump_translational_diffusion(1.)
+        hwhm, eisf, qisf = QENSmodels.hwhmJumpTranslationalDiffusion(1.)
         self.assertIsInstance(hwhm, numpy.ndarray)
         self.assertIsInstance(eisf, numpy.ndarray)
         self.assertIsInstance(qisf, numpy.ndarray)
@@ -41,7 +41,7 @@ class TestJumpTranslationalDiffusion(unittest.TestCase):
     def test_type_size_hwhm_jump_translational_diffusion_q_array(self):
         """ Tests type and size of outputs if input q is an array """
         q_input = [1., 2.]
-        hwhm, eisf, qisf = QENSmodels.hwhm_jump_translational_diffusion(
+        hwhm, eisf, qisf = QENSmodels.hwhmJumpTranslationalDiffusion(
             q_input,
             0.5,
             1.5
@@ -63,19 +63,19 @@ class TestJumpTranslationalDiffusion(unittest.TestCase):
         """
         # D = -1, resTime = 1
         self.assertRaises(ValueError,
-                          QENSmodels.hwhm_jump_translational_diffusion,
+                          QENSmodels.hwhmJumpTranslationalDiffusion,
                           1,
                           -1,
                           1)
         # D = 1, resTime = -1
         self.assertRaises(ValueError,
-                          QENSmodels.hwhm_jump_translational_diffusion,
+                          QENSmodels.hwhmJumpTranslationalDiffusion,
                           1,
                           1,
                           -1)
         # D = -1, resTime = -1
         self.assertRaises(ValueError,
-                          QENSmodels.hwhm_jump_translational_diffusion,
+                          QENSmodels.hwhmJumpTranslationalDiffusion,
                           1,
                           -1,
                           -1)
@@ -84,11 +84,11 @@ class TestJumpTranslationalDiffusion(unittest.TestCase):
         """ Test type of output """
         # w, q are floats
         self.assertIsInstance(
-            QENSmodels.sqw_jump_translational_diffusion(1, 1),
+            QENSmodels.sqwJumpTranslationalDiffusion(1, 1),
             numpy.ndarray
         )
         # w, q are vectors
-        output = QENSmodels.sqw_jump_translational_diffusion(
+        output = QENSmodels.sqwJumpTranslationalDiffusion(
             [1, 2, 3],
             [0.3, 0.4]
         )
@@ -101,7 +101,7 @@ class TestJumpTranslationalDiffusion(unittest.TestCase):
         Test that an error is raised if no values of q are given as input
         """
         self.assertRaises(TypeError,
-                          QENSmodels.sqw_jump_translational_diffusion,
+                          QENSmodels.sqwJumpTranslationalDiffusion,
                           1)
 
     def test_reference_data(self):
@@ -120,7 +120,7 @@ class TestJumpTranslationalDiffusion(unittest.TestCase):
         w = numpy.arange(-2, 2.01, 0.01)
         q = 0.7
         actual_data = numpy.column_stack(
-            [w, QENSmodels.sqw_jump_translational_diffusion(
+            [w, QENSmodels.sqwJumpTranslationalDiffusion(
                 w,
                 q,
                 scale=1,

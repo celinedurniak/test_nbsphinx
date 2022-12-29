@@ -15,18 +15,18 @@ class TestChudleyElliottDiffusion(unittest.TestCase):
     """ Tests QENSmodels.chudley_elliott_diffusion function"""
 
     def test_size_hwhm_chudley_elliott_diffusion(self):
-        """ Test size of output of hwhm_chudley_elliott_diffusion
+        """ Test size of output of hwhmChudleyElliottDiffusion
         The output should contains 3 elements
         """
         self.assertEqual(
-            len(QENSmodels.hwhm_chudley_elliott_diffusion(1.)), 3)
+            len(QENSmodels.hwhmChudleyElliottDiffusion(1.)), 3)
 
         self.assertEqual(
-            len(QENSmodels.hwhm_chudley_elliott_diffusion([1., 2.])), 3)
+            len(QENSmodels.hwhmChudleyElliottDiffusion([1., 2.])), 3)
 
     def test_type_size_hwhm_chudley_elliott_diffusion_q_nb(self):
         """ Tests type and size of outputs if input q is a float """
-        hwhm, eisf, qisf = QENSmodels.hwhm_chudley_elliott_diffusion(1.)
+        hwhm, eisf, qisf = QENSmodels.hwhmChudleyElliottDiffusion(1.)
         self.assertIsInstance(hwhm, numpy.ndarray)
         self.assertIsInstance(eisf, numpy.ndarray)
         self.assertIsInstance(qisf, numpy.ndarray)
@@ -42,7 +42,7 @@ class TestChudleyElliottDiffusion(unittest.TestCase):
         """ Tests type and size of outputs if input q is an array """
         # new parameters: q as an array of several values
         q_input = [1., 2.]
-        hwhm1, eisf1, qisf1 = QENSmodels.hwhm_chudley_elliott_diffusion(
+        hwhm1, eisf1, qisf1 = QENSmodels.hwhmChudleyElliottDiffusion(
             q_input,
             0.33
         )
@@ -66,21 +66,21 @@ class TestChudleyElliottDiffusion(unittest.TestCase):
         """
         # D = -1, L = 1
         self.assertRaises(ValueError,
-                          QENSmodels.hwhm_chudley_elliott_diffusion,
+                          QENSmodels.hwhmChudleyElliottDiffusion,
                           1,
                           -1,
                           1
                           )
         # D = 1, L = -1
         self.assertRaises(ValueError,
-                          QENSmodels.hwhm_chudley_elliott_diffusion,
+                          QENSmodels.hwhmChudleyElliottDiffusion,
                           1,
                           1,
                           -1
                           )
         # D = -1, L = -1
         self.assertRaises(ValueError,
-                          QENSmodels.hwhm_chudley_elliott_diffusion,
+                          QENSmodels.hwhmChudleyElliottDiffusion,
                           1,
                           -1,
                           -1
@@ -90,16 +90,16 @@ class TestChudleyElliottDiffusion(unittest.TestCase):
         """ test that an error is raised if no values of q are given as input
         """
         self.assertRaises(TypeError,
-                          QENSmodels.sqw_chudley_elliott_diffusion,
+                          QENSmodels.sqwChudleyElliottDiffusion,
                           1)
 
     def test_type_sqw_chudley_elliott_diffusion(self):
         """ Test type of output """
         # w, q are floats
-        self.assertIsInstance(QENSmodels.sqw_chudley_elliott_diffusion(1, 1),
+        self.assertIsInstance(QENSmodels.sqwChudleyElliottDiffusion(1, 1),
                               numpy.ndarray)
         # w, q are vectors
-        output = QENSmodels.sqw_chudley_elliott_diffusion(
+        output = QENSmodels.sqwChudleyElliottDiffusion(
             [1, 2, 3],
             [0.3, 0.4])
         self.assertIsInstance(output, numpy.ndarray)
@@ -122,7 +122,7 @@ class TestChudleyElliottDiffusion(unittest.TestCase):
         w = numpy.arange(-2, 2.01, 0.01)
         q = 0.7
         actual_data = numpy.column_stack(
-            [w, QENSmodels.sqw_chudley_elliott_diffusion(
+            [w, QENSmodels.sqwChudleyElliottDiffusion(
                 w,
                 q,
                 scale=1,

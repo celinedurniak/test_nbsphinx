@@ -20,14 +20,14 @@ class TestJumpsSitesLogNorm(unittest.TestCase):
         The output should contain 3 elements
         """
         self.assertEqual(
-            len(QENSmodels.hwhm_jump_sites_log_norm_dist(1.)), 3)
+            len(QENSmodels.hwhmJumpSitesLogNormDist(1.)), 3)
 
         self.assertEqual(
-            len(QENSmodels.hwhm_jump_sites_log_norm_dist([1., 2.])), 3)
+            len(QENSmodels.hwhmJumpSitesLogNormDist([1., 2.])), 3)
 
     def test_type_size_hwhm_jump_sites_log_norm_q_nb(self):
         """ Tests type and size of outputs if input q is a float """
-        hwhm, eisf, qisf = QENSmodels.hwhm_jump_sites_log_norm_dist(1.)
+        hwhm, eisf, qisf = QENSmodels.hwhmJumpSitesLogNormDist(1.)
         self.assertIsInstance(hwhm, numpy.ndarray)
         self.assertIsInstance(eisf, numpy.ndarray)
         self.assertIsInstance(qisf, numpy.ndarray)
@@ -39,7 +39,7 @@ class TestJumpsSitesLogNorm(unittest.TestCase):
         self.assertEqual(round(eisf[0], 3), 0.713)
         # eisf should be the same as in hwhm_equivalent_sites_circle
         hwhm_equiv, eisf_equiv, qisf_equiv = \
-            QENSmodels.hwhm_equivalent_sites_circle(1.)
+            QENSmodels.hwhmJumpSitesLogNormDist(1.)
         self.assertEqual(eisf[0], eisf_equiv[0])
 
         self.assertSequenceEqual(numpy.round(qisf[0, 0], 3).tolist(),
@@ -53,7 +53,7 @@ class TestJumpsSitesLogNorm(unittest.TestCase):
         """ Tests type and size of outputs if input q is an array """
         # new parameters: q as an array of several values
         q_input = [1., 2.]
-        hwhm1, eisf1, qisf1 = QENSmodels.hwhm_jump_sites_log_norm_dist(
+        hwhm1, eisf1, qisf1 = QENSmodels.hwhmJumpSitesLogNormDist(
             q_input, number_sites=6, radius=1.0, residence_time=1.0, sigma=0.5)
 
         self.assertIsInstance(hwhm1, numpy.ndarray)
@@ -100,20 +100,20 @@ class TestJumpsSitesLogNorm(unittest.TestCase):
         """
         # N < 2
         self.assertRaises(ValueError,
-                          QENSmodels.hwhm_jump_sites_log_norm_dist,
+                          QENSmodels.hwhmJumpSitesLogNormDist,
                           1, 1, 1, 1, 1)
         # radius < 0
         self.assertRaises(ValueError,
-                          QENSmodels.hwhm_jump_sites_log_norm_dist,
+                          QENSmodels.hwhmJumpSitesLogNormDist,
                           1, 4, -1, 1, 1)
         # resTime < 0
         self.assertRaises(ValueError,
-                          QENSmodels.hwhm_jump_sites_log_norm_dist,
+                          QENSmodels.hwhmJumpSitesLogNormDist,
                           1, 4, 1, -1, 1)
 
         # sigma <= 0
         self.assertRaises(ValueError,
-                          QENSmodels.hwhm_jump_sites_log_norm_dist,
+                          QENSmodels.hwhmJumpSitesLogNormDist,
                           1, 4, 1, 1, -0.5)
 
     def test_raised_error_no_q_input(self):
@@ -121,16 +121,16 @@ class TestJumpsSitesLogNorm(unittest.TestCase):
         Test that an error is raised if no values of q are given as input
         """
         self.assertRaises(TypeError,
-                          QENSmodels.sqw_jump_sites_log_norm_dist,
+                          QENSmodels.sqwJumpSitesLogNormDist,
                           1)
 
     def test_type_sqw_jump_sites_log_norm(self):
         """ Test type of output """
         # w, q are floats
-        self.assertIsInstance(QENSmodels.sqw_jump_sites_log_norm_dist(1, 1),
+        self.assertIsInstance(QENSmodels.sqwJumpSitesLogNormDist(1, 1),
                               numpy.ndarray)
         # w, q are vectors
-        output = QENSmodels.sqw_jump_sites_log_norm_dist(
+        output = QENSmodels.sqwJumpSitesLogNormDist(
             [1, 2, 3],
             [0.3, 0.4])
         self.assertIsInstance(output, numpy.ndarray)
@@ -152,7 +152,7 @@ class TestJumpsSitesLogNorm(unittest.TestCase):
         w = numpy.arange(-2, 2.01, 0.01)
         q = 0.7
         actual_data = numpy.column_stack(
-            [w, QENSmodels.sqw_jump_sites_log_norm_dist(
+            [w, QENSmodels.sqwJumpSitesLogNormDist(
                 w,
                 q,
                 scale=2,
