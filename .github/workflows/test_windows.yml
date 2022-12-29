@@ -1,4 +1,4 @@
-name: QENS models on different OSs
+name: QENS models on Windows
 
 on: [push, pull_request]
 jobs: 
