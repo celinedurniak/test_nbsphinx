@@ -44,7 +44,7 @@ class TestEquivalentSitesCircle(unittest.TestCase):
         # new parameters: q as an array of several values
         q_input = [1., 2.]
         hwhm1, eisf1, qisf1 = QENSmodels.hwhmEquivalentSitesCircle(
-            q_input, number_sites=6, radius=1.0, residence_time=1.0)
+            q_input, Nsites=6, radius=1.0, resTime=1.0)
         self.assertIsInstance(hwhm1, numpy.ndarray)
         self.assertIsInstance(eisf1, numpy.ndarray)
         self.assertIsInstance(qisf1, numpy.ndarray)
@@ -69,17 +69,17 @@ class TestEquivalentSitesCircle(unittest.TestCase):
     #     """
     #     # D = -1, L = 1
     #     self.assertRaises(ValueError,
-    #                       QENSmodels.hwhm_equivalent_sites_circle,
+    #                       QENSmodels.hwhmEquivalentSitesCircle,
     #                       1,
     #                       -1, 1)
     #     # D = 1, L = -1
     #     self.assertRaises(ValueError,
-    #                       QENSmodels.hwhm_equivalent_sites_circle,
+    #                       QENSmodels.hwhmEquivalentSitesCircle,
     #                       1,
     #                       1, -1)
     #     # D = -1, L = -1
     #     self.assertRaises(ValueError,
-    #                       QENSmodels.hwhm_equivalent_sites_circle,
+    #                       QENSmodels.hwhmEquivalentSitesCircle,
     #                       1,
     #                       -1, -1)
 
@@ -96,9 +96,8 @@ class TestEquivalentSitesCircle(unittest.TestCase):
         self.assertIsInstance(QENSmodels.sqwEquivalentSitesCircle(1, 1),
                               numpy.ndarray)
         # w, q are vectors
-        output = QENSmodels.sqwEquivalentSitesCircle(
-            [1, 2, 3],
-            [0.3, 0.4])
+        output = QENSmodels.sqwEquivalentSitesCircle([1, 2, 3],
+                                                     [0.3, 0.4])
         self.assertIsInstance(output, numpy.ndarray)
         self.assertEqual(output.size, 6)
         self.assertEqual(output.shape, (2, 3))
@@ -121,9 +120,9 @@ class TestEquivalentSitesCircle(unittest.TestCase):
                                                     q,
                                                     scale=.01,
                                                     center=0.5,
-                                                    number_sites=3,
+                                                    Nsites=3,
                                                     radius=100.0,
-                                                    residence_time=10.)])
+                                                    resTime=10.)])
         numpy.testing.assert_array_almost_equal(ref_data,
                                                 actual_data,
                                                 decimal=12)

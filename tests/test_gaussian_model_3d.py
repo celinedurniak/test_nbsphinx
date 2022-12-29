@@ -15,9 +15,8 @@ class TestGaussianModel3D(unittest.TestCase):
     """ Tests functions related to QENSmodels Gaussian Model 3D """
 
     def test_size_hwhm_gaussian_model_3d(self):
-        """
-        Test size of output of hwhm_gaussian_model3D
-        The output should contain 3 elements
+        """ Test size of output of hwhmGaussianModel3D
+        The output should contains 3 elements
         """
         self.assertEqual(
             len(QENSmodels.hwhmGaussianModel3D(1.)), 3)
@@ -89,34 +88,29 @@ class TestGaussianModel3D(unittest.TestCase):
                                                 decimal=9)
 
     def test_raised_error_negative_coeffs(self):
-        """ test that an error is raised if diffusion_coeff or variance_ux
-        are negative or variance_ux=0
+        """ test that an error is raised if D or variance_ux are negative
+        or variance_ux=0
         """
         # D = -1, variance_ux = 1
         self.assertRaises(ValueError,
                           QENSmodels.hwhmGaussianModel3D,
                           1,
-                          -1,
-                          1)
+                          -1, 1)
         # D = 1, variance_ux = -1
         self.assertRaises(ValueError,
                           QENSmodels.hwhmGaussianModel3D,
                           1,
-                          1,
-                          -1)
+                          1, -1)
         # D = -1, variance_ux = -1
         self.assertRaises(ValueError,
                           QENSmodels.hwhmGaussianModel3D,
                           1,
-                          -1,
-                          -1)
+                          -1, -1)
         # D = -1, variance_ux = 0
         self.assertRaises(ValueError,
                           QENSmodels.hwhmGaussianModel3D,
                           1,
-                          -1,
-                          0
-                          )
+                          -1, 0)
 
     def test_raised_error_no_q_input(self):
         """ test that an error is raised if no values of q are given as input
@@ -154,7 +148,7 @@ class TestGaussianModel3D(unittest.TestCase):
             [w, QENSmodels.sqwGaussianModel3D(w, q,
                                               scale=5.,
                                               center=0.5,
-                                              diffusion_coeff=1.,
+                                              D=1.,
                                               variance_ux=1.)])
 
         numpy.testing.assert_array_almost_equal(ref_data,

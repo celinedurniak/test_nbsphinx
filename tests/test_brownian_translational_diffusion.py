@@ -61,10 +61,9 @@ class TestBrownianTranslationDiffusion(unittest.TestCase):
 
     def test_size_sqw_brownian_translation_diffusion(self):
         """ test size of output of sqwBrownianTranslationalDiffusion """
-        output = QENSmodels.sqwBrownianTranslationalDiffusion(
-            [1, 2, 3],
-            [0.3, 0.4],
-            1, 0, 1)
+        output = QENSmodels.sqwBrownianTranslationalDiffusion([1, 2, 3],
+                                                              [0.3, 0.4],
+                                                              1, 0, 1)
         self.assertIsInstance(output, numpy.ndarray)
         self.assertEqual(output.size, 6)
         self.assertEqual(output.shape, (2, 3))
@@ -99,20 +98,14 @@ class TestBrownianTranslationDiffusion(unittest.TestCase):
         # specified in the README file in the 'reference data' folder
         w = numpy.arange(-2, 2.01, 0.01)
         q = 0.7
-        actual_data = numpy.column_stack([
-            w,
-            QENSmodels.sqwBrownianTranslationalDiffusion(
-                w,
-                q,
-                1.,
-                0.,
-                1.
-            )
-        ])
+        actual_data = numpy.column_stack(
+            [w,
+             QENSmodels.sqwBrownianTranslationalDiffusion(w, q, 1., 0., 1.)])
 
         # compare the 2 arrays
         numpy.testing.assert_array_almost_equal(ref_data,
-                                                actual_data)
+                                                actual_data,
+                                                decimal=8)
 
 
 if __name__ == '__main__':

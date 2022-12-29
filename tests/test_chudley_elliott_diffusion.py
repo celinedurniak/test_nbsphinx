@@ -43,9 +43,7 @@ class TestChudleyElliottDiffusion(unittest.TestCase):
         # new parameters: q as an array of several values
         q_input = [1., 2.]
         hwhm1, eisf1, qisf1 = QENSmodels.hwhmChudleyElliottDiffusion(
-            q_input,
-            0.33
-        )
+            q_input, 0.33)
         self.assertIsInstance(hwhm1, numpy.ndarray)
         self.assertIsInstance(eisf1, numpy.ndarray)
         self.assertIsInstance(qisf1, numpy.ndarray)
@@ -68,23 +66,17 @@ class TestChudleyElliottDiffusion(unittest.TestCase):
         self.assertRaises(ValueError,
                           QENSmodels.hwhmChudleyElliottDiffusion,
                           1,
-                          -1,
-                          1
-                          )
+                          -1, 1)
         # D = 1, L = -1
         self.assertRaises(ValueError,
                           QENSmodels.hwhmChudleyElliottDiffusion,
                           1,
-                          1,
-                          -1
-                          )
+                          1, -1)
         # D = -1, L = -1
         self.assertRaises(ValueError,
                           QENSmodels.hwhmChudleyElliottDiffusion,
                           1,
-                          -1,
-                          -1
-                          )
+                          -1, -1)
 
     def test_raised_error_no_q_input(self):
         """ test that an error is raised if no values of q are given as input
@@ -99,16 +91,14 @@ class TestChudleyElliottDiffusion(unittest.TestCase):
         self.assertIsInstance(QENSmodels.sqwChudleyElliottDiffusion(1, 1),
                               numpy.ndarray)
         # w, q are vectors
-        output = QENSmodels.sqwChudleyElliottDiffusion(
-            [1, 2, 3],
-            [0.3, 0.4])
+        output = QENSmodels.sqwChudleyElliottDiffusion([1, 2, 3],
+                                                       [0.3, 0.4])
         self.assertIsInstance(output, numpy.ndarray)
         self.assertEqual(output.size, 6)
         self.assertEqual(output.shape, (2, 3))
 
     def test_reference_data(self):
-        """
-        Test output values in comparison with reference data
+        """ Test output values in comparison with reference data
         (file in 'reference data' folder)
         """
 
@@ -122,15 +112,15 @@ class TestChudleyElliottDiffusion(unittest.TestCase):
         w = numpy.arange(-2, 2.01, 0.01)
         q = 0.7
         actual_data = numpy.column_stack(
-            [w, QENSmodels.sqwChudleyElliottDiffusion(
-                w,
-                q,
-                scale=1,
-                center=0,
-                diffusion_coeff=0.23,
-                jump_length=1.)])
+            [w, QENSmodels.sqwChudleyElliottDiffusion(w,
+                                                      q,
+                                                      scale=1,
+                                                      center=0,
+                                                      D=0.23,
+                                                      L=1.)])
         numpy.testing.assert_array_almost_equal(ref_data,
-                                                actual_data)
+                                                actual_data,
+                                                decimal=7)
 
 
 if __name__ == '__main__':

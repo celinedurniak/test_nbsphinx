@@ -15,9 +15,8 @@ class TestJumpsSitesLogNorm(unittest.TestCase):
     """ Tests QENSmodels.jump_sites_log_norm_dist function"""
 
     def test_size_hwhm_jump_sites_log_norm(self):
-        """
-        Test size of output of hwhm_jump_sites_log_norm_dist
-        The output should contain 3 elements
+        """ Test size of output of hwhmJumpSitesLogNormDist
+        The output should contains 3 elements
         """
         self.assertEqual(
             len(QENSmodels.hwhmJumpSitesLogNormDist(1.)), 3)
@@ -37,9 +36,9 @@ class TestJumpsSitesLogNorm(unittest.TestCase):
         self.assertEqual(qisf.shape, (1, 2, 21))
 
         self.assertEqual(round(eisf[0], 3), 0.713)
-        # eisf should be the same as in hwhm_equivalent_sites_circle
+        # eisf should be the same as in hwhmEquivalentSitesCircle
         hwhm_equiv, eisf_equiv, qisf_equiv = \
-            QENSmodels.hwhmJumpSitesLogNormDist(1.)
+            QENSmodels.hwhmEquivalentSitesCircle(1.)
         self.assertEqual(eisf[0], eisf_equiv[0])
 
         self.assertSequenceEqual(numpy.round(qisf[0, 0], 3).tolist(),
@@ -54,7 +53,7 @@ class TestJumpsSitesLogNorm(unittest.TestCase):
         # new parameters: q as an array of several values
         q_input = [1., 2.]
         hwhm1, eisf1, qisf1 = QENSmodels.hwhmJumpSitesLogNormDist(
-            q_input, number_sites=6, radius=1.0, residence_time=1.0, sigma=0.5)
+            q_input, Nsites=6, radius=1.0, resTime=1.0, sigma=0.5)
 
         self.assertIsInstance(hwhm1, numpy.ndarray)
         self.assertIsInstance(eisf1, numpy.ndarray)
@@ -74,14 +73,13 @@ class TestJumpsSitesLogNorm(unittest.TestCase):
                                           1.462])
 
         numpy.testing.assert_array_equal(numpy.round(eisf1, 3), [0.713, 0.256])
-        # eisf should be the same as in hwhm_equivalent_sites_circle
-        hwhm_equiv, eisf_equiv, qisf_equiv = \
-            QENSmodels.hwhm_equivalent_sites_circle(
-                q_input,
-                number_sites=6,
-                radius=1.0,
-                residence_time=1.0
-            )
+        # eisf should be the same as in hwhmEquivalentSitesCircle
+        hwhm_equiv, eisf_equiv, qisf_equiv = QENSmodels.hwhmEquivalentSitesCircle(
+            q_input,
+            Nsites=6,
+            radius=1.0,
+            resTime=1.0
+        )
 
         self.assertSequenceEqual(eisf1.tolist(), eisf_equiv.tolist())
 
@@ -94,9 +92,7 @@ class TestJumpsSitesLogNorm(unittest.TestCase):
                                           0.001])
 
     def test_raised_error_negative_coeffs(self):
-        """
-        Test that an error is raised if radius, residence_time are negative
-        or number_sites < 2
+        """ test that an error is raised if radius, resTime are negative or N <2
         """
         # N < 2
         self.assertRaises(ValueError,
@@ -117,8 +113,7 @@ class TestJumpsSitesLogNorm(unittest.TestCase):
                           1, 4, 1, 1, -0.5)
 
     def test_raised_error_no_q_input(self):
-        """
-        Test that an error is raised if no values of q are given as input
+        """ test that an error is raised if no values of q are given as input
         """
         self.assertRaises(TypeError,
                           QENSmodels.sqwJumpSitesLogNormDist,
@@ -130,9 +125,8 @@ class TestJumpsSitesLogNorm(unittest.TestCase):
         self.assertIsInstance(QENSmodels.sqwJumpSitesLogNormDist(1, 1),
                               numpy.ndarray)
         # w, q are vectors
-        output = QENSmodels.sqwJumpSitesLogNormDist(
-            [1, 2, 3],
-            [0.3, 0.4])
+        output = QENSmodels.sqwJumpSitesLogNormDist([1, 2, 3],
+                                                    [0.3, 0.4])
         self.assertIsInstance(output, numpy.ndarray)
         self.assertEqual(output.size, 6)
         self.assertEqual(output.shape, (2, 3))
@@ -152,15 +146,13 @@ class TestJumpsSitesLogNorm(unittest.TestCase):
         w = numpy.arange(-2, 2.01, 0.01)
         q = 0.7
         actual_data = numpy.column_stack(
-            [w, QENSmodels.sqwJumpSitesLogNormDist(
-                w,
-                q,
-                scale=2,
-                center=0.8,
-                number_sites=7,
-                radius=5,
-                residence_time=2,
-                sigma=0.6)])
+            [w, QENSmodels.sqwJumpSitesLogNormDist(w, q,
+                                                   scale=2,
+                                                   center=0.8,
+                                                   Nsites=7,
+                                                   radius=5,
+                                                   resTime=2,
+                                                   sigma=0.6)])
 
         numpy.testing.assert_array_almost_equal(ref_data,
                                                 actual_data,

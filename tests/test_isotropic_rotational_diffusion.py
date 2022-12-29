@@ -43,8 +43,7 @@ class TestIsotropicRotationalDiffusion(unittest.TestCase):
         # new parameters: q as an array of several values
         q_input = [1., 2.]
         hwhm1, eisf1, qisf1 = QENSmodels.hwhmIsotropicRotationalDiffusion(
-            q_input,
-            0.33)
+            q_input, 0.33)
         self.assertIsInstance(hwhm1, numpy.ndarray)
         self.assertIsInstance(eisf1, numpy.ndarray)
         self.assertIsInstance(qisf1, numpy.ndarray)
@@ -105,10 +104,8 @@ class TestIsotropicRotationalDiffusion(unittest.TestCase):
     def test_type_sqw_isotropic_rotational_diffusion(self):
         """ Test type of output """
         # w, q are floats
-        self.assertIsInstance(
-            QENSmodels.sqwIsotropicRotationalDiffusion(1, 1),
-            numpy.ndarray
-        )
+        self.assertIsInstance(QENSmodels.sqwIsotropicRotationalDiffusion(1, 1),
+                              numpy.ndarray)
         # w, q are vectors
         output = QENSmodels.sqwIsotropicRotationalDiffusion([1, 2, 3],
                                                             [0.3, 0.4])
@@ -131,14 +128,11 @@ class TestIsotropicRotationalDiffusion(unittest.TestCase):
         w = numpy.arange(-2, 2.01, 0.01)
         q = 0.7
         actual_data = numpy.column_stack(
-            [w,
-             QENSmodels.sqwIsotropicRotationalDiffusion(
-                 w,
-                 q,
-                 scale=1.0,
-                 center=0.0,
-                 radius=2.0,
-                 rot_diffusion_coeff=0.05)])
+            [w, QENSmodels.sqwIsotropicRotationalDiffusion(w, q,
+                                                           scale=1.0,
+                                                           center=0.0,
+                                                           radius=2.0,
+                                                           DR=0.05)])
 
         numpy.testing.assert_array_almost_equal(ref_data,
                                                 actual_data,
