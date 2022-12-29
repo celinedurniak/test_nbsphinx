@@ -12,7 +12,8 @@ def hwhmJumpTranslationalDiffusion(
         D: float = 0.23,
         resTime: float = 1.25
 ) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
-    """ Returns some characteristics of `JumpTranslationalDiffusion` as functions
+    """
+    Returns some characteristics of `JumpTranslationalDiffusion` as functions
     of the momentum transfer `q`:
     the half-width half-maximum (`hwhm`), the elastic incoherent structure
     factor (`eisf`), and the quasi-elastic incoherent structure factor (`qisf`)
@@ -148,14 +149,12 @@ def sqwJumpTranslationalDiffusion(
          S(q, \omega) = \text{Lorentzian}(\omega, \text{scale}, \text{center},
          \frac{D q^2}{ 1 + \text{resTime}\ D q^2})
 
-
     * The default values for the fitting parameters come from the values for
       water at 298K and 1 atm, water has `D` = 0.23 Angstrom^2/ps and
       `resTime` = 1.25 ps.
 
-
-    * If `resTime` is equal to 0, this model reduces to `sqwBrownianTranslationalDiffusion`.
-
+    * If `resTime` is equal to 0, this model reduces to
+      `sqwBrownianTranslationalDiffusion`.
 
     * At small `q`, `hwhm` is similar to the
       `hwhmBrownianTranslationalDiffusion`, *i.e.* equivalent to

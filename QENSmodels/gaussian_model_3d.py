@@ -82,7 +82,7 @@ def hwhmGaussianModel3D(
     if q.size == 1:
         for i in range(numberLorentz):
             if arg > 0:
-                al[:, i] = np.exp(-arg) * arg ** i / np.math.factorial(i)  # type: ignore[attr-defined]
+                al[:, i] = np.exp(-arg) * arg ** i / np.math.factorial(i)  # type: ignore[attr-defined]  # noqa
             else:
                 if i == 0:
                     al[:, 0] = 1.
@@ -92,7 +92,7 @@ def hwhmGaussianModel3D(
         al[:, 0] = [np.exp(-item) if item > 0 else 1. for item in arg]
 
         for i in range(1, numberLorentz):
-            al[:, i] = [np.exp(-item) * item ** i / np.math.factorial(i)  # type: ignore[attr-defined]
+            al[:, i] = [np.exp(-item) * item ** i / np.math.factorial(i)  # type: ignore[attr-defined]  # noqa
                         if item > 0 else 0. for item in arg]
 
     eisf = al[:, 0]
@@ -202,7 +202,7 @@ def sqwGaussianModel3D(
     F. Volino, J.-C. Perrin, and S. Lyonnard, *J. Phys. Chem. B* **110**,
     11217-11223 (2006) `link <https://pubs.acs.org/doi/10.1021/jp061103s>`__
 
-    """
+    """ # noqa
     # Input validation
     w = np.asarray(w)
 
