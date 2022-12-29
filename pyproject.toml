@@ -29,7 +29,7 @@ dev = ["pytest", "flake8", "mypy", "matplotlib", "ipympl", "h5py", "nbsphinx", "
        "jupyterlab", "bumps >= 0.7.6, <=0.8.1", "lmfit", "ipywidgets", "pandas",
        "jupyter-nbextensions-configurator"]
 examples = ["matplotlib", "ipympl", "h5py", "nbsphinx", "sphinx-rtd-theme", "jupyterlab",
-            "jupyter-nbextensions-configurator", "bumps >= 0.7.6", "lmfit", "ipywidgets", "pandas"]
+            "jupyter-nbextensions-configurator", "bumps >= 0.7.6 , <=0.8.1", "lmfit", "ipywidgets", "pandas"]
 
 
 [project.urls]
