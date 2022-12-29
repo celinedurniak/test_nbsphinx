@@ -1,9 +1,9 @@
 """
 mantid_BrownianDiff_fit
-===========================
+=======================
 
-This example shows how to use one of the models of the QENS library in
-MantidWorkbench.
+This example shows how to use one of the models of the QENS
+library in MantidWorkbench.
 To use, simply open this script in MantidWorkbench and run it.
 """
 
@@ -136,9 +136,20 @@ paramTable = mapi.mtd['fit_Parameters']
 # print results
 for i in range(4):
     print('Workspace {i}:'.format(i=i))
-    print('scale: {scale_val:.2f}'.format(scale_val=paramTable.column(1)[3 * i]))
-    print('center: {center_val:.2f}'.format(center_val=paramTable.column(1)[3 * i + 1]))
-    print('D: {D_val:.2f}'.format(D_val=paramTable.column(1)[3 * i + 2]))
+    print(
+        'scale: {scale_val:.2f}'.format(
+            scale_val=paramTable.column(1)[3 * i]
+        )
+    )
+    print(
+        'center: {center_val:.2f}'.format(
+            center_val=paramTable.column(1)[3 * i + 1]
+        )
+    )
+    print('D: {D_val:.2f}'.format(
+        D_val=paramTable.column(1)[3 * i + 2]
+    )
+    )
 
 # plot results
 fig, ax = plt.subplots(2, 2)
