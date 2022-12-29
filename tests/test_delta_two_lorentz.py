@@ -23,9 +23,16 @@ class TestDeltaTwoLorentz(unittest.TestCase):
         """ Test size of output """
         w_input = [1, 2, 3]
         q_input = [0.05, 0.3]
-        sqw = QENSmodels.sqw_delta_two_lorentz(w_input, q_input, 0.5, 2,
-                                               [0.75, 0.5], [1, 2], [0.05, 0.04],
-                                               [0.02, 0.03])
+        sqw = QENSmodels.sqw_delta_two_lorentz(
+            w_input,
+            q_input,
+            0.5,
+            2,
+            [0.75, 0.5],
+            [1, 2],
+            [0.05, 0.04],
+            [0.02, 0.03]
+        )
         size_output = sqw.shape
         self.assertEqual(size_output[0], len(q_input))
         self.assertEqual(size_output[1], len(w_input))

@@ -19,12 +19,15 @@ class TestBackgroundPolynomials(unittest.TestCase):
         Test types of outputs depending on types of inputs of x
         (float or array)
         """
-        self.assertIsInstance(QENSmodels.background_polynomials(1, [1, 2, 3]),
-                              numpy.float64)
+        self.assertIsInstance(
+            QENSmodels.background_polynomials(1, [1, 2, 3]),
+            numpy.float64
+        )
 
-        self.assertIsInstance(QENSmodels.background_polynomials([1, 2, 3],
-                                                                [1, 2, 3]),
-                              numpy.ndarray)
+        self.assertIsInstance(
+            QENSmodels.background_polynomials([1, 2, 3], [1, 2, 3]),
+            numpy.ndarray
+        )
 
     def test_output_when_no_coeff(self):
         """ Test that output = 0 if no list of coefficients given """
@@ -47,12 +50,14 @@ class TestBackgroundPolynomials(unittest.TestCase):
         """
 
         # load reference data
-        ref_data = numpy.loadtxt(pjn(data_dir,
-                                     "background_polynomials_ref_data.dat"))
+        ref_data = numpy.loadtxt(
+            pjn(data_dir, "background_polynomials_ref_data.dat")
+        )
 
         # generate data from current model
-        # for info: the parameters' values used for the reference data are
-        # specified in the README file in the 'reference data' folder
+        # for info: the parameters' values used for the reference data
+        # are specified in the README file in the
+        # 'reference data' folder
         w = numpy.arange(-2, 2.01, 0.01)
         actual_data = numpy.column_stack([
             w,
@@ -60,7 +65,11 @@ class TestBackgroundPolynomials(unittest.TestCase):
         ])
 
         # compare the 2 arrays
-        numpy.testing.assert_array_almost_equal(ref_data, actual_data, decimal=13)
+        numpy.testing.assert_array_almost_equal(
+            ref_data,
+            actual_data,
+            decimal=13
+        )
 
 
 if __name__ == '__main__':

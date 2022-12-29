@@ -83,8 +83,10 @@ class TestJumpTranslationalDiffusion(unittest.TestCase):
     def test_type_sqw_jump_translational_diffusion(self):
         """ Test type of output """
         # w, q are floats
-        self.assertIsInstance(QENSmodels.sqw_jump_translational_diffusion(1, 1),
-                              numpy.ndarray)
+        self.assertIsInstance(
+            QENSmodels.sqw_jump_translational_diffusion(1, 1),
+            numpy.ndarray
+        )
         # w, q are vectors
         output = QENSmodels.sqw_jump_translational_diffusion(
             [1, 2, 3],

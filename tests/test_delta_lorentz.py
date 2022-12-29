@@ -43,14 +43,27 @@ class TestDeltaLorentz(unittest.TestCase):
         self.assertEqual(size_output[1], len(w_input))
 
     def test_raised_exception(self):
-        """ test that exceptions are raised if the sizes of fraction_immobile and hwhm do
-        not match the size of q
+        """
+        test that exceptions are raised if the sizes of fraction_immobile
+        and hwhm do not match the size of q
         """
         w = [0, 1, 2]
         q = [0.1, 0.2, 0.3]
-        self.assertRaises(TypeError, QENSmodels.sqw_delta_lorentz, w, q)
+        self.assertRaises(
+            TypeError,
+            QENSmodels.sqw_delta_lorentz,
+            w,
+            q
+        )
         self.assertRaises(IndexError,
-                          QENSmodels.sqw_delta_lorentz, w, q, 1, 0, [1, 1], [1, 1])
+                          QENSmodels.sqw_delta_lorentz,
+                          w,
+                          q,
+                          1,
+                          0,
+                          [1, 1],
+                          [1, 1]
+                          )
 
     def test_raised_error_no_q_input(self):
         """ test that an error is raised if no values of q are given as input
@@ -82,7 +95,6 @@ class TestDeltaLorentz(unittest.TestCase):
         # compare the 2 arrays
         numpy.testing.assert_array_almost_equal(ref_data,
                                                 actual_data)
-
 
 
 if __name__ == '__main__':
