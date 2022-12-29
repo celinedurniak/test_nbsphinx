@@ -5,7 +5,8 @@ from typing import Union
 
 def background_polynomials(
         x: Union[float, list, np.ndarray],
-        list_coefficients: list = None) -> Polynomial:
+        list_coefficients: Union[float, list] = 0.0
+) -> Polynomial:
     r"""
     Polynomials of variable `w` and with coefficients contained in
     'list_coefficients'
@@ -44,10 +45,8 @@ def background_polynomials(
 
     x = np.asarray(x)
 
-    # check that list_coeff is a list and all elements are numbers
-    if list_coefficients is None:
-        return Polynomial([0.])(x)
-    elif isinstance(list_coefficients, list) and \
+    # check that list_coefficients is a list and all elements are numbers
+    if isinstance(list_coefficients, list) and \
             all(isinstance(w, (int, float)) for w in list_coefficients):
 
         return Polynomial(list_coefficients)(x)
@@ -58,8 +57,3 @@ def background_polynomials(
 
     else:
         raise ValueError('problem with input')
-
-
-if __name__ == "__main__":
-    import doctest
-    doctest.testmod()

@@ -15,19 +15,18 @@ class TestGaussianModel3D(unittest.TestCase):
     """ Tests functions related to QENSmodels Gaussian Model 3D """
 
     def test_size_hwhm_gaussian_model_3d(self):
-        """
-        Test size of output of hwhm_gaussian_model3D
-        The output should contain 3 elements
+        """ Test size of output of hwhmGaussianModel3D
+        The output should contains 3 elements
         """
         self.assertEqual(
-            len(QENSmodels.hwhm_gaussian_model3D(1.)), 3)
+            len(QENSmodels.hwhmGaussianModel3D(1.)), 3)
 
         self.assertEqual(
-            len(QENSmodels.hwhm_gaussian_model3D([1., 2.])), 3)
+            len(QENSmodels.hwhmGaussianModel3D([1., 2.])), 3)
 
     def test_type_size_hwhm_gaussian_model_3dq_nb(self):
         """ Tests type and size of outputs if input q is a float """
-        hwhm, eisf, qisf = QENSmodels.hwhm_gaussian_model3D(1.)
+        hwhm, eisf, qisf = QENSmodels.hwhmGaussianModel3D(1.)
         self.assertIsInstance(hwhm, numpy.ndarray)
         self.assertIsInstance(eisf, numpy.ndarray)
         self.assertIsInstance(qisf, numpy.ndarray)
@@ -41,7 +40,7 @@ class TestGaussianModel3D(unittest.TestCase):
         """ Tests type and size of outputs if input q is an array """
         # new parameters: q as an array of several values
         q_input = [1., 2.]
-        hwhm1, eisf1, qisf1 = QENSmodels.hwhm_gaussian_model3D(q_input, 0.33)
+        hwhm1, eisf1, qisf1 = QENSmodels.hwhmGaussianModel3D(q_input, 0.33)
         self.assertIsInstance(hwhm1, numpy.ndarray)
         self.assertIsInstance(eisf1, numpy.ndarray)
         self.assertIsInstance(qisf1, numpy.ndarray)
@@ -89,49 +88,44 @@ class TestGaussianModel3D(unittest.TestCase):
                                                 decimal=9)
 
     def test_raised_error_negative_coeffs(self):
-        """ test that an error is raised if diffusion_coeff or variance_ux
-        are negative or variance_ux=0
+        """ test that an error is raised if D or variance_ux are negative
+        or variance_ux=0
         """
         # D = -1, variance_ux = 1
         self.assertRaises(ValueError,
-                          QENSmodels.hwhm_gaussian_model3D,
+                          QENSmodels.hwhmGaussianModel3D,
                           1,
-                          -1,
-                          1)
+                          -1, 1)
         # D = 1, variance_ux = -1
         self.assertRaises(ValueError,
-                          QENSmodels.hwhm_gaussian_model3D,
+                          QENSmodels.hwhmGaussianModel3D,
                           1,
-                          1,
-                          -1)
+                          1, -1)
         # D = -1, variance_ux = -1
         self.assertRaises(ValueError,
-                          QENSmodels.hwhm_gaussian_model3D,
+                          QENSmodels.hwhmGaussianModel3D,
                           1,
-                          -1,
-                          -1)
+                          -1, -1)
         # D = -1, variance_ux = 0
         self.assertRaises(ValueError,
-                          QENSmodels.hwhm_gaussian_model3D,
+                          QENSmodels.hwhmGaussianModel3D,
                           1,
-                          -1,
-                          0
-                          )
+                          -1, 0)
 
     def test_raised_error_no_q_input(self):
         """ test that an error is raised if no values of q are given as input
         """
         self.assertRaises(TypeError,
-                          QENSmodels.sqw_gaussian_model3D,
+                          QENSmodels.sqwGaussianModel3D,
                           1)
 
     def test_type_sqw_gaussian_model_3d(self):
         """ Test type of output """
         # w, q are floats
-        self.assertIsInstance(QENSmodels.sqw_gaussian_model3D(1, 1),
+        self.assertIsInstance(QENSmodels.sqwGaussianModel3D(1, 1),
                               numpy.ndarray)
         # w, q are vectors
-        output = QENSmodels.sqw_gaussian_model3D([1, 2, 3], [0.3, 0.4])
+        output = QENSmodels.sqwGaussianModel3D([1, 2, 3], [0.3, 0.4])
         self.assertIsInstance(output, numpy.ndarray)
         self.assertEqual(output.size, 6)
         self.assertEqual(output.shape, (2, 3))
@@ -151,11 +145,11 @@ class TestGaussianModel3D(unittest.TestCase):
         w = numpy.arange(-2, 2.01, 0.01)
         q = 0.7
         actual_data = numpy.column_stack(
-            [w, QENSmodels.sqw_gaussian_model3D(w, q,
-                                                scale=5.,
-                                                center=0.5,
-                                                diffusion_coeff=1.,
-                                                variance_ux=1.)])
+            [w, QENSmodels.sqwGaussianModel3D(w, q,
+                                              scale=5.,
+                                              center=0.5,
+                                              D=1.,
+                                              variance_ux=1.)])
 
         numpy.testing.assert_array_almost_equal(ref_data,
                                                 actual_data,

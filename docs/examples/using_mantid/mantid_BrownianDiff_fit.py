@@ -1,9 +1,9 @@
 """
 mantid_BrownianDiff_fit
-===========================
+=======================
 
-This example shows how to use one of the models of the QENS library in
-MantidWorkbench.
+This example shows how to use one of the models of the QENS
+library in MantidWorkbench.
 To use, simply open this script in MantidWorkbench and run it.
 """
 
@@ -29,7 +29,7 @@ Q = np.linspace(0.1, 0.4, selected_wi)
 # created fake reference data adding noise to one of the QENS models
 added_noise = np.random.normal(0, 1, nb_points)
 
-brownian_diff_noisy = QENSmodels.sqw_brownian_translational_diffusion(
+brownian_diff_noisy = QENSmodels.sqwBrownianTranslationalDiffusion(
     hw,
     Q,
     scale=10,
@@ -44,7 +44,7 @@ QENS_data = mapi.CreateWorkspace(DataX=hw,
 
 
 # wrap to create mantid fitting function
-class my_sqw_brownian_diffusion(mapi.IFunction1D):
+class my_sqwBrownian_Diffusion(mapi.IFunction1D):
     """ """
 
     def init(self):
@@ -64,7 +64,7 @@ class my_sqw_brownian_diffusion(mapi.IFunction1D):
 
         q = self.getAttributeValue("Q")
 
-        return QENSmodels.sqw_brownian_translational_diffusion(
+        return QENSmodels.sqwBrownianTranslationalDiffusion(
             xvals,
             q,
             scale=scale,
@@ -74,7 +74,7 @@ class my_sqw_brownian_diffusion(mapi.IFunction1D):
 
 
 # add it to Mantid fitting functions
-mapi.FunctionFactory.subscribe(my_sqw_brownian_diffusion)
+mapi.FunctionFactory.subscribe(my_sqwBrownian_Diffusion)
 
 """ Fitting
     The following analysis can also be done in Mantid Workbench Fit wizard
@@ -136,9 +136,20 @@ paramTable = mapi.mtd['fit_Parameters']
 # print results
 for i in range(4):
     print('Workspace {i}:'.format(i=i))
-    print('scale: {scale_val:.2f}'.format(scale_val=paramTable.column(1)[3 * i]))
-    print('center: {center_val:.2f}'.format(center_val=paramTable.column(1)[3 * i + 1]))
-    print('D: {D_val:.2f}'.format(D_val=paramTable.column(1)[3 * i + 2]))
+    print(
+        'scale: {scale_val:.2f}'.format(
+            scale_val=paramTable.column(1)[3 * i]
+        )
+    )
+    print(
+        'center: {center_val:.2f}'.format(
+            center_val=paramTable.column(1)[3 * i + 1]
+        )
+    )
+    print('D: {D_val:.2f}'.format(
+        D_val=paramTable.column(1)[3 * i + 2]
+    )
+    )
 
 # plot results
 fig, ax = plt.subplots(2, 2)

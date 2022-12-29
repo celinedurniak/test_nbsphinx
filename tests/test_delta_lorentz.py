@@ -12,12 +12,12 @@ data_dir = pjn(os.path.dirname(this_module_path), 'reference_data')
 
 
 class TestDeltaLorentz(unittest.TestCase):
-    """ Tests QENSmodels.sqw_delta_lorentz function"""
+    """ Tests QENSmodels.sqwDeltaLorentz function"""
 
     def test_type_output(self):
         """ test type of output"""
 
-        output = QENSmodels.sqw_delta_lorentz([1, 2, 3], 0.1)
+        output = QENSmodels.sqwDeltaLorentz([1, 2, 3], 0.1)
         self.assertIsInstance(output, numpy.ndarray)
 
     def test_size_output(self):
@@ -25,37 +25,34 @@ class TestDeltaLorentz(unittest.TestCase):
         # q is a float
         w_input = [1, 2, 3]
         q_input_nb = 0.1
-        output = QENSmodels.sqw_delta_lorentz(w_input, q_input_nb)
+        output = QENSmodels.sqwDeltaLorentz(w_input, q_input_nb)
         self.assertEqual(len(output), len(w_input))
 
         # q is an array
         q_input_array = [0.1, 0.2]
-        output_array = QENSmodels.sqw_delta_lorentz(
-            w_input,
-            q_input_array,
-            1,
-            0,
-            [0, 0],
-            [1, 1]
-        )
+        output_array = QENSmodels.sqwDeltaLorentz(w_input,
+                                                  q_input_array,
+                                                  1,
+                                                  0,
+                                                  [0, 0],
+                                                  [1, 1])
         size_output = output_array.shape
         self.assertEqual(size_output[0], len(q_input_array))
         self.assertEqual(size_output[1], len(w_input))
 
     def test_raised_exception(self):
-        """ test that exceptions are raised if the sizes of fraction_immobile and hwhm do
+        """ test that exceptions are raised if the sizes of A0 and hwhm do
         not match the size of q
         """
         w = [0, 1, 2]
         q = [0.1, 0.2, 0.3]
-        self.assertRaises(TypeError, QENSmodels.sqw_delta_lorentz, w, q)
-        self.assertRaises(IndexError,
-                          QENSmodels.sqw_delta_lorentz, w, q, 1, 0, [1, 1], [1, 1])
+        self.assertRaises(AssertionError, QENSmodels.sqwDeltaLorentz,
+                          w, q, 1, 0, [1, 1], [1, 1])
 
     def test_raised_error_no_q_input(self):
         """ test that an error is raised if no values of q are given as input
         """
-        self.assertRaises(TypeError, QENSmodels.sqw_delta_lorentz, 1)
+        self.assertRaises(TypeError, QENSmodels.sqwDeltaLorentz, 1)
 
     def test_reference_data(self):
         """ Test output values in comparison with reference data
@@ -72,17 +69,15 @@ class TestDeltaLorentz(unittest.TestCase):
         q = 0.7
         actual_data = numpy.column_stack(
             [w,
-             QENSmodels.sqw_delta_lorentz(
-                 w,
-                 q,
-                 scale=1.,
-                 center=0.5,
-                 fraction_immobile=0.01,
-                 hwhm=1.0)])
+             QENSmodels.sqwDeltaLorentz(w, q,
+                                        scale=1.,
+                                        center=0.5,
+                                        A0=0.01,
+                                        hwhm=1.0)])
         # compare the 2 arrays
         numpy.testing.assert_array_almost_equal(ref_data,
-                                                actual_data)
-
+                                                actual_data,
+                                                decimal=13)
 
 
 if __name__ == '__main__':

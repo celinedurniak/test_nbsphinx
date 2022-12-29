@@ -1,7 +1,6 @@
 import numpy as np
 from typing import Union
 
-
 try:
     import QENSmodels
 except ImportError:
@@ -12,7 +11,8 @@ def lorentzian(
         x: Union[float, list, np.ndarray],
         scale: Union[float, list, np.ndarray] = 1.0,
         center: Union[float, list, np.ndarray] = 0.0,
-        hwhm: Union[float, list, np.ndarray] = 1.0) -> Union[float, list, np.ndarray]:
+        hwhm: Union[float, list, np.ndarray] = 1.0
+) -> Union[float, list, np.ndarray]:
     r""" Lorentzian model
 
     Parameters
@@ -97,14 +97,12 @@ def lorentzian(
     """
     # Input validation
     x = np.asarray(x)
-    scale = np.asarray(scale)
-    center = np.asarray(center)
     hwhm = np.asarray(hwhm)
 
     if hwhm == 0:
         model = QENSmodels.delta(x, 1.0, center)
     else:
-        model = hwhm / ((x - center)**2 + hwhm**2) / np.pi
+        model = hwhm / ((x - center) ** 2 + hwhm ** 2) / np.pi
 
     # Area normalization
     if x.size > 1:
@@ -113,11 +111,6 @@ def lorentzian(
             model /= area
 
     # Scale by amplitude
-    model *= scale
+    model *= np.asarray(scale)
 
     return model
-
-
-if __name__ == "__main__":
-    import doctest
-    doctest.testmod()

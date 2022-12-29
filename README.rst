@@ -1,7 +1,7 @@
 
-.. image:: https://readthedocs.org/projects/qensmodels/badge/?version=latest
-   :target: https://qensmodels.readthedocs.io/?badge=latest
-   :alt: Documentation Status
+.. image:: https://readthedocs.org/projects/test-nbsphinx/badge/?version=latest
+    :target: https://test-nbsphinx.readthedocs.io/en/latest/?badge=latest
+    :alt: Documentation Status
 
 .. image:: https://img.shields.io/badge/License-BSD_3--Clause-blue.svg
    :target: https://opensource.org/licenses/BSD-3-Clause
@@ -32,9 +32,12 @@ Getting started
 To get a glimpse of what can be done with the library, click on `launch binder` below.
 Please note that the notebooks can be slow to load.
 
-.. image:: https://mybinder.org/badge_logo.svg
-   :target: https://mybinder.org/v2/gh/QENSlibrary/QENSmodels/master?filepath=examples-binder%2Fscipy_lorentzian_fit_binder_ipywidgets.ipynb
 
+.. image:: https://mybinder.org/badge_logo.svg
+ :target: https://mybinder.org/v2/gh/QENSlibrary/QENSmodels/main?labpath=.%2Fdocs%2Fexamples
+
+
+restructured text icon Copy rst link to clipboard
 
 Install the QENS models
 -----------------------
@@ -43,9 +46,9 @@ Currently the QENS models library has not been released on pypi. Please use the 
 method described below to install it.
 
 - If not already installed on your computer, download and install Python (version>=3.8),
-for example, from https://www.python.org/downloads/.
+  for example, from https://www.python.org/downloads/.
   In the following instructions, replace `python` by the path to the version of python
-you want to use.
+  you want to use.
 
 - Create and go to, e.g., QENSmodels directory (optional)
 
@@ -56,16 +59,25 @@ you want to use.
 
 - Create a virtual environment and activate it (optional)
 
-  .. code-block:: console
+  - on Unix or MacOS 
 
-      python -m venv .venv
-      source .venv/bin/activate
+    .. code-block:: console
 
+        python -m venv .venv
+        source .venv/bin/activate
+  
+  - on Windows
+  
+    .. code-block:: console
+    
+        python -m venv .venv
+        .\.venv\Scripts\activate
 
   Note that the prompt of the terminal will change and contain ``(.venv)``.
   You can choose the folder name that contains your virtual environment when you create it by
   passing a name other than `.venv`. Once done working with this virtual environment, you can
-  deactivate it by typing ``deactivate``.
+  deactivate it by typing ``deactivate`` in the terminal. The prompt should go back to its initial
+  version.
 
 
 - Upgrade pip (optional)
@@ -84,7 +96,7 @@ you want to use.
 
         .. code-block:: console
 
-           python -m pip install -e full_path_to_QENSmodels_folder --use-feature=in-tree-build
+           python -m pip install full_path_to_QENSmodels_folder
 
 
    - *method 2*: if you only want to use the version of the models available in the repository
@@ -99,7 +111,7 @@ you want to use.
 
 
 
-To **test the installation**\ , type the following command in a terminal
+To **test the installation**, type the following command in a terminal
 
 .. code-block:: console
 

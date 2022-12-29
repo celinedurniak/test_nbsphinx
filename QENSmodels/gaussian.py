@@ -9,9 +9,10 @@ except ImportError:
 
 def gaussian(
         x: Union[float, list, np.ndarray],
-        scale: Union[float, list, np.ndarray] = 1.,
-        center: Union[float, list, np.ndarray] = 0.,
-        sigma: Union[float, list, np.ndarray] = 1.) -> Union[float, list, np.ndarray]:
+        scale: float = 1.,
+        center: float = 0.,
+        sigma: float = 1.
+) -> Union[float, list, np.ndarray]:
     r""" Gaussian model
 
     Parameters
@@ -95,9 +96,6 @@ def gaussian(
 
     """
     x = np.asarray(x)
-    scale = np.asarray(scale)
-    center = np.asarray(center)
-    sigma = np.asarray(sigma)
 
     if sigma == 0:
         model = QENSmodels.delta(x, 1.0, center)
@@ -112,11 +110,6 @@ def gaussian(
             model /= area
 
     # Scale by amplitude
-    model *= scale
+    model *= np.asarray(scale)
 
     return model
-
-
-if __name__ == "__main__":
-    import doctest
-    doctest.testmod()
