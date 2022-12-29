@@ -111,7 +111,7 @@ class TestIsotropicRotationalDiffusion(unittest.TestCase):
         )
         # w, q are vectors
         output = QENSmodels.sqwIsotropicRotationalDiffusion([1, 2, 3],
-                                                               [0.3, 0.4])
+                                                            [0.3, 0.4])
         self.assertIsInstance(output, numpy.ndarray)
         self.assertEqual(output.size, 6)
         self.assertEqual(output.shape, (2, 3))

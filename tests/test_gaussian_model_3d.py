@@ -152,10 +152,10 @@ class TestGaussianModel3D(unittest.TestCase):
         q = 0.7
         actual_data = numpy.column_stack(
             [w, QENSmodels.sqwGaussianModel3D(w, q,
-                                                scale=5.,
-                                                center=0.5,
-                                                diffusion_coeff=1.,
-                                                variance_ux=1.)])
+                                              scale=5.,
+                                              center=0.5,
+                                              diffusion_coeff=1.,
+                                              variance_ux=1.)])
 
         numpy.testing.assert_array_almost_equal(ref_data,
                                                 actual_data,

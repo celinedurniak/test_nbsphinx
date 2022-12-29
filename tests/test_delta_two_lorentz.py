@@ -71,13 +71,14 @@ class TestDeltaTwoLorentz(unittest.TestCase):
         w = numpy.arange(-2, 2.01, 0.01)
         q = 0.7
         output = numpy.column_stack(
-            [w, QENSmodels.sqwDeltaTwoLorentz(w, q,
-                                                 scale=1.,
-                                                 center=0,
-                                                 fraction_immobile=0.01,
-                                                 amplitude_l1=0.4,
-                                                 hwhm1=0.25,
-                                                 hwhm2=0.75)])
+            [w, QENSmodels.sqwDeltaTwoLorentz(w,
+                                              q,
+                                              scale=1.,
+                                              center=0,
+                                              fraction_immobile=0.01,
+                                              amplitude_l1=0.4,
+                                              hwhm1=0.25,
+                                              hwhm2=0.75)])
 
         # # compare the 2 arrays
         numpy.testing.assert_array_almost_equal(ref_data,

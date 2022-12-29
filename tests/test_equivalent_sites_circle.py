@@ -118,12 +118,12 @@ class TestEquivalentSitesCircle(unittest.TestCase):
         q = 0.7
         actual_data = numpy.column_stack(
             [w, QENSmodels.sqwEquivalentSitesCircle(w,
-                                                       q,
-                                                       scale=.01,
-                                                       center=0.5,
-                                                       number_sites=3,
-                                                       radius=100.0,
-                                                       residence_time=10.)])
+                                                    q,
+                                                    scale=.01,
+                                                    center=0.5,
+                                                    number_sites=3,
+                                                    radius=100.0,
+                                                    residence_time=10.)])
         numpy.testing.assert_array_almost_equal(ref_data,
                                                 actual_data,
                                                 decimal=12)
