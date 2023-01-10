@@ -21,13 +21,14 @@ Installation
 
 In order to contribute to the development of the library, in a terminal
 
-- activate your virtual environment (see the `installation <https://github.com/QENSlibrary/QENSmodels/blob/master/README.rst>`_ )
+- activate your virtual environment (see the
+ `installation <https://github.com/QENSlibrary/QENSmodels/blob/master/README.rst>`_ )
 
 - run:
 
 .. code-block:: console
 
-   python -m pip install -r requirements-dev.txt
+   python -m pip install .[dev]
 
 This will install what is needed to
 
