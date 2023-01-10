@@ -19,7 +19,6 @@ def hwhmChudleyElliottDiffusion(
 
     Parameters
     ----------
-
     q: float, list or :class:`~numpy:numpy.ndarray`
         momentum transfer (non-fitting, in 1/Angstrom)
 
@@ -29,10 +28,8 @@ def hwhmChudleyElliottDiffusion(
     L: float
         jump length (in Angstrom). Default to 1.0.
 
-
     Returns
     -------
-
     hwhm: :class:`~numpy:numpy.ndarray`
         half-width half maximum
 
@@ -41,6 +38,7 @@ def hwhmChudleyElliottDiffusion(
 
     qisf: :class:`~numpy:numpy.ndarray`
         quasi-elastic incoherent structure factor
+
 
 
     Examples
@@ -95,7 +93,6 @@ def sqwChudleyElliottDiffusion(
 
     Parameters
     ----------
-
     w: float, list or :class:`~numpy:numpy.ndarray`
         energy transfer (in 1/ps)
 
@@ -116,7 +113,6 @@ def sqwChudleyElliottDiffusion(
 
     Return
     ------
-
     :class:`~numpy:numpy.ndarray`
         output array
 

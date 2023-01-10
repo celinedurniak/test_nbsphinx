@@ -20,29 +20,30 @@ same units as the input data. Further information and examples are given below. 
 also contains a few tools to help with converting units (see
 `Convert_units.ipynb <https://github.com/QENSlibrary/QENSmodels/blob/master/tools/Convert_units.ipynb>`_ )
 
-:math:`S(Q,\hbar\omega)`
-************************
+Dynamical structure factor
+**************************
 
-The dynamical structure factor should be given in units of :math:`[energy]^{-1}`
-(:math:`[E]^{-1}`), although in many cases :math:`S(Q,\hbar\omega)` is not
-obtained in absolute units and the fitted data will simply be given in arbitrary
-units. In this case, the global scaling factor used in the fitting model will
-also be just an arbitrary number and its units can be ignored. Otherwise, if the
-input data were carefully normalized and the dynamical structure factor is given
-in absolute units, then this scaling factor will also be given in
-:math:`[E]^{-1}` units.
+The dynamical structure factor :math:`S(Q,\hbar\omega)` should be given in units
+of :math:`[energy]^{-1}` (:math:`[E]^{-1}`), although in many cases
+:math:`S(Q,\hbar\omega)` is not obtained in absolute units and the fitted data
+will simply be given in arbitrary units. In this case, the global scaling factor
+used in the fitting model will also be just an arbitrary number and its units
+can be ignored. Otherwise, if the input data were carefully normalized and the
+dynamical structure factor is given in absolute units, then this scaling factor
+will also be given in :math:`[E]^{-1}` units.
 
-:math:`Q`
-*********
+Wavector transfer
+*****************
 
 The wavevector transfer :math:`Q` has units of :math:`[length]^{-1}`
 (:math:`[L]^{-1}`). Typically this is given in |Ang^-1|, but it is not uncommon
 to use :math:`\text{nm}^{-1}`.
 
-:math:`\hbar\omega` (or :math:`\omega` or :math:`\nu` or :math:`\nu/c`)
-***********************************************************************
+Energy exchange
+***************
 
-The energy exchange has units of energy and is commonly expressed in
+The energy exchange, :math:`\hbar\omega` (or :math:`\omega` or :math:`\nu` or
+:math:`\nu/c`), has units of energy and is commonly expressed in
 :math:`\text{meV}`. However, many other units are also used in the literature.
 For example, for backscattering experiments it is quite usual to use
 :math:`\mu\text{eV}` instead of :math:`\text{meV}`. It is also relatively common
@@ -211,7 +212,8 @@ Dimensionless parameters
 Although they do not require any conversion, a few examples of dimensionless
 parameters are listed here:
 
- * *A0*, *A1*, *A2* in models formed by the sum of several functions (*e.g.*  *delta_lorentz*).
+ * *A0*, *A1*, *A2* in models formed by the sum of several functions
+   (*e.g.*  *delta_lorentz*).
  * *Nsites* defining the number of sites in a circle,
    **which should not be an adjustable parameter**, in *equivalent_sites_circle* and
    *jump_sites_log_norm_dist*.
