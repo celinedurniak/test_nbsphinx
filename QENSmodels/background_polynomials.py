@@ -9,7 +9,7 @@ def background_polynomials(
 ) -> Polynomial:
     r"""
     Polynomials of variable `w` and with coefficients contained in
-    'list_coefficients'
+    `list_coefficients`
 
     Parameters
     ----------
