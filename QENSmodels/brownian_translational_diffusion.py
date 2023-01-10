@@ -166,7 +166,7 @@ def sqwBrownianTranslationalDiffusion(
            I(q, t) = \int G(r, t) dr = \text{scale} \exp (-Dq^2 t)
 
     * This model works reasonably well at low *q*. Other models, such as
-      "Chudley-Elliott", have been developed to describe the microscopic
+      `Chudley-Elliott`, have been developed to describe the microscopic
       mechanisms that deviate from the Fickian behavior (`hwhm` proportional
       to `q` squared)
 
@@ -197,7 +197,7 @@ def sqwBrownianTranslationalDiffusion(
         sqw[i, :] = QENSmodels.lorentzian(w, scale, center, hwhm[i])
 
     # For Bumps use (needed for final plotting)
-    # Using a 'Curve' in bumps for each Q --> needs vector array
+    # Using a "Curve" in bumps for each Q --> needs vector array
     if q.size == 1:
         sqw = np.reshape(sqw, w.size)
 
