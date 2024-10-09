@@ -7,7 +7,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "test_nbsphinx"
 version = "0.1.5"
-description = "Library of models for fitting QENS data"
+description = "TEST Library of models for fitting QENS data"
 readme = "README.rst"
 authors = [
     {name = "Celine Durniak"},
